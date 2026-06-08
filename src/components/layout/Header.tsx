@@ -83,6 +83,9 @@ export const Header = () => {
           <Link to="/" className={getLinkClass("/")}>
             Home
           </Link>
+          <a href="#trust" className={getNavItemClass()}>
+            Trust
+          </a>
 
           {/* Industries Mega Dropdown */}
           <div
@@ -163,14 +166,14 @@ export const Header = () => {
             )}
           </div>
 
-          <a href="#trustgrid" className={getNavItemClass()}>
-            TrustGrid.AI
-          </a>
           <a href="#staffing" className={getNavItemClass()}>
             Staffing
           </a>
           <a href="#why-govenics" className={getNavItemClass()}>
             Why Govenics
+          </a>
+          <a href="#cases" className={getNavItemClass()}>
+            Case Studies
           </a>
           <Link to="/resources" className={getLinkClass("/resources")}>
             Resources
@@ -202,6 +205,13 @@ export const Header = () => {
             <Link to="/" className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg">
               Home
             </Link>
+            <a
+              href="#trust"
+              onClick={() => setMobileOpen(false)}
+              className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg"
+            >
+              Trust
+            </a>
 
             {/* Mobile Accordion for Industries */}
             <div>
@@ -252,13 +262,6 @@ export const Header = () => {
             </div>
 
             <a
-              href="#trustgrid"
-              onClick={() => setMobileOpen(false)}
-              className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg"
-            >
-              TrustGrid.AI
-            </a>
-            <a
               href="#staffing"
               onClick={() => setMobileOpen(false)}
               className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg"
@@ -271,6 +274,13 @@ export const Header = () => {
               className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg"
             >
               Why Govenics
+            </a>
+            <a
+              href="#cases"
+              onClick={() => setMobileOpen(false)}
+              className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg"
+            >
+              Case Studies
             </a>
             <Link to="/resources" className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg">
               Resources

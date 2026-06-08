@@ -75,7 +75,7 @@ const AnimatedDigit = ({ target }: { target: number }) => {
 
 export const GrcTrust = () => {
   return (
-    <section className="py-12 bg-transparent border-y border-slate-200/60 relative z-10 overflow-hidden">
+    <section id="trust" className="py-12 bg-transparent border-y border-slate-200/60 relative z-10 overflow-hidden">
       <div className="container mx-auto px-6 space-y-10">
         
         {/* Animated Counter Cards */}
