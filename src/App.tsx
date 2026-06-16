@@ -10,6 +10,8 @@ import CookiePolicyPage from "@/pages/CookiePolicyPage";
 import ManageStaffingPage from "@/pages/ManageStaffingPage";
 import CyberSecurityPage from "@/pages/CyberSecurityPage";
 import AboutPage from "@/pages/AboutPage";
+import ESGPage from "@/pages/ESGPage";
+import PartnersPage from "@/pages/PartnersPage";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/cookies" element={<CookiePolicyPage />} />
         <Route path="/staffing" element={<ManageStaffingPage />} />
         <Route path="/cybersecurity" element={<CyberSecurityPage />} />
+        <Route path="/esg" element={<ESGPage />} />
+        <Route path="/partners" element={<PartnersPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -63,8 +63,9 @@ export const Footer = () => {
             <li><Link to="/services/regulatory-compliance" className="hover:text-blue-400 transition-colors">Regulatory Compliance</Link></li>
             <li><Link to="/services/enterprise-risk-management" className="hover:text-blue-400 transition-colors">Enterprise Risk</Link></li>
             <li><Link to="/services/data-privacy-dpdp" className="hover:text-blue-400 transition-colors">Data Privacy & DPDP</Link></li>
-            <li><Link to="/services/cybersecurity-iso27001" className="hover:text-blue-400 transition-colors">ISO 27001 Security</Link></li>
-            <li><Link to="/services/esg-sustainability" className="hover:text-blue-400 transition-colors">ESG Reporting</Link></li>
+            <li><Link to="/cybersecurity" className="hover:text-blue-400 transition-colors">Cybersecurity</Link></li>
+            <li><Link to="/esg" className="hover:text-blue-400 transition-colors">ESG Reporting</Link></li>
+            <li><Link to="/partners" className="hover:text-blue-400 transition-colors">Partners</Link></li>
             <li><Link to="/services/labour-law-compliance" className="hover:text-blue-400 transition-colors">Labour Compliance</Link></li>
           </ul>
         </div>

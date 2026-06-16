@@ -45,19 +45,19 @@ export const securityOfferings: SecurityOffering[] = [
     ],
     situation: "Organizations deploy GenAI, LLMs, AI agents, and copilots at enterprise scale without governance guardrails. Regulators worldwide — EU AI Act, NIST AI RMF, SEC cyber disclosure rules, DORA for financial services — now mandate documented AI risk management. Without governance, every downstream security control operates in a vacuum.",
     components: [
-      "AI System Discovery & Inventory: Automated discovery of LLMs, agents, RAG pipelines, copilots, MCP servers, and model endpoints across the enterprise.",
-      "AI Risk Classification & Tiering: Classification per EU AI Act risk levels and business impact analysis.",
-      "AI Governance Framework Design: Policy suite including acceptable use, data handling, and RACI matrices.",
-      "Regulatory Compliance Mapping: Multi-framework mapping to NIST CSF 2.0, ISO 42001, SOC 2 TSC, DORA, and more.",
-      "Board-Level AI Risk Reporting: Executive AI risk dashboard with quantified heat maps and quarterly slide decks."
+      "AI System Discovery & Inventory: Automated discovery of all AI systems, LLMs, agents, RAG pipelines, copilots, MCP servers, and model endpoints across the enterprise. Shadow AI detection and cataloging. AI model bill of materials (AI-BOM) generation. Third-party AI vendor inventory and risk profiling. Data pipeline mapping for training, fine-tuning, and inference.",
+      "AI Risk Classification & Tiering: Risk classification per EU AI Act (Unacceptable, High, Limited, Minimal). NIST AI RMF Map-Measure-Manage alignment. Business impact analysis for each AI system. AI-specific threat modeling (STRIDE-AI, LINDDUN-AI). Risk scoring integrating adversarial AI threat intelligence.",
+      "AI Governance Framework Design: AI governance policy suite (acceptable use, data handling, model lifecycle, incident response, human oversight). AI accountability and RACI matrix design. AI ethics board and review committee establishment. AI change management and approval workflows. Model versioning, deprecation, and retirement policies.",
+      "Regulatory Compliance Mapping: Multi-framework mapping: NIST CSF 2.0, NIST AI RMF, SOC 2 TSC, ISO 27001, ISO 42001, EU AI Act, DORA, PCI-DSS, HIPAA, FedRAMP, CMMC, NCA (Saudi Arabia), PDPA, LGPD. Gap analysis against each applicable framework. Compliance roadmap with prioritized remediation. Evidence collection automation for audit readiness. Continuous compliance monitoring dashboard.",
+      "Board-Level AI Risk Reporting: Executive AI risk dashboard with quantified metrics. AI risk heat maps and trend analysis. Regulatory compliance scorecards. Benchmarking against industry peers. Quarterly board presentation templates and reports."
     ],
-    pentestIntegration: "Governance penetration testing: Red team exercises that test whether governance policies actually hold under pressure, including policy bypass simulations, shadow AI injection testing, and model supply chain poisoning simulations.",
+    pentestIntegration: "Governance penetration testing: Red team exercises that test whether governance controls actually function under adversarial conditions. Policy bypass testing: Can AI systems be deployed or modified without triggering governance gates? Shadow AI simulation: Adversarial deployment of unauthorized AI systems to test detection capabilities. Supply chain governance testing: Can poisoned models enter the organization through procurement channels?",
     regulatoryAlignment: [
       { requirement: "NIST CSF 2.0 — Govern (GV.OC, GV.RM, GV.RR, GV.PO, GV.SC)", coverage: "Full" },
       { requirement: "NIST AI RMF — Map, Measure, Manage", coverage: "Full" },
-      { requirement: "SOC 2 TSC — CC1 (Control Environment), CC2, CC3, CC5", coverage: "Full" },
+      { requirement: "SOC 2 TSC — CC1 (Control Environment), CC2 (Communication), CC3 (Risk Assessment), CC5 (Monitoring)", coverage: "Full" },
       { requirement: "ISO/IEC 42001 — AI Management System", coverage: "Full" },
-      { requirement: "EU AI Act — Article 9 (Risk Mgmt), Article 17, Article 72", coverage: "Full" },
+      { requirement: "EU AI Act — Article 9 (Risk Management), Article 17 (Quality Management), Article 72 (Post-Market Monitoring)", coverage: "Full" },
       { requirement: "DORA — ICT Risk Management Framework", coverage: "Full" },
       { requirement: "FedRAMP — AI System Authorization", coverage: "Mapped" }
     ],
@@ -66,22 +66,29 @@ export const securityOfferings: SecurityOffering[] = [
       { kpi: "AI Risk Identification", before: "Reactive", after: "Proactive & Continuous" },
       { kpi: "Security Coverage", before: "35%", after: "95%" },
       { kpi: "Compliance Readiness (Multi-Framework)", before: "40%", after: "100%" },
+      { kpi: "AI Governance Maturity (CMMI Level)", before: "Level 1 – Initial", after: "Level 4 – Managed" },
+      { kpi: "Board AI Risk Visibility", before: "None", after: "Real-Time Dashboard" },
       { kpi: "Shadow AI Detection Rate", before: "0%", after: "95%+" },
-      { kpi: "Regulatory Audit Preparation Time", before: "Weeks", after: "Hours" }
+      { kpi: "Regulatory Audit Preparation Time", before: "Weeks", after: "Hours" },
+      { kpi: "AI Policy Coverage", before: "Ad Hoc", after: "Enterprise-Grade, 100%" }
     ],
     benefits: [
-      "Complete AI system visibility and automated inventory",
-      "Enterprise-grade governance framework with clear accountability matrices",
-      "Multi-framework regulatory compliance mapped dynamically",
-      "Quantified, board-ready AI risk posture dashboards",
-      "Shadow AI elimination and automated procurement gatekeeping"
+      "Complete AI system visibility and inventory",
+      "Enterprise-grade governance framework with clear accountability",
+      "Multi-framework regulatory compliance (NIST, SOC 2, ISO, EU AI Act, DORA)",
+      "Quantified, board-ready AI risk posture",
+      "Shadow AI elimination",
+      "Audit-ready evidence collection",
+      "Reduced regulatory risk and legal exposure",
+      "Foundation for all downstream AI security controls"
     ],
     timeline: [
-      "Weeks 1–2: AI Discovery & Inventory",
-      "Weeks 2–4: Risk Classification & Gap Analysis",
-      "Weeks 3–6: Governance Framework Design",
-      "Weeks 5–8: Regulatory Mapping & Roadmap",
-      "Weeks 7–10: Board Reporting & Continuous Monitoring Setup"
+      "Phase 1: AI Discovery & Inventory — Weeks 1–2",
+      "Phase 2: Risk Classification & Gap Analysis — Weeks 2–4",
+      "Phase 3: Governance Framework Design — Weeks 3–6",
+      "Phase 4: Regulatory Mapping & Roadmap — Weeks 5–8",
+      "Phase 5: Board Reporting & Continuous Monitoring Setup — Weeks 7–10",
+      "Total: 8–12 Weeks (Implementation), Ongoing (Managed Governance)"
     ]
   },
   {
@@ -98,18 +105,18 @@ export const securityOfferings: SecurityOffering[] = [
       "AI model vulnerabilities discovered only after exploitation",
       "Manual risk assessments cannot keep pace with AI deployment velocity"
     ],
-    situation: "Enterprise AI systems change continuously — models are retrained, fine-tuned, agents are modified, RAG knowledge bases are updated, and new integrations are deployed. Point-in-time assessments become obsolete within weeks. Organizations need continuous, AI-powered risk posture management that adapts at the speed of AI development.",
+    situation: "Enterprise AI systems change continuously — models are retrained, fine-tuned, agents are modified, RAG knowledge bases are updated, new integrations are deployed. Point-in-time assessments become obsolete within weeks. Organizations need continuous, AI-powered risk posture management that adapts at the speed of AI development.",
     components: [
-      "AI Attack Surface Discovery: Continuous discovery of endpoints, vector databases, and model serving infrastructure.",
-      "AI Vulnerability Assessment: Scanning of AI infrastructure, GPU clusters, and model-specific training pipelines.",
-      "AI Configuration & Drift Monitoring: Continuous monitoring for configuration drift and model performance degradation.",
-      "AI Risk Quantification & Scoring: FAIR-based risk scoring incorporating adversarial threat likelihood.",
-      "Continuous Compliance Monitoring: Automated control validation against NIST, SOC 2, and EU AI Act."
+      "AI Attack Surface Discovery: Continuous discovery and classification of all AI endpoints, APIs, model serving infrastructure, vector databases, embedding services, and agent orchestration layers. External AI attack surface monitoring (publicly exposed model endpoints, leaked API keys, model artifacts). AI supply chain risk mapping (pre-trained models, third-party APIs, data sources, plugins, MCP servers). Model dependency graph generation and risk scoring.",
+      "AI Vulnerability Assessment: Automated vulnerability scanning of AI infrastructure (GPU clusters, model serving platforms, ML pipelines). Model-specific vulnerability assessment (adversarial robustness, data poisoning susceptibility, extraction risk). AI application security testing (OWASP Top 10 for LLM Applications, OWASP AI Exchange). Prompt injection surface mapping and risk classification. Data pipeline security assessment (training data integrity, PII exposure, data poisoning vectors).",
+      "AI Configuration & Drift Monitoring: Continuous monitoring for model configuration drift. AI infrastructure misconfiguration detection. Access control validation for AI systems. Monitoring of model performance degradation (potential indicator of compromise or data drift). API security configuration assessment.",
+      "AI Risk Quantification & Scoring: FAIR-based AI risk quantification (Factor Analysis of Information Risk). AI-specific risk scoring incorporating adversarial threat likelihood and business impact. Risk heat maps with drill-down to individual AI systems. Trend analysis and risk trajectory forecasting. Integration with enterprise GRC platforms (ServiceNow, Archer, OneTrust).",
+      "Continuous Compliance Monitoring: Automated control validation against NIST CSF 2.0, SOC 2, ISO 42001, EU AI Act. Evidence generation for auditors. Compliance drift detection and alerting. Regulatory change impact analysis."
     ],
-    pentestIntegration: "Continuous AI Penetration Testing as a Service (AI-PTaaS): AI red team agents continuously probe model endpoints, validating exploit paths and reporting severity rankings dynamically.",
+    pentestIntegration: "Continuous AI Penetration Testing as a Service (AI-PTaaS): AI agents continuously probe AI systems for vulnerabilities, simulating real-world attacker behavior. Automated exploit validation: When vulnerabilities are identified, AI-driven testing attempts safe exploitation to confirm severity. Attack path discovery: AI graph analysis (per G-CTR methodology) maps multi-step attack paths across AI infrastructure. Continuous red teaming: AI red team agents run 24/7 against production AI systems within defined safety boundaries. Penetration testing automation: Routine pentest activities automated with AI, reserving human expertise for complex, creative attack scenarios.",
     regulatoryAlignment: [
       { requirement: "NIST CSF 2.0 — Identify (ID.AM, ID.RA, ID.IM)", coverage: "Full" },
-      { requirement: "SOC 2 TSC — CC3.1, CC3.2, CC3.4", coverage: "Full" },
+      { requirement: "SOC 2 TSC — CC3.1 (Risk Assessment), CC3.2 (Fraud Risk), CC3.4 (Change Management)", coverage: "Full" },
       { requirement: "ISO 27001 — A.5.9, A.5.23 (Information Security Risk)", coverage: "Full" },
       { requirement: "EU AI Act — Article 9 (Risk Management System)", coverage: "Full" },
       { requirement: "NIST AI RMF — Map 1–4, Measure 1–2", coverage: "Full" },
@@ -119,22 +126,28 @@ export const securityOfferings: SecurityOffering[] = [
       { kpi: "AI Asset Visibility", before: "20%", after: "100%" },
       { kpi: "AI Risk Identification", before: "Reactive", after: "Proactive & Continuous" },
       { kpi: "Vulnerability Assessment Frequency", before: "Annual", after: "Continuous" },
+      { kpi: "Security Coverage", before: "35%", after: "95%" },
+      { kpi: "Compliance Readiness", before: "40%", after: "100%" },
       { kpi: "Mean Time to Identify AI Risk", before: "Weeks", after: "Minutes" },
       { kpi: "AI Attack Surface Coverage", before: "15%", after: "95%" },
       { kpi: "Risk Quantification Accuracy", before: "Qualitative Only", after: "FAIR-Quantified" }
     ],
     benefits: [
-      "Real-time AI risk posture visibility and automated alerts",
-      "Continuous vulnerability discovery and remediation prioritization",
-      "Reduced AI attack surface through systematic hardening",
-      "Auditor-ready compliance evidence generation"
+      "Real-time AI risk posture visibility",
+      "Continuous vulnerability discovery and prioritization",
+      "AI attack surface reduction",
+      "Compliance drift detection and remediation",
+      "Quantified risk metrics for investment decisions",
+      "Integration with existing GRC and AI-MDR platforms",
+      "Dramatically reduced window of exposure"
     ],
     timeline: [
-      "Weeks 1–3: AI Discovery & Baseline Assessment",
-      "Weeks 2–4: Continuous Monitoring Deployment",
-      "Weeks 3–5: AI-Driven Penetration Testing Activation",
-      "Weeks 4–6: Risk Quantification & Dashboard Setup",
-      "Weeks 5–8: Compliance Monitoring Integration"
+      "Phase 1: AI Discovery & Baseline Assessment — Weeks 1–3",
+      "Phase 2: Continuous Monitoring Deployment — Weeks 2–4",
+      "Phase 3: AI-Driven Penetration Testing Activation — Weeks 3–5",
+      "Phase 4: Risk Quantification & Dashboard Setup — Weeks 4–6",
+      "Phase 5: Compliance Monitoring Integration — Weeks 5–8",
+      "Total: 6–8 Weeks (Deployment), Ongoing (Continuous Monitoring & PTaaS)"
     ]
   },
   {
@@ -233,30 +246,34 @@ export const securityOfferings: SecurityOffering[] = [
     offeringNumber: 5,
     title: "AI Security Architecture & Zero Trust for AI",
     nistFunction: "Protect",
-    overview: "Design and implementation of security architecture for AI systems grounded in Zero Trust principles — never trust, always verify — applied to AI model serving, agent orchestration, data pipelines, and inference infrastructure. Includes AI-aware network segmentation, identity-centric access controls, and encryption.",
+    overview: "Design and implementation of security architecture for AI systems grounded in Zero Trust principles — never trust, always verify — applied to AI model serving, agent orchestration, data pipelines, and inference infrastructure. Includes AI-aware network segmentation, identity-centric access controls, and AI-specific security patterns.",
     statementOfValue: "Architect AI systems so that no component — model, agent, data pipeline, or API — operates with implicit trust.",
     before: [
       "AI systems deployed in flat network architectures",
       "Model endpoints accessible without authentication",
       "Agent-to-agent communication unrestricted",
       "Training and inference environments sharing resources",
-      "No AI-specific network segmentation"
+      "No AI-specific network segmentation",
+      "Data pipelines lacking isolation between tenants",
+      "AI infrastructure outside security architecture review"
     ],
     situation: "AI systems introduce new communication patterns — model-to-model, agent-to-agent, agent-to-tool, RAG retrieval-to-inference — that traditional network security architectures do not account for. Zero Trust must extend to every AI interaction.",
     components: [
-      "AI Zero Trust Architecture Design: Identity-centric access control for models, agents, and APIs.",
-      "AI Network Security Architecture: Network segmentation for training, inference, and data stores.",
-      "AI Identity & Access Management: Workload identity management and certificate distribution.",
-      "AI Infrastructure Hardening: Hardened GPU clusters, serving platforms (MLflow, Vertex), and MLOps pipelines.",
-      "AI-Aware Encryption: Encryption for models at rest, in transit, and secure enclaves."
+      "AI Zero Trust Architecture Design: AI-aware Zero Trust architecture blueprint. Identity-centric access control for models, agents, and APIs. AI workload micro-segmentation strategy. AI-specific policy decision points (PDP) and policy enforcement points (PEP). Continuous verification for all AI system interactions.",
+      "AI Network Security Architecture: AI infrastructure network segmentation (training, inference, data). GPU/TPU cluster network isolation. Model serving platform network controls. Agent communication network policies. AI data pipeline network segmentation.",
+      "AI Identity & Access Management: AI system identity management (model identities, agent identities). Machine-to-machine authentication for AI components. API key management and rotation for model endpoints. Service mesh security for AI microservices. AI workload certificate management.",
+      "AI Infrastructure Hardening: Hardened AI platform configurations (Kubernetes, Docker, GPU drivers). Model serving platform security hardening. MLOps pipeline security controls. AI development environment isolation. Secure AI model deployment patterns.",
+      "AI-Aware Encryption & Key Management: Encryption for AI data at rest, in transit, and in use. Homomorphic encryption evaluation for AI inference. Secure enclaves for model protection. AI-specific key management practices. Federated learning privacy architecture."
     ],
-    pentestIntegration: "Architecture penetration testing: Simulations of lateral movement within AI infrastructure, attempting privilege escalation from a compromised agent to GPU control networks.",
+    pentestIntegration: "Architecture penetration testing to validate Zero Trust controls for AI. Lateral movement simulation within AI infrastructure. Privilege escalation testing from compromised AI agent to infrastructure. Network segmentation bypass testing. AI identity and authentication bypass attempts.",
     regulatoryAlignment: [
       { requirement: "NIST CSF 2.0 — Protect (PR.AA, PR.DS, PR.PS, PR.IR)", coverage: "Full" },
       { requirement: "NIST SP 800-207 (Zero Trust Architecture)", coverage: "Full" },
-      { requirement: "SOC 2 TSC — CC6.1, CC6.2, CC6.3, CC6.6", coverage: "Full" },
-      { requirement: "ISO 27001 — A.5.15, A.8.20 (Network Security)", coverage: "Full" },
-      { requirement: "EU AI Act — Article 15 (Cybersecurity)", coverage: "Full" }
+      { requirement: "SOC 2 TSC — CC6.1, CC6.2, CC6.3, CC6.6 (System Boundaries)", coverage: "Full" },
+      { requirement: "ISO 27001 — A.5.15, A.8.20 (Network Security), A.8.21 (Web Services)", coverage: "Full" },
+      { requirement: "EU AI Act — Article 15 (Cybersecurity)", coverage: "Full" },
+      { requirement: "DORA — Article 9 (Protection & Prevention)", coverage: "Full" },
+      { requirement: "CMMC — AC, SC Domains", coverage: "Full" }
     ],
     statistics: [
       { kpi: "AI Zero Trust Maturity", before: "Level 0", after: "Level 4 (Optimal)" },
@@ -269,12 +286,15 @@ export const securityOfferings: SecurityOffering[] = [
       "Zero Trust architecture for all AI workloads",
       "Reduced blast radius of AI system compromise",
       "AI-aware network and identity controls",
-      "Hardened AI infrastructure and encrypted model weights"
+      "Hardened AI infrastructure",
+      "Regulatory compliance for AI infrastructure security",
+      "Defense-in-depth for AI attack surfaces"
     ],
     timeline: [
       "Weeks 1–3: Network & IAM Boundary Assessment",
       "Weeks 2–6: Micro-segmentation & IAM Controls Deployment",
-      "Weeks 6–10: Validation Audits & Penetration Testing"
+      "Weeks 6–10: Validation Audits & Penetration Testing",
+      "Total: 6–10 Weeks (Design & Implementation)"
     ]
   },
   {
@@ -289,46 +309,60 @@ export const securityOfferings: SecurityOffering[] = [
       "AI agents with unrestricted tool access and no guardrails",
       "RAG pipelines with unprotected knowledge bases",
       "Vector databases accessible without authentication",
-      "No secure prompt engineering practices"
+      "No model integrity verification",
+      "Copilots with excessive permissions and data access",
+      "No secure prompt engineering practices",
+      "AI workflows lacking human-in-the-loop controls"
     ],
     situation: "Enterprise GenAI deployments create a layered attack surface spanning data, models, APIs, orchestration layers, and autonomous agent actions. Each layer requires specialized security controls that traditional application security does not address.",
     components: [
-      "LLM Security Hardening: Input validation, output filtering, and system prompt protection.",
-      "AI Agent Security: Principle of least privilege for tools, sandboxing, and kill switches.",
-      "RAG Pipeline Security: Knowledge base integrity, chunking security, and query sanitization.",
-      "Copilot & Assistant Security: Scoped data access, sensitive data redaction, and audit logs.",
-      "MCP Server & Plugin Security: Authentication, authorization, and supply chain integrity."
+      "LLM Security Hardening: Input validation and sanitization frameworks. Output filtering and content safety guardrails. System prompt protection and isolation. Context window management and injection defense. Token-level security controls. Rate limiting and abuse prevention. Model access control and authentication. Secure prompt engineering best practices and templates.",
+      "AI Agent Security Architecture: Principle of least privilege for agent tool access. Agent action sandboxing and isolation. Human-in-the-loop controls for high-risk actions. Agent memory security and compartmentalization. Multi-agent trust boundaries and authentication. Agent behavior monitoring and anomaly detection. Kill switch and emergency shutdown mechanisms. Agent supply chain security (plugins, tools, MCP servers).",
+      "RAG Pipeline Security: Knowledge base integrity controls. Document sanitization and adversarial content filtering. Retrieval query sanitization. Cross-tenant isolation and access controls. Vector database encryption at rest and in transit. Embedding security and inversion attack prevention. Chunking strategy security review. Source attribution and provenance tracking.",
+      "Copilot & AI Assistant Security: Data access scoping and classification-based controls. Permission boundary enforcement. Sensitive data redaction in AI outputs. Conversation logging and audit trails. Multi-user isolation and tenant security. Integration security (CRM, ERP, email, code repositories).",
+      "MCP Server & Plugin Security: MCP server authentication and authorization. Plugin security assessment and sandboxing. Tool registration security validation. Cross-plugin isolation. API security for MCP endpoints. Plugin supply chain integrity verification.",
+      "AI Data Security & Privacy: Training data classification and labeling. PII detection and redaction in training data. Data poisoning detection and prevention. Differential privacy implementation guidance. Data retention and right-to-be-forgotten for AI systems. Synthetic data generation for privacy preservation. Data lineage tracking and provenance verification.",
+      "AI Model Security & IP Protection: Model watermarking and fingerprinting. Model extraction attack prevention. Inference API access control. Model serialization security (preventing deserialization attacks). Model registry security hardening. Intellectual property protection strategies. Model licensing and usage monitoring.",
+      "AI API Security: API authentication and rate limiting for model endpoints. Input/output schema validation. API abuse detection and prevention. Multi-tenant API isolation. Prompt-response logging with privacy controls. API versioning security."
     ],
-    pentestIntegration: "GenAI exploitation testing: Simulated multi-turn jailbreaks, prompt injection scripts, RAG database poisoning, and model weight extraction simulations.",
+    pentestIntegration: "Automated security testing of every GenAI layer using AI-driven tools. Continuous prompt injection and jailbreak testing against deployed guardrails. Agent boundary testing using autonomous AI attackers. RAG poisoning simulation and defense validation. API fuzzing and abuse testing with intelligent payloads. End-to-end attack chain testing (data poisoning → model manipulation → agent exploitation).",
     regulatoryAlignment: [
-      { requirement: "NIST CSF 2.0 — Protect (PR.AA, PR.DS, PR.PS)", coverage: "Full" },
-      { requirement: "NIST AI RMF — Manage 1.1–1.4, 2.1–2.7, 3.1–3.5", coverage: "Full" },
-      { requirement: "SOC 2 TSC — CC6.1, CC6.2, CC6.3, CC6.8", coverage: "Full" },
-      { requirement: "ISO 27001 — A.8.24, A.8.25 (Secure Development)", coverage: "Full" },
-      { requirement: "EU AI Act — Article 10 (Data Governance), Article 15", coverage: "Full" },
-      { requirement: "OWASP Top 10 for LLMs — All Categories", coverage: "Full" }
+      { requirement: "NIST CSF 2.0 — Protect (PR.AA, PR.DS, PR.PS, PR.IR)", coverage: "Full" },
+      { requirement: "NIST AI RMF — Manage 1.1–1.4, 2.1–2.7, 3.1–3.5, 4.1–4.5", coverage: "Full" },
+      { requirement: "SOC 2 TSC — CC6.1 (Logical Access), CC6.2 (User Authentication), CC6.3 (User Authorization), CC6.7 (Data Disposal), CC6.8 (Protection from Unauthorized Access)", coverage: "Full" },
+      { requirement: "ISO 27001 — A.5.15 (Access Control), A.8.24 (Use of Cryptography), A.8.25 (Secure Development Lifecycle)", coverage: "Full" },
+      { requirement: "ISO/IEC 42001 — Annex B.2 (Data), B.5 (AI System Development), B.6 (AI System Deployment)", coverage: "Full" },
+      { requirement: "EU AI Act — Article 10 (Data Governance), Article 13 (Transparency), Article 14 (Human Oversight), Article 15 (Cybersecurity)", coverage: "Full" },
+      { requirement: "GDPR — Article 22 (Automated Decision-Making), Article 25 (Data Protection by Design)", coverage: "Full" }
     ],
     statistics: [
       { kpi: "Prompt Injection Success Rate", before: "60%", after: "<5%" },
       { kpi: "Data Leakage Risk", before: "High", after: "Low" },
+      { kpi: "AI Governance Coverage", before: "30%", after: "100%" },
       { kpi: "Agent Security Controls", before: "Limited", after: "Enterprise-Grade" },
       { kpi: "RAG Pipeline Security", before: "Unprotected", after: "Defense-in-Depth" },
       { kpi: "OWASP LLM Top 10 Coverage", before: "10%", after: "100%" },
-      { kpi: "AI API Abuse Detection", before: "None", after: "Real-Time" }
+      { kpi: "AI API Abuse Detection", before: "None", after: "Real-Time" },
+      { kpi: "Model IP Protection", before: "None", after: "Multi-Layer" }
     ],
     benefits: [
       "Secure AI deployments from model weights to agentic tools",
       "Defense-in-depth across the entire GenAI stack",
-      "Protection of proprietary IP, models, and private datasets",
-      "Enterprise trust for deploying autonomous agentic workflows"
+      "Regulatory compliance (EU AI Act, NIST AI RMF, SOC 2)",
+      "Reduced AI-specific attack surface",
+      "Enterprise trust in AI systems",
+      "Protected AI intellectual property",
+      "Secure autonomous agent operations",
+      "Privacy-preserving AI data handling"
     ],
     timeline: [
-      "Weeks 1–2: GenAI Architecture Security Review",
-      "Weeks 2–5: LLM & RAG Security Hardening",
-      "Weeks 4–7: Agent Security Architecture & Controls",
-      "Weeks 6–8: API & Integration Security",
-      "Weeks 7–9: Data Security & Privacy Controls",
-      "Weeks 8–10: Validation & Launch"
+      "Phase 1: GenAI Architecture Security Review — Weeks 1–2",
+      "Phase 2: LLM & RAG Security Hardening — Weeks 2–5",
+      "Phase 3: Agent Security Architecture & Controls — Weeks 4–7",
+      "Phase 4: API & Integration Security — Weeks 6–8",
+      "Phase 5: Data Security & Privacy Controls — Weeks 7–9",
+      "Phase 6: Validation & Continuous Testing Setup — Weeks 8–10",
+      "Total: 4–10 Weeks"
     ]
   },
   {

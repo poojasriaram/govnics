@@ -47,12 +47,12 @@ export const Layout = ({ children }: LayoutProps) => {
   }, [pathname, hash]);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col overflow-x-hidden select-none selection:bg-blue-600/10 selection:text-blue-600 text-foreground">
+    <div className="min-h-screen bg-background flex flex-col overflow-x-hidden select-none selection:bg-blue-600/10 selection:text-blue-600 text-foreground relative z-0">
       {/* Elegant light slate gridlines overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.012)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.012)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none -z-10" />
 
       <Header />
-      <main className="flex-grow pt-32 relative z-10">
+      <main className="flex-grow pt-32 relative">
         {children}
       </main>
       <Footer />

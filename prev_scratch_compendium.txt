@@ -1,0 +1,130 @@
+﻿Created At: 2026-06-11T05:38:28Z
+Completed At: 2026-06-11T05:38:28Z
+The following changes were made by the replace_file_content tool to: C:\Users\HARIKRISHNAN\.gemini\antigravity-ide\brain\87926a11-81af-43fb-b4bc-fae2e9850e70\task.md. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -1,6 +1,6 @@
+ # Tasks
+ 
+-- [/] Create/Update GRC Staffing data module: [staffing-data.ts](file:///e:/ISI%20Updates/23-Feb-2026%20-%20Copy/govenics-grc/src/data/staffing-data.ts)
+-- [ ] Rebuild GRC Manage Staffing page: [ManageStaffingPage.tsx](file:///e:/ISI%20Updates/23-Feb-2026%20-%20Copy/govenics-grc/src/pages/ManageStaffingPage.tsx)
++- [x] Create/Update GRC Staffing data module: [staffing-data.ts](file:///e:/ISI%20Updates/23-Feb-2026%20-%20Copy/govenics-grc/src/data/staffing-data.ts)
++- [/] Rebuild GRC Manage Staffing page: [ManageStaffingPage.tsx](file:///e:/ISI%20Updates/23-Feb-2026%20-%20Copy/govenics-grc/src/pages/ManageStaffingPage.tsx)
+ - [ ] Verify compilation and application execution
+ 
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+<USER_REQUEST>
+THE DEFINITIVE COMPENDIUM OF MANPOWER STAFFING & MANPOWER SERVICES
+
+
+
+TABLE OF CONTENTS
+
+
+PART I â€” Manpower Categorization by Skill Tier
+PART II â€” Core Staffing Categories (Hiring Formats)
+PART III â€” Strategic Engagement Models
+PART IV â€” Industry-Specific Manpower Solutions Matrix
+PART V â€” Detailed Service Offerings (Each with Process, Benefits, Deployment Timeline)
+PART VI â€” The Advanced Screening & Selection Process (AI-Driven, Psychometric, Emotional Stability, Culture Fit, Background Verification)
+PART VII â€” Key Benefits & Strategic Advantages for Clients
+
+
+
+
+PART I â€” MANPOWER CATEGORIZATION BY SKILL TIER
+
+
+Every manpower engagement begins with a precise classification of the talent required. We categorize all manpower into three distinct tiers based on education, certification, experience, and functional complexity.
+
+
+
+1.1 Low-Skill Manpower
+
+
+Profile: High-school diploma or GED equivalent; fewer than 2 years of professional experience; requires minimal on-the-job training or task-specific orientation.
+
+
+Functional Characteristics:
+Task-oriented, process-driven roles with clearly defined instructions
+Supervised execution with limited autonomous decision-making
+Physical labor, repetitive processes, or basic administrative functions
+
+
+Representative Roles:
+Domain
+Roles
+Manufacturing
+Assembly line worker, material handler, packaging associate, machine feeder
+Logistics
+Warehouse picker, loader/unloader, inventory counter, dock worker
+Facilities
+Janitor, groundskeeper, porter, basic maintenance helper
+Retail
+Stock clerk, shelf replenisher, cashier, greeter
+Administration
+Data entry clerk, filing assistant, mail room sorter
+Construction
+General laborer, site cleanup crew, flagging/traffic control
+
+
+
+
+1.2 Medium-Skill Manpower
+
+
+Profile: Vocational diploma, technical certification, associate degree, or trade apprenticeship; 2â€“5 years of hands-on experience; capable of operating specialized equipment or applying domain-specif
+<truncated 45215 bytes>
+ion
+10â€“20% Cost Savings
+Rate card standardization, competitive bidding, and elimination of "rogue" staffing spend typically yield immediate and sustained savings.
+Total Visibility
+A single dashboard showing every contingent worker in the organizationâ€”their status, cost, vendor, manager, and compliance state.
+Risk Elimination
+Centralized compliance management eliminates co-employment risk, worker misclassification, and labor law violations across all vendors.
+Vendor Performance Management
+Objective, data-driven vendor scorecards replace subjective relationships, ensuring only high-performing suppliers receive volume.
+Scalability
+The MSP model scales seamlessly as the organization growsâ€”adding new locations, departments, or worker types without adding internal headcount.
+Strategic Workforce Planning
+Analytics reveal patterns in contingent labor demand, enabling proactive workforce planning rather than reactive hiring.
+
+
+
+Time to Deploy
+
+
+Phase
+Time to Deploy
+Program Design & Vendor Audit
+2 to 4 weeks
+Vendor Consolidation & VMS Deployment
+4 to 8 weeks
+Full Program Launch
+8 to 12 weeks
+Optimization & Steady State
+Ongoing from Month 4
+
+
+
+
+OFFERING 9: RECRUITMENT PROCESS OUTSOURCING (RPO)
+
+
+Overview
+
+
+Recruitment Process Outsourcing embeds our recruiters directly into your organizationâ€”virtually or on-siteâ€”to function as your complete internal talent acquisition team. Unlike traditional staffing, RPO focuses exclusively on permanent hiring for your organization. Candidates are hired directly onto your payroll, not ours.
+
+
+RPO is ideal for organizations experiencing rapid growth, entering new markets, launching new business units, or facing chronic difficulty in filling critical permanent roles through their existing recruiting function.
+
+
+Recruitment & Deployment Process
+
+
+Step 1 â€” Program Design & SLA F
+<truncated 29971 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.
