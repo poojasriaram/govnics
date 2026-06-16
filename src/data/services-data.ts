@@ -233,9 +233,150 @@ export const servicesData: GrcService[] = [
     ],
     standards: ["TRAI Spectrum Rules", "USOF Guidelines", "NCCP Portal Codes"],
     industries: ["telecom"]
+  },
+  {
+    id: "taxation-trade-compliance",
+    title: "Taxation & Trade Compliance",
+    category: "Audit & Assurance",
+    problem: "Navigating GST reconciliation, e-invoicing mandates, customs valuations, and import-export licenses creates operational friction and exposes companies to tax penalties and supply chain delays.",
+    solution: "We automate GST reconciliations, integrate e-invoicing pipelines, manage DGFT and Customs licenses, and establish trade controls to ensure zero-day delay in customs.",
+    benefits: [
+      "Elimination of double taxation and automated input tax credit (ITC) recovery.",
+      "Seamless import-export clearings with structured DGFT licensing.",
+      "Zero-day penalty exposure for GST and Excise filings."
+    ],
+    standards: ["GST Act 2017", "Customs Act 1962", "DGFT Guidelines", "FEMA Regulations"],
+    industries: ["manufacturing", "logistics-supply-chain", "retail-ecommerce"]
+  },
+  {
+    id: "statutory-payroll-compliance",
+    title: "Statutory Payroll Compliance",
+    category: "Audit & Assurance",
+    problem: "Fragmented payroll runs and manual statutory calculations lead to inaccurate PF, ESI, and TDS deductions, triggering employee grievances, regulatory notices, and severe financial penalties.",
+    solution: "A managed statutory payroll framework that automates deductions, maps transactions to GL entries, and generates perpetual audit-ready trails.",
+    benefits: [
+      "Zero statutory penalties with automated PF/ESI/TDS filings.",
+      "Continuous audit-ready payroll archives and automatic Form 16 generation.",
+      "Real-time notice management and response representation."
+    ],
+    standards: ["PF Act 1952", "ESI Act 1948", "Income Tax Act Sec 192", "Payment of Bonus Act"],
+    industries: ["bfsi", "it-services", "manufacturing", "healthcare", "retail-ecommerce"]
+  },
+  {
+    id: "hr-data-privacy-security",
+    title: "HR Data Privacy & Security",
+    category: "Digital Trust & Cybersecurity",
+    problem: "Employee PII (Aadhaar, PAN, medical records, bank accounts) stored in unsecured HRIS portals is vulnerable to data breaches, risking severe compliance fines under the DPDP Act 2023.",
+    solution: "We implement end-to-end data mapping, consent management architectures, role-based access control, and specialized PII breach response playbooks.",
+    benefits: [
+      "100% compliance with the DPDP Act 2023 for employee data privacy.",
+      "Secure, encrypted database architectures preventing internal and external leaks.",
+      "Rapid, automated incident response procedures to meet the 72-hour reporting mandate."
+    ],
+    standards: ["DPDP Act 2023", "ISO 27001", "Information Technology Act"],
+    industries: ["bfsi", "it-services", "healthcare", "telecom"]
+  },
+  {
+    id: "hr-policy-governance",
+    title: "HR Policy & Governance",
+    category: "Governance & Risk Advisory",
+    problem: "Outdated employee handbooks and unmapped labor policies expose companies to co-employment lawsuits, compliance non-conformities, and POSH disputes.",
+    solution: "We structure airtight HR policies, draft employee handbooks, manage multi-state Shop & Establishment licenses, and set up mandatory POSH frameworks.",
+    benefits: [
+      "Fully updated policy structures aligned with the new 4 Labour Codes.",
+      "Compliant POSH committees with robust training logs and SOPs.",
+      "Mitigation of co-employment and contractor liability exposures."
+    ],
+    standards: ["POSH Act 2013", "New Labour Codes", "Shop & Establishment Acts"],
+    industries: ["bfsi", "it-services", "manufacturing", "healthcare"]
+  },
+  {
+    id: "advanced-taxation-perquisites",
+    title: "Advanced Taxation & Perquisites",
+    category: "Audit & Assurance",
+    problem: "Managing complex taxation for ESOPs, RSUs, expat cross-border mobility, and GST on employee reimbursements leads to tax leakages and regulatory auditing.",
+    solution: "We provide specialized advisory and execution on stock options taxation, expat social security totalizations, and reimbursement tax optimization.",
+    benefits: [
+      "Accurate taxation of complex equity compensation (ESOPs/RSUs).",
+      "Compliant cross-border mobility structures with tax equalization.",
+      "Optimized Input Tax Credit (ITC) on staff welfare and canteens."
+    ],
+    standards: ["Income Tax Act", "Double Taxation Avoidance Agreement (DTAA)", "FEMA Rules"],
+    industries: ["it-services", "bfsi", "telecom"]
+  },
+  {
+    id: "managed-staffing-risk-shield",
+    title: "Managed Staffing & Risk Shield",
+    category: "Governance & Risk Advisory",
+    problem: "Unvetted third-party contractors and invalid licenses expose the principal employer to direct legal penalties and compliance liabilities.",
+    solution: "We establish a Co-Employment Avoidance framework, run continuous CLRA contractor payroll audits, and verify license validities.",
+    benefits: [
+      "Principal employer legal protection against contractor violations.",
+      "Unified workforce dashboard showing direct and contract staff metrics.",
+      "100% contractor validation against regulatory guidelines."
+    ],
+    standards: ["CLRA Act 1970", "Factories Act", "Payment of Wages Act"],
+    industries: ["manufacturing", "logistics-supply-chain", "real-estate-infra"]
+  },
+  {
+    id: "compliance-processing-bpo",
+    title: "Compliance Processing BPO",
+    category: "Audit & Assurance",
+    problem: "High-volume statutory filings, PF/ESI claim processing, and license renewals consume significant internal bandwidth and lead to execution bottlenecks.",
+    solution: "Our transactional BPO center handles high-volume filings, processes PF/ESI claims, and coordinates license renewals under strict SLAs.",
+    benefits: [
+      "99.9% processing accuracy and zero backlog for filings.",
+      "Reduced internal administrative overhead by up to 60%.",
+      "Accelerated claim settlements and license renewals."
+    ],
+    standards: ["PF Rules", "ESIC Regulations", "Licensing Acts"],
+    industries: ["manufacturing", "retail-ecommerce", "logistics-supply-chain"]
+  },
+  {
+    id: "hr-helpdesk-servicing",
+    title: "HR Helpdesk & Servicing",
+    category: "Governance & Risk Advisory",
+    problem: "Delays in onboarding data verification, slow resolution of employee tax queries, and manual Full & Final (FnF) processing degrade the employee experience.",
+    solution: "We deploy dedicated HR helpdesks, manage onboarding verification, resolve employee tax queries, and process FnF exits.",
+    benefits: [
+      "Highly satisfied workforce with sub-24hr query resolutions.",
+      "Airtight background checks and data verification.",
+      "Compliant, zero-error Full & Final exit processing."
+    ],
+    standards: ["Employment Standing Orders", "Income Tax Act", "Payment of Gratuity Act"],
+    industries: ["it-services", "bfsi", "telecom"]
+  },
+  {
+    id: "back-office-operations-bpo",
+    title: "Back-Office Operations BPO",
+    category: "Audit & Assurance",
+    problem: "High overhead costs and errors in routine back-office tasks like data entry, expense processing, and bank reconciliations affect financial visibility.",
+    solution: "We deliver SLA-managed back-office processing for invoices, expense reports, database entries, and bank reconciliations.",
+    benefits: [
+      "Over 50% operational cost savings in back-office administration.",
+      "Zero backlog for invoice and bank reconciliations.",
+      "High-quality, standardized data formats for corporate reporting."
+    ],
+    standards: ["Accounting Standards", "GAAP Guidelines", "Internal Control Systems"],
+    industries: ["logistics-supply-chain", "retail-ecommerce", "bfsi"]
+  },
+  {
+    id: "document-record-management",
+    title: "Document & Record BPO",
+    category: "Audit & Assurance",
+    problem: "Physical record clutter and non-compliant document retention policies create legal risks and drag down search retrieval speeds during audits.",
+    solution: "We digitize statutory registers, establish secure archival nodes, and execute automated retention policies.",
+    benefits: [
+      "Auditor-ready digital archives accessible in seconds.",
+      "Compliant record disposal schedules avoiding legal liabilities.",
+      "Secure, role-based access to sensitive historical logs."
+    ],
+    standards: ["Information Technology Act", "Companies Act 2013", "ISO 15489"],
+    industries: ["bfsi", "healthcare", "government-psu", "manufacturing"]
   }
 ];
 
 export const getServiceById = (id: string) => {
   return servicesData.find(serv => serv.id === id);
 };
+

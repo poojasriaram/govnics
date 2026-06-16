@@ -98,13 +98,10 @@ export const Header = () => {
           <Link to="/" className={getLinkClass("/")}>
             Home
           </Link>
-          <Link to="/about" className={getLinkClass("/about")}>
-            About Us
-          </Link>
 
           {/* GRC Dropdown (Replaces Solutions) */}
           <div
-            className="relative"
+            className=""
             onMouseEnter={() => setActiveDropdown("services")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
@@ -121,20 +118,32 @@ export const Header = () => {
                   </h3>
                 </div>
 
-                {/* Governance Column */}
+                {/* Compliance Services Column */}
                 <div className="space-y-3">
-                  <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                    Governance
-                  </h4>
-                  <div className="flex flex-col gap-1.5">
-                    {servicesData
-                      .filter((serv) => ["governance-framework", "clinical-governance", "internal-audit"].includes(serv.id))
-                      .map((serv) => (
+                  <div>
+                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
+                      Compliance Services
+                    </h4>
+                    <p className="text-[9px] text-slate-400 font-medium pl-2.5 mt-0.5 leading-snug">
+                      Meeting regulatory mandates & achieving certifications
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    {[
+                      "labour-law-compliance",
+                      "environmental-compliance",
+                      "taxation-trade-compliance",
+                      "data-privacy-dpdp",
+                      "accreditation-services"
+                    ].map((id) => {
+                      const serv = servicesData.find((s) => s.id === id);
+                      if (!serv) return null;
+                      return (
                         <Link
                           key={serv.id}
                           to={`/services/${serv.id}`}
                           onClick={() => setActiveDropdown(null)}
-                          className="flex flex-col p-2.5 rounded-xl hover:bg-slate-50 transition-colors group"
+                          className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors group"
                         >
                           <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
                             {serv.title}
@@ -143,24 +152,37 @@ export const Header = () => {
                             {serv.problem}
                           </span>
                         </Link>
-                      ))}
+                      );
+                    })}
                   </div>
                 </div>
 
-                {/* Risk Column */}
+                {/* Managed Payroll & HR Column */}
                 <div className="space-y-3">
-                  <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                    Risk
-                  </h4>
-                  <div className="flex flex-col gap-1.5">
-                    {servicesData
-                      .filter((serv) => ["enterprise-risk-management", "vendor-risk-management", "incident-response"].includes(serv.id))
-                      .map((serv) => (
+                  <div>
+                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
+                      Managed Payroll & HR
+                    </h4>
+                    <p className="text-[9px] text-slate-400 font-medium pl-2.5 mt-0.5 leading-snug">
+                      Secure, accurate, and risk-free HR operations
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    {[
+                      "statutory-payroll-compliance",
+                      "hr-data-privacy-security",
+                      "hr-policy-governance",
+                      "advanced-taxation-perquisites",
+                      "managed-staffing-risk-shield"
+                    ].map((id) => {
+                      const serv = servicesData.find((s) => s.id === id);
+                      if (!serv) return null;
+                      return (
                         <Link
                           key={serv.id}
                           to={`/services/${serv.id}`}
                           onClick={() => setActiveDropdown(null)}
-                          className="flex flex-col p-2.5 rounded-xl hover:bg-slate-50 transition-colors group"
+                          className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors group"
                         >
                           <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
                             {serv.title}
@@ -169,33 +191,36 @@ export const Header = () => {
                             {serv.problem}
                           </span>
                         </Link>
-                      ))}
+                      );
+                    })}
                   </div>
                 </div>
 
-                {/* Compliance Column */}
+                {/* BPO Services Column */}
                 <div className="space-y-3">
-                  <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                    Compliance
-                  </h4>
-                  <div className="flex flex-col gap-1.5">
-                    {servicesData
-                      .filter((serv) => [
-                        "regulatory-compliance",
-                        "data-privacy-dpdp",
-                        "labour-law-compliance",
-                        "environmental-compliance",
-                        "rera-compliance",
-                        "supply-chain-compliance",
-                        "accreditation-services",
-                        "telecom-compliance"
-                      ].includes(serv.id))
-                      .map((serv) => (
+                  <div>
+                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
+                      BPO Services
+                    </h4>
+                    <p className="text-[9px] text-slate-400 font-medium pl-2.5 mt-0.5 leading-snug">
+                      High-volume, transactional outsourcing solutions
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    {[
+                      "compliance-processing-bpo",
+                      "hr-helpdesk-servicing",
+                      "back-office-operations-bpo",
+                      "document-record-management"
+                    ].map((id) => {
+                      const serv = servicesData.find((s) => s.id === id);
+                      if (!serv) return null;
+                      return (
                         <Link
                           key={serv.id}
                           to={`/services/${serv.id}`}
                           onClick={() => setActiveDropdown(null)}
-                          className="flex flex-col p-2.5 rounded-xl hover:bg-slate-50 transition-colors group"
+                          className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors group"
                         >
                           <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
                             {serv.title}
@@ -204,35 +229,10 @@ export const Header = () => {
                             {serv.problem}
                           </span>
                         </Link>
-                      ))}
+                      );
+                    })}
                   </div>
                 </div>
-              </div>
-            )}
-          </div>
-
-          {/* Manpower Services Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setActiveDropdown("staffing")}
-            onMouseLeave={() => setActiveDropdown(null)}
-          >
-            <button className={getNavItemClass()}>
-              Manpower Services <ChevronDown className="w-4 h-4 text-current" />
-            </button>
-            {activeDropdown === "staffing" && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[240px] bg-white border border-slate-200 shadow-2xl rounded-2xl p-4 flex flex-col gap-2.5 animate-slide-up-dropdown mt-1">
-                {/* Bridge to prevent hover loss */}
-                <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
-                <div className="pb-1.5 mb-0.5 border-b border-slate-100">
-                  <h3 className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
-                    Manpower Solutions
-                  </h3>
-                </div>
-                <Link to="/staffing?tab=offerings" onClick={() => setActiveDropdown(null)} className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors">Offerings</Link>
-                <Link to="/staffing?tab=industries" onClick={() => setActiveDropdown(null)} className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors">Industries</Link>
-                <Link to="/staffing?tab=engagement-models" onClick={() => setActiveDropdown(null)} className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors">Engagement Models</Link>
-                <Link to="/staffing?tab=platforms" onClick={() => setActiveDropdown(null)} className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors">Platforms</Link>
               </div>
             )}
           </div>
@@ -245,11 +245,6 @@ export const Header = () => {
           {/* ESG Link */}
           <Link to="/esg" className={getLinkClass("/esg")}>
             ESG
-          </Link>
-
-          {/* Partners Link */}
-          <Link to="/partners" className={getLinkClass("/partners")}>
-            Partners
           </Link>
 
           {/* Industry Mega Dropdown */}
@@ -298,6 +293,42 @@ export const Header = () => {
               </div>
             )}
           </div>
+
+          {/* Manpower Services Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setActiveDropdown("staffing")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <button className={getNavItemClass()}>
+              Manpower Services <ChevronDown className="w-4 h-4 text-current" />
+            </button>
+            {activeDropdown === "staffing" && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[240px] bg-white border border-slate-200 shadow-2xl rounded-2xl p-4 flex flex-col gap-2.5 animate-slide-up-dropdown mt-1">
+                {/* Bridge to prevent hover loss */}
+                <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
+                <div className="pb-1.5 mb-0.5 border-b border-slate-100">
+                  <h3 className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+                    Manpower Solutions
+                  </h3>
+                </div>
+                <Link to="/staffing?tab=offerings" onClick={() => setActiveDropdown(null)} className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors">Offerings</Link>
+                <Link to="/staffing?tab=industries" onClick={() => setActiveDropdown(null)} className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors">Industries</Link>
+                <Link to="/staffing?tab=engagement-models" onClick={() => setActiveDropdown(null)} className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors">Engagement Models</Link>
+                <Link to="/staffing?tab=platforms" onClick={() => setActiveDropdown(null)} className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors">Platforms</Link>
+              </div>
+            )}
+          </div>
+
+          {/* About Us Link */}
+          <Link to="/about" className={getLinkClass("/about")}>
+            About Us
+          </Link>
+
+          {/* Partners Link */}
+          <Link to="/partners" className={getLinkClass("/partners")}>
+            Partners
+          </Link>
         </div>
 
         {/* Action Buttons */}
@@ -325,9 +356,6 @@ export const Header = () => {
             <Link to="/" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg">
               Home
             </Link>
-            <Link to="/about" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg">
-              About Us
-            </Link>
 
             {/* Mobile Accordion for GRC */}
             <div>
@@ -340,15 +368,22 @@ export const Header = () => {
               </button>
               {activeDropdown === "services" && (
                 <div className="pl-4 my-1 flex flex-col gap-3 bg-slate-50 rounded-lg p-3 border border-slate-100">
-                  {/* Governance */}
+                  {/* Compliance Services */}
                   <div className="space-y-1">
                     <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
-                      Governance
+                      Compliance Services
                     </div>
                     <div className="pl-2 flex flex-col gap-1">
-                      {servicesData
-                        .filter((serv) => ["governance-framework", "clinical-governance", "internal-audit"].includes(serv.id))
-                        .map((serv) => (
+                      {[
+                        "labour-law-compliance",
+                        "environmental-compliance",
+                        "taxation-trade-compliance",
+                        "data-privacy-dpdp",
+                        "accreditation-services"
+                      ].map((id) => {
+                        const serv = servicesData.find((s) => s.id === id);
+                        if (!serv) return null;
+                        return (
                           <Link
                             key={serv.id}
                             to={`/services/${serv.id}`}
@@ -357,19 +392,27 @@ export const Header = () => {
                           >
                             {serv.title}
                           </Link>
-                        ))}
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {/* Risk */}
+                  {/* Managed Payroll & HR */}
                   <div className="space-y-1">
                     <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
-                      Risk
+                      Managed Payroll & HR
                     </div>
                     <div className="pl-2 flex flex-col gap-1">
-                      {servicesData
-                        .filter((serv) => ["enterprise-risk-management", "vendor-risk-management", "incident-response"].includes(serv.id))
-                        .map((serv) => (
+                      {[
+                        "statutory-payroll-compliance",
+                        "hr-data-privacy-security",
+                        "hr-policy-governance",
+                        "advanced-taxation-perquisites",
+                        "managed-staffing-risk-shield"
+                      ].map((id) => {
+                        const serv = servicesData.find((s) => s.id === id);
+                        if (!serv) return null;
+                        return (
                           <Link
                             key={serv.id}
                             to={`/services/${serv.id}`}
@@ -378,28 +421,26 @@ export const Header = () => {
                           >
                             {serv.title}
                           </Link>
-                        ))}
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {/* Compliance */}
+                  {/* BPO Services */}
                   <div className="space-y-1">
                     <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
-                      Compliance
+                      BPO Services
                     </div>
                     <div className="pl-2 flex flex-col gap-1">
-                      {servicesData
-                        .filter((serv) => [
-                          "regulatory-compliance",
-                          "data-privacy-dpdp",
-                          "labour-law-compliance",
-                          "environmental-compliance",
-                          "rera-compliance",
-                          "supply-chain-compliance",
-                          "accreditation-services",
-                          "telecom-compliance"
-                        ].includes(serv.id))
-                        .map((serv) => (
+                      {[
+                        "compliance-processing-bpo",
+                        "hr-helpdesk-servicing",
+                        "back-office-operations-bpo",
+                        "document-record-management"
+                      ].map((id) => {
+                        const serv = servicesData.find((s) => s.id === id);
+                        if (!serv) return null;
+                        return (
                           <Link
                             key={serv.id}
                             to={`/services/${serv.id}`}
@@ -408,28 +449,10 @@ export const Header = () => {
                           >
                             {serv.title}
                           </Link>
-                        ))}
+                        );
+                      })}
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-
-            {/* Mobile Accordion for Manpower Services */}
-            <div>
-              <button
-                onClick={() => toggleDropdown("staffing")}
-                className="w-full flex justify-between items-center p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg"
-              >
-                <span>Manpower Services</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === "staffing" ? "rotate-180" : ""}`} />
-              </button>
-              {activeDropdown === "staffing" && (
-                <div className="pl-4 my-1 flex flex-col gap-2 bg-slate-50 rounded-lg p-3 border border-slate-100">
-                  <Link to="/staffing?tab=offerings" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Offerings</Link>
-                  <Link to="/staffing?tab=industries" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Industries</Link>
-                  <Link to="/staffing?tab=engagement-models" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Engagement Models</Link>
-                  <Link to="/staffing?tab=platforms" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Platforms</Link>
                 </div>
               )}
             </div>
@@ -442,11 +465,6 @@ export const Header = () => {
             {/* Mobile Link for ESG */}
             <Link to="/esg" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
               ESG
-            </Link>
-
-            {/* Mobile Link for Partners */}
-            <Link to="/partners" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
-              Partners
             </Link>
 
             {/* Mobile Accordion for Industry */}
@@ -484,6 +502,35 @@ export const Header = () => {
                 </div>
               )}
             </div>
+
+            {/* Mobile Accordion for Manpower Services */}
+            <div>
+              <button
+                onClick={() => toggleDropdown("staffing")}
+                className="w-full flex justify-between items-center p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg"
+              >
+                <span>Manpower Services</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === "staffing" ? "rotate-180" : ""}`} />
+              </button>
+              {activeDropdown === "staffing" && (
+                <div className="pl-4 my-1 flex flex-col gap-2 bg-slate-50 rounded-lg p-3 border border-slate-100">
+                  <Link to="/staffing?tab=offerings" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Offerings</Link>
+                  <Link to="/staffing?tab=industries" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Industries</Link>
+                  <Link to="/staffing?tab=engagement-models" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Engagement Models</Link>
+                  <Link to="/staffing?tab=platforms" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Platforms</Link>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Link for About Us */}
+            <Link to="/about" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
+              About Us
+            </Link>
+
+            {/* Mobile Link for Partners */}
+            <Link to="/partners" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
+              Partners
+            </Link>
           </div>
 
           <div className="flex flex-col gap-2.5 pt-4 border-t border-slate-100">

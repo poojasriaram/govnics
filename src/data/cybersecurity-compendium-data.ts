@@ -373,19 +373,21 @@ export const securityOfferings: SecurityOffering[] = [
     overview: "Deploy AI-driven autonomous threat hunters that continuously search for indicators of compromise, anomalous behaviors, insider threats, ransomware activity, advanced persistent threats, and AI-specific threat indicators across the enterprise environment. Powered by behavioral analytics, machine learning, and autonomous AI reasoning.",
     statementOfValue: "Find attackers before they trigger an incident — hunt threats proactively, not reactively.",
     before: [
-      "Threat hunting is manual, ad hoc, and analyst-dependent",
-      "Limited hunting coverage (20% of environment)",
-      "High false positive rates consuming analyst time",
-      "Insider threats discovered weeks or months after activity",
-      "AI-specific threats not monitored"
+      "Threat hunting is manual, ad hoc, and analyst-dependent.",
+      "Limited hunting coverage leaving over 80% of the environment unmonitored.",
+      "High false positive rates overwhelming the security operations team.",
+      "Insider threats and model manipulation discovered weeks after the event.",
+      "No proactive tracking of advanced persistent threats (APTs) or living-off-the-land TTPs.",
+      "AI-specific threat indicators (data poisoning, model drift) completely unmonitored."
     ],
     situation: "Sophisticated attackers evade automated detection by living off the land, using legitimate credentials, and exploiting trusted processes. AI-specific threats — model compromise, data poisoning, agent manipulation — generate subtle indicators that traditional detection misses entirely. Autonomous AI threat hunters can continuously generate and test hypotheses at machine scale.",
     components: [
-      "Autonomous Hypothesis Generation: AI-generated hunting plans based on real-time threat intelligence.",
-      "Behavioral Analytics & Anomaly Detection: Baseline user and entity behavior for AI systems.",
-      "AI-Specific Threat Hunting: Monitoring logs for prompt injection patterns and data poisoning.",
-      "Insider Threat Hunting: Analysis of privileged users and anomalous data access.",
-      "APT Hunting: Continuous tracking of nation-state TTPs and command-and-control channels."
+      "Autonomous Hypothesis Generation (7.1): AI-driven creation of hunting plans based on real-time global threat intelligence, historical telemetry, and emerging TTPs. Eliminates the need for manual, analyst-dependent hypothesis formulation.",
+      "Behavioral Analytics & Anomaly Detection (7.2): Continuous baselining of user, model, agent, and network behaviors. Utilizes advanced machine learning models to detect subtle deviations, indicating compromise, lateral movement, or policy bypass.",
+      "AI-Specific Threat Hunting (7.3): Continuous monitoring of enterprise AI pipelines, LLM endpoints, and vector databases. Proactively hunts for indicators of model manipulation, prompt injections, training data poisoning, and unauthorized weights access.",
+      "Insider Threat & Abuse Identification (7.4): Tracking of privileged accounts, developer environments, and service credentials. Analyzes access patterns to detect data exfiltration, shadow AI deployment, and unauthorized tool access.",
+      "Advanced Persistent Threat (APT) Hunting (7.5): Persistent search for indicators of nation-state APT activity, living-off-the-land techniques, and stealthy command-and-control (C2) channels that bypass standard automated security alerts.",
+      "Automated Investigation & Remediation (7.6): Rapid triage and cross-telemetry correlation of threat hunt findings. Generates detailed investigation reports, maps full attack paths, and triggers automated quarantine or containment workflows."
     ],
     pentestIntegration: "Hunting coverage validation: Simulated adversarial activities (living off the land, model manipulation) run against telemetry systems to verify that threat hunters trigger correct hypotheses.",
     regulatoryAlignment: [
@@ -397,23 +399,24 @@ export const securityOfferings: SecurityOffering[] = [
     ],
     statistics: [
       { kpi: "Threat Discovery Time", before: "Weeks", after: "Hours" },
-      { kpi: "False Positives", before: "High", after: "Reduced 70%" },
-      { kpi: "Threat Hunting Coverage", before: "20%", after: "95%" },
-      { kpi: "Insider Threat Detection", before: "Limited", after: "Continuous" },
-      { kpi: "APT Dwell Time", before: "200+ Days", after: "<30 Days" },
-      { kpi: "Hunting Hypotheses per Week", before: "5–10", after: "500+" }
+      { kpi: "False Positive Alert Rates", before: "High Baseline", after: "70% Reduction" },
+      { kpi: "Threat Hunting Environment Coverage", before: "20%", after: "95%+" },
+      { kpi: "Insider Threat Detection Window", before: "Reactive / Weeks", after: "Real-Time / Continuous" },
+      { kpi: "APT Dwell Time in Infrastructure", before: "200+ Days", after: "<30 Days" },
+      { kpi: "Hypothesis Tests Completed (Weekly)", before: "5–10 tests", after: "500+ tests" }
     ],
     benefits: [
-      "Early threat detection before incident impact",
-      "Proactive, data-driven defense posture",
-      "Comprehensive environment visibility and logs",
-      "Substantially reduced analyst workload through automated hypothesis testing"
+      "Proactive threat discovery before business-critical impact occurs.",
+      "Data-driven security posture with unified log correlation.",
+      "Substantially reduced SOC workload through automated hypothesis testing.",
+      "Continuous validation of detection systems against emerging APT profiles."
     ],
     timeline: [
-      "Weeks 1–2: Telemetry Integration & Baseline",
-      "Weeks 2–4: Hunting Hypothesis & Playbook Development",
-      "Weeks 3–6: AI Hunter Deployment & Tuning",
-      "Weeks 5–8: Validation & Optimization"
+      "Phase 1: Telemetry Integration & Network Baselining — Weeks 1–2",
+      "Phase 2: Hunting Hypothesis & Custom Playbook Development — Weeks 2–4",
+      "Phase 3: AI Hunting Agent Deployment & Threshold Calibration — Weeks 3–6",
+      "Phase 4: Adversarial Validation & Performance Optimization — Weeks 5–8",
+      "Total: 6–8 Weeks (Deployment)"
     ]
   },
   {
@@ -424,18 +427,18 @@ export const securityOfferings: SecurityOffering[] = [
     overview: "Continuous, AI-powered simulation of real-world attack scenarios — ransomware, phishing, insider threats, lateral movement, privilege escalation, cloud attacks, AI-specific attacks, and nation-state TTPs — across the entire enterprise environment to continuously validate security defenses and identify exploitable attack paths.",
     statementOfValue: "Continuously validate that every security control works — using AI attackers that never sleep.",
     before: [
-      "Annual penetration testing as the only validation",
-      "Security controls untested between assessments",
-      "Unknown detection gaps across the kill chain",
-      "Security investments unable to demonstrate ROI"
+      "Annual penetration testing as the only form of security validation.",
+      "Security controls (firewalls, EDR, SIEM) remain untested between audits.",
+      "Unknown detection gaps and blind spots across the cyber kill chain.",
+      "Security investments unable to demonstrate quantifiable ROI or effectiveness."
     ],
     situation: "Attackers operate continuously. A single annual penetration test leaves 364 days of unvalidated security exposure. AI-BAS provides continuous, automated attack simulation that validates every security control, detects configuration drift, and quantifies security effectiveness in real time.",
     components: [
-      "Continuous Attack Simulation Engine: Automated simulation of the MITRE ATT&CK kill chain.",
-      "AI-Specific Attack Simulation: Fuzzing LLMs, simulating RAG database poisoning, and agent tools abuse.",
-      "Attack Path Analysis: Graph visualization showing all viable paths to database targets.",
-      "Defense Validation: Detection coverage mapping indicating which firewall/EDR rules blocked or missed.",
-      "Continuous Security Benchmarking: Quantified security effectiveness scores over time."
+      "Continuous Attack Simulation Engine (6.1): Automated, continuous simulation of the full MITRE ATT&CK kill chain across endpoints, cloud systems, and networks. Automatically generates and executes hundreds of attack scenarios to validate security defenses without business disruption.",
+      "AI-Specific Adversarial Simulation (6.2): Automated simulation of AI-specific attacks, including prompt injections, jailbreaks, training data poisoning, vector database manipulation, and agent execution bypasses. Mapped to the MITRE ATLAS matrix to validate security guardrails.",
+      "Attack Path & Lateral Movement Analysis (6.3): Graph-based visualization and validation of complex multi-step attack paths across enterprise cloud networks. Identifies reachable high-value targets, active exploit chains, and lateral movement opportunities before attackers can exploit them.",
+      "Defense Control Validation & Mapping (6.4): Automated verification of security control effectiveness. Maps simulation results directly to firewall rules, EDR configurations, SIEM alert filters, and SOAR response playbooks to highlight detection gaps and configuration drifts.",
+      "Security Effectiveness Benchmarking & Reporting (6.5): Quantified, board-ready security posture scoring and peer benchmarking. Provides historical trend analysis, risk quantification, and actionable remediation blueprints to demonstrate security ROI and drive optimization."
     ],
     pentestIntegration: "Automated penetration testing at scale: Autonomous agents adapt payloads dynamically based on defensive system responses, mimicking human red team tactics synchronously.",
     regulatoryAlignment: [
@@ -446,25 +449,24 @@ export const securityOfferings: SecurityOffering[] = [
       { requirement: "PCI-DSS 4.0 — Requirement 11.3 (Penetration Testing)", coverage: "Full" }
     ],
     statistics: [
-      { kpi: "Security Validation Frequency", before: "Annual", after: "Daily" },
-      { kpi: "Attack Coverage (MITRE ATT&CK)", before: "15%", after: "95%" },
-      { kpi: "Detection Gaps", before: "Unknown", after: "Identified & Prioritized" },
-      { kpi: "Security Effectiveness Score", before: "60%", after: "95%" },
-      { kpi: "Mean Validation Time", before: "Weeks", after: "Minutes" },
-      { kpi: "Attack Path Visibility", before: "None", after: "Full Graph" }
+      { kpi: "Security Validation Frequency", before: "Annual/Ad Hoc", after: "Daily/Continuous" },
+      { kpi: "MITRE ATT&CK & ATLAS Coverage", before: "15%", after: "95%+" },
+      { kpi: "Security Effectiveness Score", before: "60%", after: "95%+" },
+      { kpi: "Mean Control Validation Time", before: "Weeks", after: "Minutes" },
+      { kpi: "Attack Path Graph Visibility", before: "None / Speculative", after: "Full Graph / Real-Time" }
     ],
     benefits: [
-      "Continuous, automated security validation 24/7",
-      "Real-time identification of misconfigurations and detection gaps",
-      "Complete MITRE ATT&CK and ATLAS coverage",
-      "Board-level risk and defense effectiveness dashboards"
+      "Continuous, automated security validation 24/7/365.",
+      "Real-time identification and alerting of misconfigurations and drifts.",
+      "Comprehensive coverage mapped directly to MITRE ATT&CK and ATLAS.",
+      "Quantifiable security posture metrics for executive and board reporting."
     ],
     timeline: [
-      "Weeks 1–3: Environment Profiling & Integration",
-      "Weeks 2–4: Attack Scenario Configuration",
-      "Weeks 3–5: AI Attack Agent Deployment",
-      "Weeks 4–6: Dashboard & Reporting Setup",
-      "Ongoing: Continuous Simulation & Tuning"
+      "Phase 1: Environment Profiling & Integration — Weeks 1–3",
+      "Phase 2: Attack Scenario & Simulation Configuration — Weeks 2–4",
+      "Phase 3: AI Attack Agent Deployment & Run Scheduling — Weeks 3–5",
+      "Phase 4: Dashboard Integration & Executive Reporting Setup — Weeks 4–6",
+      "Total: 4–6 Weeks (Implementation)"
     ]
   },
   {
@@ -475,18 +477,19 @@ export const securityOfferings: SecurityOffering[] = [
     overview: "AI-powered Managed Detection and Response service leveraging autonomous threat analysis, behavioral analytics, attack correlation, automated triage, intelligent investigation, and response orchestration — operating 24x7x365 with AI analysts augmenting human expertise.",
     statementOfValue: "Detect and respond to threats at machine speed, with human expertise where it matters most.",
     before: [
-      "Severe SOC analyst shortage causing alert backlogs",
-      "Alert fatigue overwhelming the security team",
-      "Mean time to detect (MTTD) measured in hours/days",
-      "Mean time to respond (MTTR) measured in days/weeks",
-      "Traditional MDR lacking AI-specific monitoring capabilities"
+      "Severe SOC analyst shortage causing critical alert backlogs.",
+      "Severe alert fatigue overwhelming the security team.",
+      "Mean time to detect (MTTD) measured in hours or days.",
+      "Mean time to respond (MTTR) measured in days or weeks.",
+      "Traditional MDR solutions lacking any AI-specific telemetry or monitoring."
     ],
     situation: "Enterprise security operations generate millions of daily events. Human analysts cannot keep pace. AI-MDR combines autonomous AI analysts that handle L1 triage, L2 investigation, and initial response with human experts providing strategic oversight, complex incident handling, and adversarial resilience.",
     components: [
-      "AI-Powered Detection Engine: Multi-signal correlation across endpoints, network, cloud, identity, and AI pipelines.",
-      "Autonomous Triage & Investigation: AI analyst alert triage automating L1 checks by over 80%.",
-      "Automated Response Orchestration: Host isolation, credential revoking, and RAG database quarantine.",
-      "24x7 Expert Oversight: Human experts providing strategic incident handling and post-incident forensics."
+      "Multi-Signal Detection Engine (8.1): Real-time ingestion and correlation of telemetry across endpoints, identity, network, cloud infrastructure, and AI pipelines. Detects both legacy cyber threats and novel AI attack vectors.",
+      "Autonomous Triage & Alert Contextualization (8.2): Deploying autonomous AI analysts to handle Tier-1 alert triage, filtering out false positives by over 80% and enriching true alerts with full attack path and threat intelligence context.",
+      "Automated Response & Quarantine Orchestration (8.3): Millisecond-level response orchestration, including isolating compromised hosts, revoking leaked API keys, blocking malicious IPs, and quarantining poisoned RAG nodes.",
+      "AI-Specific Threat Monitoring & Guardrails (8.4): Dedicated monitoring for LLM interactions, agent actions, and vector store queries. Identifies jailbreaks, prompt injections, and data leakage in real time.",
+      "24x7x365 Human-in-the-Loop Expert Oversight (8.5): Strategic oversight and advanced forensics provided by elite security analysts. Combines machine speed with human intelligence for complex threat hunting and response."
     ],
     pentestIntegration: "Rule validation: Automated attack payloads injected continuously to verify that EDR rules and SOAR response playbooks execute correctly under pressure.",
     regulatoryAlignment: [
@@ -499,9 +502,9 @@ export const securityOfferings: SecurityOffering[] = [
     statistics: [
       { kpi: "Mean Time to Detect (MTTD)", before: "8 Hours", after: "5 Minutes" },
       { kpi: "Mean Time to Respond (MTTR)", before: "2 Days", after: "20 Minutes" },
-      { kpi: "L1 Triage Automation Rate", before: "0%", after: "80%+" },
-      { kpi: "SOC Operations Cost", before: "Extremely High", after: "Optimized (50% reduction)" },
-      { kpi: "AI-Specific Threat Visibility", before: "None", after: "Comprehensive" }
+      { kpi: "Tier-1 Alert Triage Automation", before: "0%", after: "80%+" },
+      { kpi: "Security Operations Overhead", before: "Extremely High", after: "Optimized (50% reduction)" },
+      { kpi: "AI-Specific Threat Monitoring", before: "None", after: "100% Comprehensive" }
     ],
     benefits: [
       "Machine-speed threat detection and containment",
@@ -510,9 +513,10 @@ export const securityOfferings: SecurityOffering[] = [
       "Specialized monitoring for GenAI, LLMs, and agentic workflows"
     ],
     timeline: [
-      "Weeks 1–2: Log Telemetry & API Integration",
-      "Weeks 2–4: Automated Playbook Mapping",
-      "Weeks 4–6: AI Agent Tuning & Live MDR Launch"
+      "Phase 1: Log Telemetry & API Endpoint Integration — Weeks 1–2",
+      "Phase 2: Automated Playbook Mapping & SIEM Tuning — Weeks 2–4",
+      "Phase 3: AI Agent Training, Threshold Tuning & MDR Launch — Weeks 4–6",
+      "Total: 4–6 Weeks (Onboarding)"
     ]
   },
   {
@@ -607,45 +611,49 @@ export const securityOfferings: SecurityOffering[] = [
   {
     id: "offering-pentesting",
     offeringNumber: 12,
-    title: "AI-Driven Penetration Testing & Continuous Red Teaming",
+    title: "AI Red Teaming & Adversarial Security Testing",
     nistFunction: "Cross-cutting",
-    overview: "Continuous offensive testing utilizing automated AI agents to discover vulnerabilities across all endpoints, APIs, and microservices. Blends automated exploit scripts with strategic human red teaming. Actively tests model extraction, prompt injections, and container escape paths.",
-    statementOfValue: "Attain a continuous hacker's-eye view of your entire enterprise attack surface, 24/7/365.",
+    overview: "Continuous, intelligence-led adversarial testing (Red Teaming) and security assessments of enterprise AI environments, LLMs, autonomous agents, RAG pipelines, and model deployments. Simulates real-world cyber threats and adversarial tactics mapped to the MITRE ATLAS framework to identify vulnerabilities, logical bypasses, data leakage risks, and security control gaps.",
+    statementOfValue: "Validate your AI security posture against real-world adversaries using continuous, automated red teaming and expert threat simulation.",
     before: [
-      "Point-in-time assessments leaving security gaps unexposed for months",
-      "Scanners failing to find complex multi-step logical exploit chains",
-      "No security validation of new container or API deployments between audits"
+      "Point-in-time security testing leaving vulnerability gaps unexposed for months.",
+      "Automated vulnerability scanners failing to discover complex, multi-step logical exploits.",
+      "No security validation of new container or API endpoints between annual audits.",
+      "AI models deployed without adversarial robustness testing (jailbreaks, prompt injections)."
     ],
-    situation: "Enterprise codebases and cloud configurations change daily. Standard point-in-time penetration tests become obsolete immediately. Continuous, automated agentic pentesting is required to catch vulnerabilities before threat actors exploit them.",
+    situation: "Enterprise codebases, container meshes, and cloud configurations change daily. Standard point-in-time penetration tests become obsolete immediately. Continuous, automated agentic pentesting and targeted AI red teaming are required to catch security flaws before threat actors exploit them.",
     components: [
-      "Autonomous Exploit Agents: Automated LLM agents executing scans and payload injections.",
-      "Multi-Step Attack Graphing: Mapping and validating complex multi-hop lateral movements.",
-      "API & Model Fuzzing: Intelligent input payload crafting to stress model boundaries.",
-      "Purple Team Integration: Dynamic sharing of exploit paths with detection filters for SIEM tuning."
+      "Adversarial Threat Simulation & Red Teaming: Continuous simulation of real-world attacker TTPs targeting enterprise AI architectures, including LLMs, RAG pipelines, and autonomous workflows. Mapped directly to the MITRE ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) matrix to validate defensive controls under active attack.",
+      "Model Exploitation & Bypass Testing: In-depth vulnerability scanning and exploitation testing targeting model endpoints. Includes multi-turn jailbreak attempts, indirect prompt injections, system prompt extraction, model inversion, and membership inference attacks to assess model robustness and guardrail effectiveness.",
+      "RAG Pipeline & Data Poisoning Audits: Simulating data poisoning attacks against RAG knowledge bases, training pipelines, and embedding models. Testing retrieval integrity and access control boundaries to prevent data exfiltration, hallucination exploitation, and unauthorized data exposure.",
+      "Agentic Workflow & Tool Abuse Testing: Adversarial testing of autonomous agents, multi-agent coordination systems, and MCP (Model Context Protocol) integrations. Validating permission boundaries, sandboxing, privilege escalation paths, and human-in-the-loop validation triggers.",
+      "Continuous Vulnerability Discovery & Exploit Validation (PTaaS): Automated, AI-driven penetration testing probing external and internal AI attack surfaces 24/7/365. Safely executing exploits on discovered vulnerabilities to validate severity, eliminate false positives, and map complete lateral movement paths across cloud infrastructure."
     ],
-    pentestIntegration: "This offering acts as the active offensive engine powering other continuous validation and threat hunting services across the enterprise portfolio.",
+    pentestIntegration: "Acts as the active offensive engine powering other continuous validation, threat hunting, and MDR operations across the enterprise portfolio.",
     regulatoryAlignment: [
       { requirement: "NIST CSF 2.0 — Identify (ID.RA), Protect (PR.DS)", coverage: "Full" },
       { requirement: "SOC 2 TSC — CC7.1, CC4.1 (Continuous Monitoring)", coverage: "Full" },
       { requirement: "DORA — Article 26 (Threat-Led Penetration Testing)", coverage: "Full" },
-      { requirement: "PCI-DSS 4.0 — Requirement 11.3 (Penetration Testing)", coverage: "Full" }
+      { requirement: "PCI-DSS 4.0 — Requirement 11.3 (Penetration Testing)", coverage: "Full" },
+      { requirement: "MITRE ATLAS Matrix (AI Adversarial Tactics)", coverage: "Full Alignment" }
     ],
     statistics: [
       { kpi: "Vulnerability Exposure Window", before: "Months", after: "Minutes" },
       { kpi: "Adversarial Exploit Success Rate", before: "85%", after: "<2%" },
-      { kpi: "Security Assessment Frequency", before: "Annual", after: "Real-Time" },
+      { kpi: "Security Assessment Frequency", before: "Annual / Point-in-time", after: "Continuous / Real-Time" },
       { kpi: "Exploit Path Mapping Duration", before: "Days/Weeks", after: "Minutes" }
     ],
     benefits: [
-      "Real-time visibility into active exploit paths across cloud networks",
-      "Vulnerability validation prior to code merges and production builds",
-      "Reduced regulatory audit costs through automated pentest reporting",
-      "Comprehensive MITRE ATT&CK and ATLAS validation logs"
+      "Real-time visibility into active exploit paths across cloud networks.",
+      "Adversarial validation of AI systems prior to production builds and merges.",
+      "Substantially reduced compliance audit costs through automated testing logs.",
+      "Comprehensive mapping of MITRE ATT&CK and ATLAS vulnerabilities."
     ],
     timeline: [
-      "Weeks 1–2: Attack Surface Discovery & Target Scoping",
-      "Weeks 2–3: Pentest Agent Deployment & Baseline Runs",
-      "Weeks 3–4: Purple Team Dashboard Setup & Automation Handover"
+      "Phase 1: Attack Surface Discovery & Target Scope Definition — Weeks 1–2",
+      "Phase 2: Pentest Agent Deployment & Baseline Adversarial Runs — Weeks 2–3",
+      "Phase 3: Purple Team Dashboard Setup & Automation Handover — Weeks 3–4",
+      "Total: 3–4 Weeks (Initial Setup), Ongoing PTaaS"
     ]
   },
   {
