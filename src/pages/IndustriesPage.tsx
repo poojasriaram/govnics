@@ -184,10 +184,14 @@ export default function IndustriesPage() {
             autoplayInterval={6000}
             showArrows={false}
             showDots
+            itemWidthClassName="w-full"
+            gapClassName="gap-0"
+            pyClassName="py-0"
+            dotsClassName="absolute bottom-6 left-1/2 -translate-x-1/2 z-20"
             items={heroSlides.map((slide, idx) => (
               <div
                 key={idx}
-                className="relative w-screen h-[65dvh] flex items-center bg-cover bg-center select-none"
+                className="relative w-full h-[65dvh] flex items-center bg-cover bg-center select-none"
                 style={{ backgroundImage: `url(${slide.image})`, width: "100%" }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent/10 z-10" />
