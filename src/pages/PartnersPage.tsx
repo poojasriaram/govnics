@@ -266,6 +266,83 @@ export default function PartnersPage() {
           </div>
         </section>
 
+        {/* Panel 3: GRC Integrations & Advisory Network Directory */}
+        <section className="py-16 border-t border-slate-100 bg-slate-50/40 text-left">
+          <div className="container mx-auto px-6 max-w-6xl space-y-12">
+            <div className="max-w-3xl mx-auto text-center space-y-3">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 text-blue-600 text-[10px] font-bold uppercase tracking-widest rounded-full">
+                Global Network
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
+                Institutional GRC Integrations & Advisory Partners
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-500 font-semibold leading-relaxed">
+                We integrate with leading SaaS compliance platforms, collaborate with certification bodies, and align with risk advisors to secure enterprise GRC operations.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  category: "Technology & SaaS",
+                  description: "Continuous compliance telemetry and audit monitoring platform integrations.",
+                  brands: ["ServiceNow", "MetricStream", "VComply", "Persefoni", "Qualys"]
+                },
+                {
+                  category: "Audit & Certification Bodies",
+                  description: "Authorized independent assessment registrars and compliance certifications.",
+                  brands: ["Bureau Veritas (BV)", "SGS India", "DNV", "TÜV SÜD", "Intertek"]
+                },
+                {
+                  category: "Legal & Risk Advisory",
+                  description: "Corporate legal consultants guiding regulatory disclosures and compliance briefs.",
+                  brands: ["Shardul Amarchand Mangaldas", "Cyril Amarchand Mangaldas", "Nishith Desai Associates", "J. Sagar Associates (JSA)", "Trilegal"]
+                },
+                {
+                  category: "Insurance & Risk Transfer",
+                  description: "Risk assessment alignment to qualify for premium reductions and policies.",
+                  brands: ["Marsh McLennan", "Aon", "Howden Broking", "Willis Towers Watson (WTW)", "Lockton India"]
+                },
+                {
+                  category: "System Integrators & Consulting",
+                  description: "Implementation services scaling compliance automation platforms nationwide.",
+                  brands: ["TCS (Tata Consultancy Services)", "Infosys", "Wipro", "Deloitte India", "Grant Thornton India"]
+                },
+                {
+                  category: "Industry Associations",
+                  description: "Collaborative standard-setting groups guiding security and business frameworks.",
+                  brands: ["DSCI (Data Security Council of India)", "NASSCOM", "CII (Confederation of Indian Industry)", "FICCI", "ASSOCHAM"]
+                }
+              ].map((group, idx) => (
+                <div 
+                  key={idx} 
+                  className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:border-blue-500/35 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div className="space-y-3">
+                    <h3 className="font-black text-slate-900 text-sm uppercase tracking-wide border-l-2 border-blue-500 pl-2.5">
+                      {group.category}
+                    </h3>
+                    <p className="text-[11px] text-slate-400 font-semibold leading-relaxed pl-3">
+                      {group.description}
+                    </p>
+                  </div>
+                  
+                  <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+                    {group.brands.map((brand, bIdx) => (
+                      <span 
+                        key={bIdx} 
+                        className="px-2.5 py-1 bg-slate-50 border border-slate-200/80 text-slate-700 hover:border-blue-500/40 hover:bg-blue-50/40 text-[10px] font-bold rounded-lg transition-all cursor-default"
+                      >
+                        {brand}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Modal Dialog Overlay */}
         {isDialogOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-sm transition-all duration-300 opacity-100">

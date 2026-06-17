@@ -12,6 +12,8 @@ import CyberSecurityPage from "@/pages/CyberSecurityPage";
 import AboutPage from "@/pages/AboutPage";
 import ESGPage from "@/pages/ESGPage";
 import PartnersPage from "@/pages/PartnersPage";
+import GrcPage from "@/pages/GrcPage";
+import IndustriesPage from "@/pages/IndustriesPage";
 
 function App() {
   return (
@@ -19,6 +21,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/grc" element={<GrcPage />} />
+        <Route path="/cybersecurity" element={<CyberSecurityPage />} />
+        <Route path="/esg" element={<ESGPage />} />
+        <Route path="/industries" element={<IndustriesPage />} />
         <Route path="/industries/:clusterId" element={<IndustryDetailPage />} />
         <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
         <Route path="/resources" element={<ResourceHubPage />} />
@@ -27,8 +33,6 @@ function App() {
         <Route path="/terms" element={<TermsOfServicePage />} />
         <Route path="/cookies" element={<CookiePolicyPage />} />
         <Route path="/staffing" element={<ManageStaffingPage />} />
-        <Route path="/cybersecurity" element={<CyberSecurityPage />} />
-        <Route path="/esg" element={<ESGPage />} />
         <Route path="/partners" element={<PartnersPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

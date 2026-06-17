@@ -27,12 +27,12 @@ export const Header = () => {
 
   const getLinkClass = (path: string) => {
     const isActive = pathname === path;
-    const baseClass = "px-3 py-2 text-sm font-semibold transition-colors duration-200";
+    const baseClass = "px-3 h-full flex items-center text-sm font-semibold transition-colors duration-200";
     return `${baseClass} ${isActive ? "text-blue-600 font-bold" : "text-slate-700 hover:text-blue-600"}`;
   };
 
   const getNavItemClass = () => {
-    const baseClass = "px-3 py-2 text-sm font-semibold flex items-center gap-1 transition-colors duration-200";
+    const baseClass = "px-3 h-full flex items-center gap-1 text-sm font-semibold transition-colors duration-200";
     return `${baseClass} text-slate-700 hover:text-blue-600`;
   };
 
@@ -94,49 +94,50 @@ export const Header = () => {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden xl:flex items-center gap-1">
+        <div className="hidden xl:flex items-stretch gap-1 h-full">
           <Link to="/" className={getLinkClass("/")}>
             Home
           </Link>
 
           {/* GRC Dropdown (Replaces Solutions) */}
           <div
-            className=""
+            className="h-full flex items-center"
             onMouseEnter={() => setActiveDropdown("services")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className={getNavItemClass()}>
+            <Link to="/grc" className={getNavItemClass()}>
               GRC <ChevronDown className="w-4 h-4 text-current" />
-            </button>
+            </Link>
             {activeDropdown === "services" && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95dvw] max-w-6xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-3 gap-6 animate-slide-up-dropdown mt-1">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[98dvw] max-w-7xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-4 gap-6 animate-slide-up-dropdown mt-1 text-left max-h-[85vh] overflow-y-auto scrollbar-thin">
                 {/* Bridge to prevent hover loss */}
                 <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
-                <div className="col-span-3 pb-3 mb-1 border-b border-slate-100 flex justify-between items-center">
+                <div className="col-span-4 pb-3 mb-1 border-b border-slate-100 flex justify-between items-center">
                   <h3 className="text-xs font-bold text-blue-600 uppercase tracking-widest">
-                    Governance, Risk & Compliance Division
+                    Governance, Risk & Compliance Division (GRC)
                   </h3>
                 </div>
 
-                {/* Compliance Services Column */}
-                <div className="space-y-3">
+                {/* Column 1: Compliance Services */}
+                <div className="space-y-4">
                   <div>
                     <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
                       Compliance Services
                     </h4>
                     <p className="text-[9px] text-slate-400 font-medium pl-2.5 mt-0.5 leading-snug">
-                      Meeting regulatory mandates & achieving certifications
+                      Meeting regulatory mandates & certifications
                     </p>
                   </div>
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1.5 pl-1.5">
                     {[
-                      "labour-law-compliance",
-                      "environmental-compliance",
-                      "taxation-trade-compliance",
-                      "data-privacy-dpdp",
-                      "accreditation-services"
-                    ].map((id) => {
-                      const serv = servicesData.find((s) => s.id === id);
+                      { id: "labour-law-compliance", label: "Labour & Employment", items: "PF, ESI, Bonus • POSH Setup • Shop & Est." },
+                      { id: "environmental-compliance", label: "Environmental & EHS", items: "PCB Consents • Waste • Workplace Safety • EPR" },
+                      { id: "taxation-trade-compliance", label: "Taxation & Trade", items: "GST & E-Invoicing • DGFT & EXIM • Excise" },
+                      { id: "data-privacy-dpdp", label: "Data Privacy & Cyber", items: "DPDP Act • CERT-In & IR • ISO 27001 Readiness" },
+                      { id: "esg-sustainability", label: "ESG & Sustainability", items: "BRSR Disclosures • Carbon & ESG Audits" },
+                      { id: "accreditation-services", label: "Accreditations", items: "NABH, NABL & NAAC • ISO 9001/14001/45001" }
+                    ].map((item) => {
+                      const serv = servicesData.find((s) => s.id === item.id);
                       if (!serv) return null;
                       return (
                         <Link
@@ -146,10 +147,10 @@ export const Header = () => {
                           className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors group"
                         >
                           <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
-                            {serv.title}
+                            {item.label}
                           </span>
-                          <span className="text-[10px] text-slate-500 leading-snug line-clamp-1 mt-0.5">
-                            {serv.problem}
+                          <span className="text-[9px] text-slate-400 leading-snug mt-0.5 font-medium">
+                            {item.items}
                           </span>
                         </Link>
                       );
@@ -157,25 +158,25 @@ export const Header = () => {
                   </div>
                 </div>
 
-                {/* Managed Payroll & HR Column */}
-                <div className="space-y-3">
+                {/* Column 2: Managed Payroll & HR */}
+                <div className="space-y-4">
                   <div>
                     <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
                       Managed Payroll & HR
                     </h4>
                     <p className="text-[9px] text-slate-400 font-medium pl-2.5 mt-0.5 leading-snug">
-                      Secure, accurate, and risk-free HR operations
+                      Secure, accurate, and risk-free HR lifecycle execution
                     </p>
                   </div>
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1.5 pl-1.5">
                     {[
-                      "statutory-payroll-compliance",
-                      "hr-data-privacy-security",
-                      "hr-policy-governance",
-                      "advanced-taxation-perquisites",
-                      "managed-staffing-risk-shield"
-                    ].map((id) => {
-                      const serv = servicesData.find((s) => s.id === id);
+                      { id: "statutory-payroll-compliance", label: "Statutory Payroll", items: "Payroll Processing • Automated GL • Audits" },
+                      { id: "hr-data-privacy-security", label: "HR Data Privacy & Security", items: "HRIS Encryption • PII Breach Playbooks" },
+                      { id: "hr-policy-governance", label: "HR Policy & Governance", items: "Policy Drafting • Employee Handbooks • NDAs" },
+                      { id: "advanced-taxation-perquisites", label: "Compensation & Benefits", items: "ESOP/RSU Taxation • Perquisite & FBT • Expat" },
+                      { id: "managed-staffing-risk-shield", label: "Staffing & Vendor Gov.", items: "Employer Risk Shield • CLRA Contractor Audits" }
+                    ].map((item) => {
+                      const serv = servicesData.find((s) => s.id === item.id);
                       if (!serv) return null;
                       return (
                         <Link
@@ -185,10 +186,10 @@ export const Header = () => {
                           className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors group"
                         >
                           <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
-                            {serv.title}
+                            {item.label}
                           </span>
-                          <span className="text-[10px] text-slate-500 leading-snug line-clamp-1 mt-0.5">
-                            {serv.problem}
+                          <span className="text-[9px] text-slate-400 leading-snug mt-0.5 font-medium">
+                            {item.items}
                           </span>
                         </Link>
                       );
@@ -196,8 +197,8 @@ export const Header = () => {
                   </div>
                 </div>
 
-                {/* BPO Services Column */}
-                <div className="space-y-3">
+                {/* Column 3: BPO Services */}
+                <div className="space-y-4">
                   <div>
                     <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
                       BPO Services
@@ -206,14 +207,14 @@ export const Header = () => {
                       High-volume, transactional outsourcing solutions
                     </p>
                   </div>
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1.5 pl-1.5">
                     {[
-                      "compliance-processing-bpo",
-                      "hr-helpdesk-servicing",
-                      "back-office-operations-bpo",
-                      "document-record-management"
-                    ].map((id) => {
-                      const serv = servicesData.find((s) => s.id === id);
+                      { id: "compliance-processing-bpo", label: "Compliance Processing", items: "Statutory Filings • Claim Processing • Renewals" },
+                      { id: "hr-helpdesk-servicing", label: "HR Helpdesk & Servicing", items: "Onboarding Verification • Tax Query • Exit/FnF" },
+                      { id: "back-office-operations-bpo", label: "Back-Office Operations", items: "Data Entry • Expense Processing • Bank Recon" },
+                      { id: "document-record-management", label: "Document & Record BPO", items: "Statutory Digitization • Archival Policies" }
+                    ].map((item) => {
+                      const serv = servicesData.find((s) => s.id === item.id);
                       if (!serv) return null;
                       return (
                         <Link
@@ -223,10 +224,46 @@ export const Header = () => {
                           className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors group"
                         >
                           <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
-                            {serv.title}
+                            {item.label}
                           </span>
-                          <span className="text-[10px] text-slate-500 leading-snug line-clamp-1 mt-0.5">
-                            {serv.problem}
+                          <span className="text-[9px] text-slate-400 leading-snug mt-0.5 font-medium">
+                            {item.items}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Column 4: Governance & Risk */}
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
+                      Governance & Risk
+                    </h4>
+                    <p className="text-[9px] text-slate-400 font-medium pl-2.5 mt-0.5 leading-snug">
+                      Board oversight, ERM strategies, and risk mitigation
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-1.5 pl-1.5">
+                    {[
+                      { id: "governance-framework", label: "Corporate Governance", items: "Board Charters • Ethics & Whistleblower • ESG KPIs" },
+                      { id: "enterprise-risk-management", label: "Enterprise Risk (ERM)", items: "IT Risk Register • Cyber Insurance • M&A Diligence" }
+                    ].map((item) => {
+                      const serv = servicesData.find((s) => s.id === item.id);
+                      if (!serv) return null;
+                      return (
+                        <Link
+                          key={serv.id}
+                          to={`/services/${serv.id}`}
+                          onClick={() => setActiveDropdown(null)}
+                          className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                        >
+                          <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                            {item.label}
+                          </span>
+                          <span className="text-[9px] text-slate-400 leading-snug mt-0.5 font-medium">
+                            {item.items}
                           </span>
                         </Link>
                       );
@@ -237,25 +274,148 @@ export const Header = () => {
             )}
           </div>
 
-          {/* Cybersecurity Link */}
-          <Link to="/cybersecurity" className={getLinkClass("/cybersecurity")}>
-            Cybersecurity
-          </Link>
+          {/* Cybersecurity Dropdown */}
+          <div
+            className="h-full flex items-center"
+            onMouseEnter={() => setActiveDropdown("cybersecurity")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <Link to="/cybersecurity" className={getNavItemClass()}>
+              Cybersecurity <ChevronDown className="w-4 h-4 text-current" />
+            </Link>
+            {activeDropdown === "cybersecurity" && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95dvw] max-w-6xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-4 gap-6 animate-slide-up-dropdown mt-1 text-left">
+                {/* Bridge to prevent hover loss */}
+                <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
+                <div className="col-span-4 pb-3 mb-1 border-b border-slate-100 flex justify-between items-center">
+                  <h3 className="text-xs font-bold text-blue-600 uppercase tracking-widest">
+                    Cybersecurity & Offensive Security Division
+                  </h3>
+                </div>
 
-          {/* ESG Link */}
-          <Link to="/esg" className={getLinkClass("/esg")}>
-            ESG
-          </Link>
+                {/* Column 1: Cyber GRC & Compliance */}
+                <div className="space-y-3">
+                  <div>
+                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
+                      Cyber GRC & Compliance
+                    </h4>
+                  </div>
+                  <div className="flex flex-col gap-1.5 pl-2.5">
+                    <Link to="/cybersecurity#grc-compliance" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Framework Implementation</Link>
+                    <Link to="/cybersecurity#grc-compliance" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Indian Regulatory Compliance</Link>
+                    <Link to="/cybersecurity#grc-compliance" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Cyber Governance</Link>
+                  </div>
+                </div>
+
+                {/* Column 2: Offensive Security (VAPT) */}
+                <div className="space-y-3">
+                  <div>
+                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
+                      Offensive Security (VAPT)
+                    </h4>
+                  </div>
+                  <div className="flex flex-col gap-1.5 pl-2.5">
+                    <Link to="/cybersecurity#offensive-security" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Core Penetration Testing</Link>
+                    <Link to="/cybersecurity#offensive-security" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Advanced Attack Simulation</Link>
+                    <Link to="/cybersecurity#offensive-security" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Cloud & Configuration</Link>
+                  </div>
+                </div>
+
+                {/* Column 3: Incident Response & Defense */}
+                <div className="space-y-3">
+                  <div>
+                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
+                      Incident Response & Defense
+                    </h4>
+                  </div>
+                  <div className="flex flex-col gap-1.5 pl-2.5">
+                    <Link to="/cybersecurity#incident-defense" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Response & Retainer Services</Link>
+                    <Link to="/cybersecurity#incident-defense" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Forensics & Evidence</Link>
+                    <Link to="/cybersecurity#incident-defense" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Crisis Management</Link>
+                  </div>
+                </div>
+
+                {/* Column 4: Specialized Cyber Solutions */}
+                <div className="space-y-3">
+                  <div>
+                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
+                      Specialized Solutions
+                    </h4>
+                  </div>
+                  <div className="flex flex-col gap-1.5 pl-2.5">
+                    <Link to="/cybersecurity#specialized-solutions" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">OT & Industrial Security</Link>
+                    <Link to="/cybersecurity#specialized-solutions" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Ecosystem & Supply Chain</Link>
+                    <Link to="/cybersecurity#specialized-solutions" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Transaction & Product Security</Link>
+                  </div>
+                </div>
+
+              </div>
+            )}
+          </div>
+
+          {/* ESG Dropdown */}
+          <div
+            className="h-full flex items-center"
+            onMouseEnter={() => setActiveDropdown("esg")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <Link to="/esg" className={getNavItemClass()}>
+              ESG <ChevronDown className="w-4 h-4 text-current" />
+            </Link>
+            {activeDropdown === "esg" && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[90dvw] max-w-4xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-2 gap-6 animate-slide-up-dropdown mt-1 text-left">
+                {/* Bridge to prevent hover loss */}
+                <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
+                <div className="col-span-2 pb-3 mb-1 border-b border-slate-100 flex justify-between items-center">
+                  <h3 className="text-xs font-bold text-blue-600 uppercase tracking-widest">
+                    ESG Compliance & Sustainability Advisory Division
+                  </h3>
+                </div>
+
+                {/* Column 1: ESG Compliance Services */}
+                <div className="space-y-3">
+                  <div>
+                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
+                      ESG Compliance Services
+                    </h4>
+                  </div>
+                  <div className="flex flex-col gap-1.5 pl-2.5">
+                    <Link to="/esg#compliance-services" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Environmental & EHS Regulatory</Link>
+                    <Link to="/esg#compliance-services" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Supply Chain & Labor Compliance</Link>
+                    <Link to="/esg#compliance-services" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Global Data Privacy (G in ESG)</Link>
+                    <Link to="/esg#compliance-services" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Mandatory Disclosure Readiness</Link>
+                  </div>
+                </div>
+
+                {/* Column 2: Sustainability & Governance Advisory */}
+                <div className="space-y-3">
+                  <div>
+                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
+                      Sustainability & Governance Advisory
+                    </h4>
+                  </div>
+                  <div className="flex flex-col gap-1.5 pl-2.5">
+                    <Link to="/esg#sustainability-advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Decarbonization & Climate Strategy</Link>
+                    <Link to="/esg#sustainability-advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Global ESG Reporting Frameworks</Link>
+                    <Link to="/esg#sustainability-advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Circular Economy & Resource Efficiency</Link>
+                    <Link to="/esg#sustainability-advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Board Governance & ESG Integration</Link>
+                    <Link to="/esg#sustainability-advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Transaction Advisory (M&A)</Link>
+                  </div>
+                </div>
+
+              </div>
+            )}
+          </div>
 
           {/* Industry Mega Dropdown */}
           <div
-            className=""
+            className="h-full flex items-center"
             onMouseEnter={() => setActiveDropdown("industries")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className={getNavItemClass()}>
+            <Link to="/industries" className={getNavItemClass()}>
               Industries <ChevronDown className="w-4 h-4 text-current" />
-            </button>
+            </Link>
             {activeDropdown === "industries" && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95dvw] max-w-6xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-4 gap-6 animate-slide-up-dropdown mt-1">
                 {/* Bridge to prevent hover loss */}
@@ -296,13 +456,13 @@ export const Header = () => {
 
           {/* Manpower Services Dropdown */}
           <div
-            className="relative"
+            className="relative h-full flex items-center"
             onMouseEnter={() => setActiveDropdown("staffing")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className={getNavItemClass()}>
+            <Link to="/staffing" className={getNavItemClass()}>
               Manpower Services <ChevronDown className="w-4 h-4 text-current" />
-            </button>
+            </Link>
             {activeDropdown === "staffing" && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 w-[240px] bg-white border border-slate-200 shadow-2xl rounded-2xl p-4 flex flex-col gap-2.5 animate-slide-up-dropdown mt-1">
                 {/* Bridge to prevent hover loss */}
@@ -367,33 +527,37 @@ export const Header = () => {
                 <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === "services" ? "rotate-180" : ""}`} />
               </button>
               {activeDropdown === "services" && (
-                <div className="pl-4 my-1 flex flex-col gap-3 bg-slate-50 rounded-lg p-3 border border-slate-100">
+                <div className="pl-4 my-1 flex flex-col gap-3 bg-slate-50 rounded-lg p-3 border border-slate-100 max-h-[350px] overflow-y-auto">
+                  <Link
+                    to="/grc"
+                    onClick={() => setMobileOpen(false)}
+                    className="text-xs text-blue-600 font-extrabold flex items-center gap-1 py-1 border-b border-slate-200/80 mb-2 animate-fade-in"
+                  >
+                    View Main GRC Page <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                   {/* Compliance Services */}
                   <div className="space-y-1">
                     <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
                       Compliance Services
                     </div>
-                    <div className="pl-2 flex flex-col gap-1">
+                    <div className="pl-2 flex flex-col gap-1.5">
                       {[
-                        "labour-law-compliance",
-                        "environmental-compliance",
-                        "taxation-trade-compliance",
-                        "data-privacy-dpdp",
-                        "accreditation-services"
-                      ].map((id) => {
-                        const serv = servicesData.find((s) => s.id === id);
-                        if (!serv) return null;
-                        return (
-                          <Link
-                            key={serv.id}
-                            to={`/services/${serv.id}`}
-                            onClick={() => setMobileOpen(false)}
-                            className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block"
-                          >
-                            {serv.title}
-                          </Link>
-                        );
-                      })}
+                        { id: "labour-law-compliance", label: "Labour & Employment" },
+                        { id: "environmental-compliance", label: "Environmental & EHS" },
+                        { id: "taxation-trade-compliance", label: "Taxation & Trade" },
+                        { id: "data-privacy-dpdp", label: "Data Privacy & Cyber" },
+                        { id: "esg-sustainability", label: "ESG & Sustainability" },
+                        { id: "accreditation-services", label: "Accreditations" }
+                      ].map((item) => (
+                        <Link
+                          key={item.id}
+                          to={`/services/${item.id}`}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
                     </div>
                   </div>
 
@@ -402,27 +566,23 @@ export const Header = () => {
                     <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
                       Managed Payroll & HR
                     </div>
-                    <div className="pl-2 flex flex-col gap-1">
+                    <div className="pl-2 flex flex-col gap-1.5">
                       {[
-                        "statutory-payroll-compliance",
-                        "hr-data-privacy-security",
-                        "hr-policy-governance",
-                        "advanced-taxation-perquisites",
-                        "managed-staffing-risk-shield"
-                      ].map((id) => {
-                        const serv = servicesData.find((s) => s.id === id);
-                        if (!serv) return null;
-                        return (
-                          <Link
-                            key={serv.id}
-                            to={`/services/${serv.id}`}
-                            onClick={() => setMobileOpen(false)}
-                            className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block"
-                          >
-                            {serv.title}
-                          </Link>
-                        );
-                      })}
+                        { id: "statutory-payroll-compliance", label: "Statutory Payroll" },
+                        { id: "hr-data-privacy-security", label: "HR Data Privacy & Security" },
+                        { id: "hr-policy-governance", label: "HR Policy & Governance" },
+                        { id: "advanced-taxation-perquisites", label: "Compensation & Benefits" },
+                        { id: "managed-staffing-risk-shield", label: "Staffing & Vendor Gov." }
+                      ].map((item) => (
+                        <Link
+                          key={item.id}
+                          to={`/services/${item.id}`}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
                     </div>
                   </div>
 
@@ -431,41 +591,166 @@ export const Header = () => {
                     <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
                       BPO Services
                     </div>
-                    <div className="pl-2 flex flex-col gap-1">
+                    <div className="pl-2 flex flex-col gap-1.5">
                       {[
-                        "compliance-processing-bpo",
-                        "hr-helpdesk-servicing",
-                        "back-office-operations-bpo",
-                        "document-record-management"
-                      ].map((id) => {
-                        const serv = servicesData.find((s) => s.id === id);
-                        if (!serv) return null;
-                        return (
-                          <Link
-                            key={serv.id}
-                            to={`/services/${serv.id}`}
-                            onClick={() => setMobileOpen(false)}
-                            className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block"
-                          >
-                            {serv.title}
-                          </Link>
-                        );
-                      })}
+                        { id: "compliance-processing-bpo", label: "Compliance Processing" },
+                        { id: "hr-helpdesk-servicing", label: "HR Helpdesk & Servicing" },
+                        { id: "back-office-operations-bpo", label: "Back-Office Operations" },
+                        { id: "document-record-management", label: "Document & Record BPO" }
+                      ].map((item) => (
+                        <Link
+                          key={item.id}
+                          to={`/services/${item.id}`}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Governance & Risk */}
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
+                      Governance & Risk
+                    </div>
+                    <div className="pl-2 flex flex-col gap-1.5">
+                      {[
+                        { id: "governance-framework", label: "Corporate Governance" },
+                        { id: "enterprise-risk-management", label: "Enterprise Risk (ERM)" }
+                      ].map((item) => (
+                        <Link
+                          key={item.id}
+                          to={`/services/${item.id}`}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Mobile Link for Cybersecurity */}
-            <Link to="/cybersecurity" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
-              Cybersecurity
-            </Link>
+            {/* Mobile Accordion for Cybersecurity */}
+            <div>
+              <button
+                onClick={() => toggleDropdown("cybersecurity")}
+                className="w-full flex justify-between items-center p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg text-left"
+              >
+                <span>Cybersecurity</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === "cybersecurity" ? "rotate-180" : ""}`} />
+              </button>
+              {activeDropdown === "cybersecurity" && (
+                <div className="pl-4 my-1 flex flex-col gap-3 bg-slate-50 rounded-lg p-3 border border-slate-100 max-h-[300px] overflow-y-auto text-left">
+                  <Link
+                    to="/cybersecurity"
+                    onClick={() => setMobileOpen(false)}
+                    className="text-xs text-blue-600 font-extrabold flex items-center gap-1 py-1 border-b border-slate-200/80 mb-2 animate-fade-in"
+                  >
+                    View Main Cybersecurity Page <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  {/* Cyber GRC & Compliance */}
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
+                      Cyber GRC & Compliance
+                    </div>
+                    <div className="pl-2 flex flex-col gap-1">
+                      <Link to="/cybersecurity#grc-compliance" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Framework Implementation</Link>
+                      <Link to="/cybersecurity#grc-compliance" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Indian Regulatory Compliance</Link>
+                      <Link to="/cybersecurity#grc-compliance" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Cyber Governance</Link>
+                    </div>
+                  </div>
 
-            {/* Mobile Link for ESG */}
-            <Link to="/esg" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
-              ESG
-            </Link>
+                  {/* Offensive Security (VAPT) */}
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
+                      Offensive Security (VAPT)
+                    </div>
+                    <div className="pl-2 flex flex-col gap-1">
+                      <Link to="/cybersecurity#offensive-security" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Core Penetration Testing</Link>
+                      <Link to="/cybersecurity#offensive-security" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Advanced Attack Simulation</Link>
+                      <Link to="/cybersecurity#offensive-security" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Cloud & Configuration</Link>
+                    </div>
+                  </div>
+
+                  {/* Incident Response & Defense */}
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
+                      Incident Response & Defense
+                    </div>
+                    <div className="pl-2 flex flex-col gap-1">
+                      <Link to="/cybersecurity#incident-defense" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Response & Retainer Services</Link>
+                      <Link to="/cybersecurity#incident-defense" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Forensics & Evidence</Link>
+                      <Link to="/cybersecurity#incident-defense" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Crisis Management</Link>
+                    </div>
+                  </div>
+
+                  {/* Specialized Cyber Solutions */}
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
+                      Specialized Solutions
+                    </div>
+                    <div className="pl-2 flex flex-col gap-1">
+                      <Link to="/cybersecurity#specialized-solutions" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">OT & Industrial Security</Link>
+                      <Link to="/cybersecurity#specialized-solutions" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Ecosystem & Supply Chain</Link>
+                      <Link to="/cybersecurity#specialized-solutions" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Transaction & Product Security</Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Accordion for ESG */}
+            <div>
+              <button
+                onClick={() => toggleDropdown("esg")}
+                className="w-full flex justify-between items-center p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg text-left"
+              >
+                <span>ESG</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === "esg" ? "rotate-180" : ""}`} />
+              </button>
+              {activeDropdown === "esg" && (
+                <div className="pl-4 my-1 flex flex-col gap-3 bg-slate-50 rounded-lg p-3 border border-slate-100 max-h-[300px] overflow-y-auto text-left">
+                  <Link
+                    to="/esg"
+                    onClick={() => setMobileOpen(false)}
+                    className="text-xs text-blue-600 font-extrabold flex items-center gap-1 py-1 border-b border-slate-200/80 mb-2 animate-fade-in"
+                  >
+                    View Main ESG Page <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  {/* ESG Compliance Services */}
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
+                      ESG Compliance Services
+                    </div>
+                    <div className="pl-2 flex flex-col gap-1">
+                      <Link to="/esg#compliance-services" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Environmental & EHS Regulatory</Link>
+                      <Link to="/esg#compliance-services" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Supply Chain & Labor Compliance</Link>
+                      <Link to="/esg#compliance-services" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Global Data Privacy (G in ESG)</Link>
+                      <Link to="/esg#compliance-services" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Mandatory Disclosure Readiness</Link>
+                    </div>
+                  </div>
+
+                  {/* Sustainability & Governance Advisory */}
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
+                      Sustainability & Advisory
+                    </div>
+                    <div className="pl-2 flex flex-col gap-1">
+                      <Link to="/esg#sustainability-advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Decarbonization & Climate Strategy</Link>
+                      <Link to="/esg#sustainability-advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Global ESG Reporting Frameworks</Link>
+                      <Link to="/esg#sustainability-advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Circular Economy & Resource Efficiency</Link>
+                      <Link to="/esg#sustainability-advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Board Governance & ESG Integration</Link>
+                      <Link to="/esg#sustainability-advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Transaction Advisory (M&A)</Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Mobile Accordion for Industry */}
             <div>
@@ -478,6 +763,13 @@ export const Header = () => {
               </button>
               {activeDropdown === "industries" && (
                 <div className="pl-4 my-1 flex flex-col gap-4 bg-slate-50 rounded-lg p-3 border border-slate-100 max-h-[350px] overflow-y-auto">
+                  <Link
+                    to="/industries"
+                    onClick={() => setMobileOpen(false)}
+                    className="text-xs text-blue-600 font-extrabold flex items-center gap-1 py-1 border-b border-slate-200/80 mb-2 animate-fade-in"
+                  >
+                    View Main Industries Page <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                   {clusters.map((clusterName) => (
                     <div key={clusterName} className="space-y-1">
                       <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
@@ -514,6 +806,13 @@ export const Header = () => {
               </button>
               {activeDropdown === "staffing" && (
                 <div className="pl-4 my-1 flex flex-col gap-2 bg-slate-50 rounded-lg p-3 border border-slate-100">
+                  <Link
+                    to="/staffing"
+                    onClick={() => setMobileOpen(false)}
+                    className="text-xs text-blue-600 font-extrabold flex items-center gap-1 py-1 border-b border-slate-200/80 mb-2 animate-fade-in"
+                  >
+                    View Main Staffing Page <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                   <Link to="/staffing?tab=offerings" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Offerings</Link>
                   <Link to="/staffing?tab=industries" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Industries</Link>
                   <Link to="/staffing?tab=engagement-models" onClick={() => setMobileOpen(false)} className="text-xs font-semibold text-slate-700">Engagement Models</Link>
