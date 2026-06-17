@@ -480,14 +480,14 @@ export const Header = () => {
             )}
           </div>
 
-          {/* About Us Link */}
-          <Link to="/about" className={getLinkClass("/about")}>
-            About Us
-          </Link>
-
           {/* Partners Link */}
           <Link to="/partners" className={getLinkClass("/partners")}>
             Partners
+          </Link>
+
+          {/* About Us Link */}
+          <Link to="/about" className={getLinkClass("/about")}>
+            About Us
           </Link>
         </div>
 
@@ -821,14 +821,14 @@ export const Header = () => {
               )}
             </div>
 
-            {/* Mobile Link for About Us */}
-            <Link to="/about" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
-              About Us
-            </Link>
-
             {/* Mobile Link for Partners */}
             <Link to="/partners" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
               Partners
+            </Link>
+
+            {/* Mobile Link for About Us */}
+            <Link to="/about" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
+              About Us
             </Link>
           </div>
 
