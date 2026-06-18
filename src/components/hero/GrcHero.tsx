@@ -287,7 +287,7 @@ export const GrcHero = () => {
               {/* Trust Indicators */}
               <motion.div
                 variants={elementVariants}
-                className="flex flex-wrap justify-center gap-x-8 gap-y-3 pt-6 text-xs sm:text-sm font-bold uppercase tracking-widest text-slate-400 border-t border-slate-100"
+                className="flex flex-wrap md:flex-nowrap justify-center gap-x-5 md:gap-x-8 gap-y-3 pt-6 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-slate-400 border-t border-slate-100 w-full"
               >
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
