@@ -10,6 +10,7 @@ import heroCommand from "@/assets/command_center_1.jpg";
 import heroIntegration from "@/assets/hero-integration.jpg";
 import verticalsFacility from "@/assets/verticals-facility.jpg";
 import heroDrone from "@/assets/hero-drone.jpg";
+import heroSoc from "@/assets/hero-soc.jpg";
 
 interface CyberItem {
   title: string;
@@ -24,46 +25,84 @@ export default function CyberSecurityPage() {
 
   const heroSlides = [
     {
-      title: "ISO 27001 & SOC 2 Aligned",
-      highlight: "Cyber GRC & Compliance",
-      description: "Establish robust, audit-ready security frameworks, perform gap assessments, and map controls across multi-geography regulatory environments.",
-      image: heroVerify,
-      badge: "Governance"
-    },
-    {
-      title: "Continuous Exploit Validation &",
-      highlight: "Offensive Security VAPT",
-      description: "Active validation of system endpoints, APIs, mobile applications, and local OT networks using advanced attack path simulations.",
-      image: heroAiDriven,
-      badge: "VAPT Testing"
-    },
-    {
-      title: "Resilient Response & Containment",
-      highlight: "Incident Defense & Forensics",
-      description: "Rapid threat eradication, malware forensics, chain-of-custody collection, and automated CERT-In breach-reporting workflows.",
-      image: heroCommand,
-      badge: "Incident Response"
-    },
-    {
-      title: "Industrial SCADA & IoT Hardening",
-      highlight: "OT & Specialized Security",
-      description: "Defend manufacturing assembly lines, segment physical-logical assets, and perform cybersecurity M&A due diligence.",
+      title: "BRSR Doesn't Have to Be",
+      highlight: "a Boardroom Nightmare.",
+      description: "End-to-end data collection, BRSR drafting, and assurance readiness for SEBI-listed entities—turning a compliance burden into a competitive narrative.",
+      outcome: "Deliver board-ready BRSR in 90 days with zero rework",
+      icp: "CFOs & Company Secretaries in Top 1000 Listed Companies",
+      cta: "Start BRSR Now",
       image: heroIntegration,
-      badge: "OT Security"
+      badge: "BRSR Core"
     },
     {
-      title: "Continuous Attack Surface Monitoring",
-      highlight: "Ecosystem Risk Defense",
-      description: "Third-party vendor risk validation, automated asset discovery, and supply chain security alignment.",
+      title: "CERT-In Compliance Is Non-Negotiable.",
+      highlight: "So Is Our Defense Shield.",
+      description: "Technical implementation of 6-hour reporting, log retention, and NTP syncing mandates—because regulatory fines are cheaper than reputational damage, but neither is acceptable.",
+      outcome: "Achieve 100% CERT-In compliance with automated evidence collection",
+      icp: "CISOs in Indian Enterprises & Government Contractors",
+      cta: "Deploy Shield Now",
+      image: heroSoc,
+      badge: "CERT-In Defense"
+    },
+    {
+      title: "Your Supply Chain Emissions Are Your Reputation.",
+      highlight: "Measure Them.",
+      description: "Measure and reduce supply chain emissions by auditing vendors via our TPRM module—because Scope 3 isn't just a metric, it's a mandate from investors and regulators.",
+      outcome: "Cut supply chain carbon by 25% and satisfy investor ESG scrutiny",
+      icp: "ESG Heads in FMCG, Auto & Retail",
+      cta: "Decarbonize Now",
       image: verticalsFacility,
-      badge: "Supply Chain"
+      badge: "Scope 3 Carbon"
     },
     {
-      title: "Secure-by-Design Product Integration",
-      highlight: "DevSecOps Engineering",
-      description: "Embedding threat modeling, static/dynamic code analysis, and container security guardrails directly into the software lifecycle.",
+      title: "Ransomware Doesn't Negotiate.",
+      highlight: "But You Can Be Ready.",
+      description: "Combine VAPT with BCP testing to create impenetrable backup and \"kill switch\" playbooks—so when attackers strike, you strike back with precision.",
+      outcome: "Reduce ransom payout risk by 90% and maintain business continuity",
+      icp: "IT Directors in Healthcare, Municipalities & Critical Infrastructure",
+      cta: "Test Readiness",
+      image: heroAiDriven,
+      badge: "Ransomware Readiness"
+    },
+    {
+      title: "Don't Buy a Company Blind.",
+      highlight: "See What Others Miss.",
+      description: "Uncover hidden tech debts, SCADA vulnerabilities, and labor fines before you sign—because due diligence isn't about checking boxes, it's about protecting valuation.",
+      outcome: "De-risk acquisition valuations by 20% and avoid post-deal surprises",
+      icp: "Deal Partners at Private Equity & Strategic Buyers",
+      cta: "Run Due Diligence",
+      image: heroCommand,
+      badge: "M&A Due Diligence"
+    },
+    {
+      title: "Net-Zero Isn't a Slogan.",
+      highlight: "It's a Strategy. We Map the Path.",
+      description: "Strategic roadmaps for renewable energy procurement, offsetting, and ISSB reporting—turning ambitious climate commitments into credible, investor-backed plans.",
+      outcome: "Set credible 2030/2050 net-zero targets with verified pathways",
+      icp: "Chief Sustainability Officers & ESG Committees",
+      cta: "Plan Net-Zero",
+      image: heroVerify,
+      badge: "Net-Zero Pathway"
+    },
+    {
+      title: "Security Can't Be an Afterthought.",
+      highlight: "Bake It Into Every Line of Code.",
+      description: "Integrate OWASP security testing directly into your software development lifecycle—shifting security left and eliminating costly post-launch vulnerabilities.",
+      outcome: "Shift security left, cut post-launch fixes by 60%",
+      icp: "VP of Engineering in SaaS & Product Companies",
+      cta: "Secure Code Now",
       image: heroDrone,
-      badge: "Product Security"
+      badge: "DevSecOps"
+    },
+    {
+      title: "1,000 Employees. 28 States.",
+      highlight: "One Unified Labour Code Transition.",
+      description: "A packaged solution to rewrite policies, update HRIS, and train managers on new codes—because compliance at scale requires precision, not panic.",
+      outcome: "Migrate 1,000+ employees seamlessly with zero disruption",
+      icp: "CHROs in Multi-State Retail, Manufacturing & Services",
+      cta: "Transition Codes Now",
+      image: heroVerify,
+      badge: "Labour Migration"
     }
   ];
 
@@ -358,14 +397,23 @@ export default function CyberSecurityPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent z-10" />
                 <div className="container mx-auto px-6 md:px-12 relative z-20 text-left max-w-5xl">
                   <div className="space-y-4 max-w-xl">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-650 rounded-full">
-                      <Shield className="w-3.5 h-3.5" />
-                      <span className="text-[10px] font-extrabold tracking-widest uppercase">
-                        Cyber Security • {slide.badge}
-                      </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-650 rounded-full">
+                        <Shield className="w-3.5 h-3.5" />
+                        <span className="text-[10px] font-extrabold tracking-widest uppercase">
+                          Cyber Security • {slide.badge}
+                        </span>
+                      </div>
+                      {slide.icp && (
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50/90 border border-blue-200/50 rounded-full shadow-sm">
+                          <span className="text-[10px] font-extrabold text-blue-750 tracking-[0.03em] uppercase">
+                            Target: {slide.icp}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight font-heading">
-                      {slide.title.split(",")[0]}{" "}
+                      {slide.title}{" "}
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-black block">
                         {slide.highlight}
                       </span>
@@ -373,9 +421,21 @@ export default function CyberSecurityPage() {
                     <p className="text-xs md:text-sm text-slate-550 leading-relaxed font-semibold">
                       {slide.description}
                     </p>
+                    {slide.outcome && (
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-850 rounded-xl text-[10px] md:text-xs font-bold shadow-sm self-start">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>Outcome: {slide.outcome}</span>
+                      </div>
+                    )}
                     <div className="pt-2">
-                      <a href="#grc" className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]">
-                        Explore Sections <ChevronRight className="w-4 h-4" />
+                      <a href="#grc" onClick={(e) => {
+                        const targetEl = document.getElementById("grc");
+                        if (targetEl) {
+                          e.preventDefault();
+                          targetEl.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }} className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]">
+                        {slide.cta || "Explore Sections"} <ChevronRight className="w-4 h-4" />
                       </a>
                     </div>
                   </div>

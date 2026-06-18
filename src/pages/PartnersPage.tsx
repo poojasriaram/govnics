@@ -9,6 +9,11 @@ import {
 
 import heroVerify from "@/assets/hero-verify.jpg";
 import heroCommand from "@/assets/command_center_1.jpg";
+import heroAiDriven from "@/assets/hero-ai-driven.jpg";
+import heroIntegration from "@/assets/hero-integration.jpg";
+import heroSoc from "@/assets/hero-soc.jpg";
+import heroDrone from "@/assets/hero-drone.jpg";
+import verticalsFacility from "@/assets/verticals-facility.jpg";
 
 const partnerTypes = [
   {
@@ -66,20 +71,84 @@ export default function PartnersPage() {
 
   const slides = [
     {
-      badge: "Partnership Program",
-      title: "Building a Secure",
-      highlight: "GRC Ecosystem",
-      titleEnd: "Together",
-      description: "Collaborate with Govenics to deliver audit-ready compliance frameworks, automated risk control routing, and regulatory-grade governance at enterprise scale.",
+      badge: "GRC Integration",
+      title: "Your Platform Is Powerful.",
+      highlight: "Our Implementation Makes It Unstoppable.",
+      description: "Integrate your GRC or Carbon accounting SaaS with our deep domain expertise to deploy client implementations 2x faster with 10x higher satisfaction.",
+      outcome: "Deploy client implementations 2x faster with near-zero churn",
+      icp: "Product Heads in SaaS Companies (ServiceNow, VComply, MetricStream)",
+      cta: "Partner With Us",
+      image: heroIntegration,
+    },
+    {
+      badge: "Audit Alliance",
+      title: "You Certify. We Prepare.",
+      highlight: "Together, We Win.",
+      description: "Partner with us for gap analysis and implementation; you provide the final certification stamp—creating a seamless client journey from audit to approval.",
+      outcome: "Increase certification throughput by 50% and client retention",
+      icp: "Audit Leads at BV, SGS, DNV, TÜV",
+      cta: "Collaborate Now",
       image: heroVerify,
     },
     {
-      badge: "Global Network",
-      title: "Empowering Risk",
-      highlight: "Professionals &",
-      titleEnd: "Consultants",
-      description: "Join our network of certified auditors, technology partners, and advisory experts to expand your service reach and accelerate client compliance journeys.",
+      badge: "Legal Referral",
+      title: "Complex Litigation Up. Operational Compliance Down.",
+      highlight: "We Bridge Both.",
+      description: "Refer complex litigations to top law firms while they send operational compliance work to us—creating a high-value B2B referral flywheel.",
+      outcome: "Generate high-value B2B referral leads with zero conflict",
+      icp: "Senior Partners at Top 50 Law Firms",
+      cta: "Join the Network",
       image: heroCommand,
+    },
+    {
+      badge: "Cyber Insurance",
+      title: "Better Audits. Lower Premiums.",
+      highlight: "Happier Clients.",
+      description: "Use our cyber audits to underwrite policies faster, reduce claims rejection rates, and deliver measurable risk reduction to your insureds.",
+      outcome: "Lower client policy premiums by 20% and improve loss ratios",
+      icp: "Brokers at Marsh, Aon, Howden, Lockton",
+      cta: "Drive Premiums Down",
+      image: heroSoc,
+    },
+    {
+      badge: "EXIM Localisation",
+      title: "You Deploy Globally.",
+      highlight: "We Localize Legally.",
+      description: "We handle the complex Indian compliance (CERT-In, DPDP, Labour Codes) post your global cloud deployments—ensuring 100% localized compliance for your clients.",
+      outcome: "Ensure 100% localized compliance and accelerate India market entry",
+      icp: "Delivery Heads at TCS, Infosys, Wipro, Accenture",
+      cta: "Integrate Together",
+      image: heroIntegration,
+    },
+    {
+      badge: "PE/VC Operations",
+      title: "Fix the Operations. Boost the Valuation.",
+      highlight: "Exit Higher.",
+      description: "Act as the operational fixer for portfolio companies to boost their ESG and GRC valuations before the next funding round or exit.",
+      outcome: "Increase portfolio valuation by 15% and accelerate exits",
+      icp: "Deal Partners at Private Equity & VC Firms",
+      cta: "Fix Portfolios",
+      image: heroAiDriven,
+    },
+    {
+      badge: "CA Advisory",
+      title: "Your Clients Have Compliance Headaches.",
+      highlight: "We Have the Aspirin. You Keep the Revenue.",
+      description: "Monetize your client base by referring their operational labor law and payroll challenges to us—earning passive income while solving their pain.",
+      outcome: "Earn 15% recurring referral revenue with zero operational burden",
+      icp: "Managing Partners at CA Firms & Consulting Practices",
+      cta: "Earn Referrals",
+      image: verticalsFacility,
+    },
+    {
+      badge: "Thought Leadership",
+      title: "Co-Create Authority. Co-Host Influence.",
+      highlight: "Co-Own the Market.",
+      description: "Co-author whitepapers and host joint webinars with industry bodies like DSCI, CII, and NASSCOM—positioning your brand as a thought leader.",
+      outcome: "Gain access to 10,000+ CxO contacts and build authority",
+      icp: "Board Members at CII, FICCI, DSCI, NASSCOM",
+      cta: "Co-Create With Us",
+      image: heroDrone,
     }
   ];
 

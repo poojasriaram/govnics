@@ -9,50 +9,89 @@ import heroAiDriven from "@/assets/hero-ai-driven.jpg";
 import heroIntegration from "@/assets/hero-integration.jpg";
 import verticalsFacility from "@/assets/verticals-facility.jpg";
 import heroDrone from "@/assets/hero-drone.jpg";
+import heroSoc from "@/assets/hero-soc.jpg";
 
 export default function IndustriesPage() {
   const heroSlides = [
     {
-      title: "GRC & Security Calibration across",
-      highlight: "Manufacturing & Heavy Industrial",
-      description: "Ensure Factories Act safety alignment, EHS reporting registers, and subcontractor social audits across high-hazard production lines.",
-      image: heroVerify,
-      badge: "Industrial"
+      title: "The New Labour Codes Aren't Optional.",
+      highlight: "But Compliance Doesn't Have to Be Painful.",
+      description: "Expert drafting of employee handbooks, contracts, and wage structures aligned with all four new codes—turning legal complexity into competitive advantage.",
+      outcome: "Achieve full code compliance in 45 days, not 45 weeks",
+      icp: "Labor Law Managers in Retail, Manufacturing & Services",
+      cta: "Transition Codes Now",
+      badge: "Labour Codes",
+      image: heroVerify
     },
     {
-      title: "Digital Trust & Privacy Auditing for",
-      highlight: "Technology, SaaS & BFSI Sectors",
-      description: "Embed DPDP Act, ISO 27001, SOC 2 Type II, and CERT-In directive controls dynamically across IT operations and cloud infrastructures.",
-      image: heroAiDriven,
-      badge: "Tech & Finance"
+      title: "Zero EHS Penalties. Zero Workplace Incidents.",
+      highlight: "Zero Excuses.",
+      description: "Simplify PCB consent management, hazardous waste handling, and factory safety audits with a system that makes compliance the path of least resistance.",
+      outcome: "Reduce EHS penalties to zero and create safer workplaces",
+      icp: "EHS Officers in Heavy Industrial Sectors",
+      cta: "Audit EHS Now",
+      badge: "EHS & Safety",
+      image: verticalsFacility
     },
     {
-      title: "Statutory Accreditations & Quality for",
-      highlight: "Healthcare, Life Sciences & AYUSH",
-      description: "Accelerate NABH/NABL certifications, USFDA GMP batch data audits, and CDSCO compliance reports with zero audit deviations.",
-      image: heroCommand,
-      badge: "Healthcare"
+      title: "GST Leakage Is Silent Theft.",
+      highlight: "We Stop It.",
+      description: "Automate e-invoicing, way-bills, and GST filings to prevent revenue leakage, input credit losses, and disputes that drain your bottom line.",
+      outcome: "Reconcile books 5x faster and recover hidden tax credits",
+      icp: "Tax Heads in FMCG, Logistics & E-Commerce",
+      cta: "Fix GST Gaps",
+      badge: "GST & Taxes",
+      image: heroAiDriven
     },
     {
-      title: "EPC Risk Clearances & Escrow Audits for",
-      highlight: "Infrastructure & Real Estate",
-      description: "Secure RERA quarterly disclosures, manage escrow account tracking, and audit BOCW site safety parameters for massive project networks.",
-      image: heroIntegration,
-      badge: "Infrastructure"
+      title: "Customs Holds Kill Margins.",
+      highlight: "We Clear the Path.",
+      description: "Manage customs, trade licenses, and sanctions screening to ensure your global shipments move at the speed of business, not bureaucracy.",
+      outcome: "Clear customs holds 80% quicker and reduce demurrage costs",
+      icp: "Logistics Directors in Import-Export Houses",
+      cta: "Streamline EXIM",
+      badge: "Customs Codes",
+      image: heroDrone
     },
     {
-      title: "Environmental Consents & EPR Telemetry for",
-      highlight: "Energy, Utilities & Mining",
-      description: "Automate SPCB consents tracking, manage hazardous waste flow auditing, and prepare carbon credit reports under GHG protocols.",
-      image: verticalsFacility,
-      badge: "Energy"
+      title: "28 States. One Dashboard.",
+      highlight: "Zero Lapses.",
+      description: "Centralized management of Shop & Establishment registrations, renewals, and digital registers across every Indian state—because expansion shouldn't mean fragmentation.",
+      outcome: "Manage 28+ states from 1 dashboard with auto-renewal alerts",
+      icp: "Regional Managers in Chain Restaurants, Retail & Hospitality",
+      cta: "Unify S&E",
+      badge: "S&E Compliance",
+      image: heroIntegration
     },
     {
-      title: "Shop Safety, Payroll & Supply Chain for",
-      highlight: "Consumer Goods, Retail & BPO",
-      description: "Outsource high-volume retail payroll auditing, Shops Act licensing renewals, FSSAI labeling checks, and SLA helpdesk centers.",
-      image: heroDrone,
-      badge: "Services"
+      title: "Health Inspections",
+      highlight: "Shouldn't Keep You Awake.",
+      description: "Strict adherence to Biomedical Waste rules, Clinical Establishment Acts, and drug licensing—so your facility passes every inspection, every time.",
+      outcome: "Pass health inspections with zero citations and maintain licenses",
+      icp: "Hospital Administrators & Pharmacy Heads",
+      cta: "Secure Healthcare Now",
+      badge: "Healthcare GRC",
+      image: heroCommand
+    },
+    {
+      title: "Regulators Test Banks.",
+      highlight: "We Make Sure Yours Passes.",
+      description: "Robust AML/KYC frameworks, data localization, and IT audits for banks and NBFCs that turn regulatory stress tests from threats into validations.",
+      outcome: "Pass regulatory stress tests seamlessly and avoid RBI penalties",
+      icp: "Compliance Officers in BFSI Sector",
+      cta: "Defend BFSI",
+      badge: "BFSI GRC",
+      image: heroSoc
+    },
+    {
+      title: "Audit Readiness Isn't an Event.",
+      highlight: "It's a State of Being.",
+      description: "Perpetual cloud-based audit trails that ensure instant readiness for any government scrutiny—no more panic, no more last-minute scrambling.",
+      outcome: "Cut audit preparation time by 75% and never fear a surprise inspection",
+      icp: "CFOs in High-Growth Startups & Scale-ups",
+      cta: "Get Audit Ready",
+      badge: "Audit Trails",
+      image: heroVerify
     }
   ];
 
@@ -198,14 +237,23 @@ export default function IndustriesPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent z-10" />
                 <div className="container mx-auto px-6 md:px-12 relative z-20 text-left max-w-5xl">
                   <div className="space-y-4 max-w-xl">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-650 rounded-full">
-                      <Settings className="w-3.5 h-3.5" />
-                      <span className="text-[10px] font-extrabold tracking-widest uppercase">
-                        Industries • {slide.badge}
-                      </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-650 rounded-full">
+                        <Settings className="w-3.5 h-3.5" />
+                        <span className="text-[10px] font-extrabold tracking-widest uppercase">
+                          Compliance • {slide.badge}
+                        </span>
+                      </div>
+                      {slide.icp && (
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-150 border border-slate-200 text-slate-600 rounded-full">
+                          <span className="text-[9px] font-bold tracking-wide uppercase">
+                            Target: {slide.icp}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight font-heading">
-                      {slide.title.split("across")[0]}{" "}
+                      {slide.title}{" "}
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-black block">
                         {slide.highlight}
                       </span>
@@ -213,9 +261,15 @@ export default function IndustriesPage() {
                     <p className="text-xs md:text-sm text-slate-550 leading-relaxed font-semibold">
                       {slide.description}
                     </p>
+                    {slide.outcome && (
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-850 rounded-xl text-[10px] font-bold shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>Outcome: {slide.outcome}</span>
+                      </div>
+                    )}
                     <div className="pt-2">
                       <a href="#manufacturing" className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]">
-                        Explore Verticals <ChevronRight className="w-4 h-4" />
+                        {slide.cta} <ChevronRight className="w-4 h-4" />
                       </a>
                     </div>
                   </div>

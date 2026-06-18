@@ -10,6 +10,9 @@ export interface Slide {
   titleEnd?: string;
   description: string;
   image: string;
+  icp?: string;
+  outcome?: string;
+  cta?: string;
 }
 
 interface GrcSliderHeroProps {
@@ -137,16 +140,28 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
               exit="initial"
               className="space-y-4 md:space-y-5 flex flex-col items-center text-center"
             >
-              {/* Premium GRC Badge */}
-              <motion.div
-                variants={elementVariants}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-500/10 border border-blue-500/20 text-blue-600 rounded-full shadow-sm"
-              >
-                <Shield className="w-3.5 h-3.5" />
-                <span className="text-[10px] sm:text-xs font-extrabold tracking-widest uppercase">
-                  {categoryLabel} • {slides[activeIndex].badge}
-                </span>
-              </motion.div>
+              {/* Premium GRC Badge & Target ICP */}
+              <div className="flex flex-wrap items-center justify-center gap-2.5">
+                <motion.div
+                  variants={elementVariants}
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-100/90 border border-slate-200 rounded-full shadow-sm"
+                >
+                  <Shield className="w-3.5 h-3.5 text-blue-600" />
+                  <span className="text-[10px] sm:text-xs font-extrabold text-slate-700 tracking-[0.2em] uppercase">
+                    {categoryLabel} • {slides[activeIndex].badge}
+                  </span>
+                </motion.div>
+                {slides[activeIndex].icp && (
+                  <motion.div
+                    variants={elementVariants}
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-50/90 border border-blue-200/50 rounded-full shadow-sm"
+                  >
+                    <span className="text-[10px] font-extrabold text-blue-750 tracking-[0.03em] uppercase">
+                      Target: {slides[activeIndex].icp}
+                    </span>
+                  </motion.div>
+                )}
+              </div>
 
               {/* Slide Heading with Highlight */}
               <motion.h1
@@ -167,6 +182,36 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
               >
                 {slides[activeIndex].description}
               </motion.p>
+
+              {/* Tangible Outcome */}
+              {slides[activeIndex].outcome && (
+                <motion.div
+                  variants={elementVariants}
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-850 rounded-xl text-[10px] sm:text-xs font-bold shadow-sm animate-pulse-subtle"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Outcome: {slides[activeIndex].outcome}</span>
+                </motion.div>
+              )}
+
+              {/* Dynamic CTA */}
+              {slides[activeIndex].cta && (
+                <motion.div variants={elementVariants} className="pt-2">
+                  <a
+                    href="#partner-form"
+                    onClick={(e) => {
+                      const formEl = document.getElementById("partner-form") || document.getElementById("contact-form") || document.getElementById("compliance");
+                      if (formEl) {
+                        e.preventDefault();
+                        formEl.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]"
+                  >
+                    {slides[activeIndex].cta}
+                  </a>
+                </motion.div>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>

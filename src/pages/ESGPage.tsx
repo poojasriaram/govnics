@@ -10,6 +10,8 @@ import heroCommand from "@/assets/command_center_1.jpg";
 import heroIntegration from "@/assets/hero-integration.jpg";
 import verticalsFacility from "@/assets/verticals-facility.jpg";
 import heroDrone from "@/assets/hero-drone.jpg";
+import heroSoc from "@/assets/hero-soc.jpg";
+import heroAiDriven from "@/assets/hero-ai-driven.jpg";
 
 interface EsgItem {
   title: string;
@@ -23,39 +25,84 @@ export default function ESGPage() {
 
   const heroSlides = [
     {
-      title: "Statutory ESG Auditing & Reporting",
-      highlight: "BRSR Core Assurance Readiness",
-      description: "Integrate carbon telemetry, waste logs, and labor compliance metrics into board-ready disclosures matching SEBI and global investor criteria.",
+      title: "Payroll Is a Distraction from Your Core Business.",
+      highlight: "Hand It to Us.",
+      description: "End-to-end salary computation, statutory deductions, and bank uploads—managed with military precision so your HR team focuses on people, not processes.",
+      outcome: "Reduce internal HR workload by 60% and eliminate payroll anxiety",
+      icp: "HR Directors in Mid-Sized Enterprises (200–2,000 employees)",
+      cta: "Outsource Payroll Now",
+      image: heroAiDriven,
+      badge: "Payroll Management"
+    },
+    {
+      title: "Missed Filings Are Expensive.",
+      highlight: "We Never Miss.",
+      description: "High-volume, accurate processing of PF, ESI, PT, and TDS filings across all your entities—because statutory deadlines don't negotiate.",
+      outcome: "Maintain 100% on-time filing record across all jurisdictions",
+      icp: "Finance Managers in Multi-Entity Groups",
+      cta: "Automate Filings",
       image: heroVerify,
-      badge: "Disclosure"
+      badge: "Statutory Filings"
     },
     {
-      title: "Scope 1, 2 & 3 GHG Accounting",
-      highlight: "Decarbonization Strategy",
-      description: "Map operations under the GHG Protocol Corporate Standard, identify green Open Access energy options, and model climate risks.",
-      image: heroCommand,
-      badge: "Decarbonization"
-    },
-    {
-      title: "Supply Chain & Subcontractor Audits",
-      highlight: "Labor & Safety Compliance",
-      description: "Rigorous SMETA and SA8000 validation audits across supplier facilities to mitigate co-employment and human rights liabilities.",
+      title: "Your Employees Have Questions.",
+      highlight: "We Have Answers. 24/7.",
+      description: "Dedicated helpdesk for employee queries on payroll, taxes, and HR policies—turning confusion into clarity and frustration into satisfaction.",
+      outcome: "Increase employee satisfaction by 40% and reduce HR ticket volume",
+      icp: "CHROs in IT, BPO & Shared Services",
+      cta: "Setup Helpdesk",
       image: heroIntegration,
-      badge: "Social"
+      badge: "Employee Helpdesk"
     },
     {
-      title: "Environmental Permitting & EHS Registers",
-      highlight: "Plant Compliance Auditing",
-      description: "Track PCB consents, hazardous waste flows, EPR declarations, and boiler safety clearances with automated task registers.",
+      title: "Your Staffing Vendor",
+      highlight: "Might Be Your Biggest Liability.",
+      description: "Continuously audit your outsourced staffing agencies to ensure they pay wages, file PF, and comply with labour laws—shielding you from co-employment risk.",
+      outcome: "Eliminate co-employment liabilities entirely and sleep soundly",
+      icp: "Principal Employers in Manufacturing & Construction",
+      cta: "Govern Vendors",
       image: verticalsFacility,
-      badge: "Environmental"
+      badge: "Vendor Governance"
     },
     {
-      title: "Board Integration & Ethics Charters",
-      highlight: "Corporate Governance Integrity",
-      description: "Structure ethical whistleblower systems, define ESG charters, and link executive compensation to sustainability performance indicators.",
+      title: "Breach Detection in Minutes.",
+      highlight: "Not Months.",
+      description: "24/7 monitoring, alert triage, and CERT-In incident response on a retainer basis—because in cybersecurity, every second is a potential million-dollar loss.",
+      outcome: "Contain breaches in under 1 hour and minimize damage",
+      icp: "CISOs in Healthcare, Finance & Critical Infrastructure",
+      cta: "Get SOC Protection",
+      image: heroSoc,
+      badge: "SOC Retention"
+    },
+    {
+      title: "Safe Factories Don't Happen by Accident.",
+      highlight: "They Happen by Design.",
+      description: "Regular site inspections, safety audits, and digital reporting that transform your factory floor from a risk zone into a benchmark for excellence.",
+      outcome: "Reduce workplace incidents by 50% and achieve safety leadership",
+      icp: "Plant Heads in Heavy Manufacturing & Chemicals",
+      cta: "Monitor EHS",
+      image: verticalsFacility,
+      badge: "EHS Operations"
+    },
+    {
+      title: "Paper Records Are a Liability.",
+      highlight: "Digital Records Are an Asset.",
+      description: "Secure digitization of statutory records, invoice processing, and compliance data entry—turning document chaos into searchable, audit-ready intelligence.",
+      outcome: "Cut administrative costs by 35% and achieve instant retrieval",
+      icp: "Operations Heads in Retail, Logistics & Real Estate",
+      cta: "Digitize Data",
       image: heroDrone,
-      badge: "Governance"
+      badge: "Digital Records"
+    },
+    {
+      title: "License Lapses Kill Deals.",
+      highlight: "We Prevent 100% of Them.",
+      description: "Never miss a deadline again. We track, renew, and manage all your trade and factory licenses—so your operations never pause for paperwork.",
+      outcome: "Prevent 100% of lapse penalties and maintain operational continuity",
+      icp: "Admin Heads in Hospitality, Facilities & Manufacturing",
+      cta: "Manage Licenses",
+      image: heroCommand,
+      badge: "License Management"
     }
   ];
 
@@ -339,14 +386,23 @@ export default function ESGPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent z-10" />
                 <div className="container mx-auto px-6 md:px-12 relative z-20 text-left max-w-5xl">
                   <div className="space-y-4 max-w-xl">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-655 rounded-full">
-                      <Leaf className="w-3.5 h-3.5" />
-                      <span className="text-[10px] font-extrabold tracking-widest uppercase">
-                        ESG Advisory • {slide.badge}
-                      </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-655 rounded-full">
+                        <ShieldCheck className="w-3.5 h-3.5" />
+                        <span className="text-[10px] font-extrabold tracking-widest uppercase">
+                          Managed Services • {slide.badge}
+                        </span>
+                      </div>
+                      {slide.icp && (
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50/90 border border-blue-200/50 rounded-full shadow-sm">
+                          <span className="text-[10px] font-extrabold text-blue-750 tracking-[0.03em] uppercase">
+                            Target: {slide.icp}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight font-heading">
-                      {slide.title.split(",")[0]}{" "}
+                      {slide.title}{" "}
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-black block">
                         {slide.highlight}
                       </span>
@@ -354,9 +410,21 @@ export default function ESGPage() {
                     <p className="text-xs md:text-sm text-slate-550 leading-relaxed font-semibold">
                       {slide.description}
                     </p>
+                    {slide.outcome && (
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-850 rounded-xl text-[10px] md:text-xs font-bold shadow-sm self-start">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>Outcome: {slide.outcome}</span>
+                      </div>
+                    )}
                     <div className="pt-2">
-                      <a href="#ehs" className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]">
-                        Explore Sections <ChevronRight className="w-4 h-4" />
+                      <a href="#ehs" onClick={(e) => {
+                        const targetEl = document.getElementById("ehs");
+                        if (targetEl) {
+                          e.preventDefault();
+                          targetEl.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }} className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]">
+                        {slide.cta || "Explore Sections"} <ChevronRight className="w-4 h-4" />
                       </a>
                     </div>
                   </div>

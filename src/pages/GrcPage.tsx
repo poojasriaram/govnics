@@ -9,51 +9,90 @@ import heroCommand from "@/assets/command_center_1.jpg";
 import heroIntegration from "@/assets/hero-integration.jpg";
 import verticalsFacility from "@/assets/verticals-facility.jpg";
 import heroDrone from "@/assets/hero-drone.jpg";
+import heroSoc from "@/assets/hero-soc.jpg";
 
 export default function GrcPage() {
-  // Slider 1: Hero Slides (6 slides)
+  // Slider 1: Hero Slides (8 slides)
   const heroSlides = [
     {
-      title: "Enterprise Governance, Risk & Compliance",
-      highlight: "Unified GRC Ecosystem",
-      description: "Establish robust board-level oversight, risk dashboards, and statutory alignments across multi-state factory floors and corporate entities.",
-      image: heroVerify,
-      badge: "Governance"
+      title: "Your Risk Register Is a Tombstone.",
+      highlight: "Build a Living Risk Engine.",
+      description: "Replace static Excel registers with dynamic, quantified risk matrices aligned to ISO 31000—where risks auto-update, auto-prioritize, and auto-escalate.",
+      outcome: "Identify hidden risks 2x faster and prevent material losses",
+      icp: "Risk Managers in Fortune 500 & Nifty 50 Firms",
+      cta: "Upgrade Your ERM",
+      badge: "ERM Advisory",
+      image: heroCommand
     },
     {
-      title: "Regulatory Adherence & Certifications",
-      highlight: "Compliance Assurance",
-      description: "Automate and coordinate audit-ready postures for labor, environmental laws, certifications, and taxation mandates with zero slippage.",
-      image: heroCommand,
-      badge: "Compliance"
+      title: "One Engine. Every Statute.",
+      highlight: "Zero Missed Filings.",
+      description: "PF, ESI, EHS, GST—managed through a single automated compliance engine that never sleeps, never forgets, and never misses a deadline.",
+      outcome: "Maintain 100% audit readiness across all 28 states",
+      icp: "Operations Directors in Manufacturing & Industrial",
+      cta: "Explore Compliance Engine",
+      badge: "Compliance Engine",
+      image: heroIntegration
     },
     {
-      title: "Managed Payroll & HR Operations",
-      highlight: "Statutory Risk Absorption",
-      description: "End-to-end statutory payroll processing, EOR risk transfer, and multi-state compliance auditing managed by domain experts.",
-      image: heroAiDriven,
-      badge: "Managed Payroll"
+      title: "Hackers Don't Sleep.",
+      highlight: "Neither Should Your Defenses.",
+      description: "Build an impenetrable security posture with VAPT, SOC 2 readiness, ISMS implementation, and 24/7 threat monitoring that keeps adversaries out.",
+      outcome: "Reduce cyber incidents by 80% and achieve SOC 2 readiness",
+      icp: "IT Heads & CISOs in Tech, SaaS & FinTech",
+      cta: "Boost Cyber Resilience",
+      badge: "Cyber Posture",
+      image: heroSoc
     },
     {
-      title: "Data Privacy & Cybersecurity Risk",
-      highlight: "Digital Trust Architecture",
-      description: "Align IT operations with DPDP Act, ISO 27001, CERT-In directive, and SEBI cyber policies to defend digital assets.",
-      image: heroIntegration,
-      badge: "Cyber Security"
+      title: "Measure What Matters.",
+      highlight: "Report What Investors Demand.",
+      description: "Accurately track Scope 1, 2, and 3 emissions and draft BRSR reports that satisfy SEBI, GRI, and global investor scrutiny—no greenwashing, just green winning.",
+      outcome: "Cut carbon tracking costs by 45% and attract ESG capital",
+      icp: "Sustainability Leads in Large Enterprises & PSUs",
+      cta: "Start ESG Reporting",
+      badge: "ESG & BRSR",
+      image: verticalsFacility
     },
     {
-      title: "Transaction & Supply Chain Due Diligence",
-      highlight: "Risk Intelligence",
-      description: "Deep-dive vendor risk assessments, Scope 3 due diligence, and M&A compliance evaluation to protect corporate assets.",
-      image: verticalsFacility,
-      badge: "Advisory"
+      title: "First Attempt. First Pass.",
+      highlight: "Zero Stress.",
+      description: "Expert gap analysis, documentation rigor, and hand-holding for NABH, NAAC, and ISO certifications—because your reputation can't afford a second attempt.",
+      outcome: "Pass certification on the first attempt, every time",
+      icp: "Administrators in Healthcare, Education & Quality",
+      cta: "Get Certified Now",
+      badge: "Accreditation",
+      image: heroVerify
     },
     {
-      title: "Transactional Helpdesk & Back-Office BPO",
-      highlight: "Operational Scaling",
-      description: "Outsource high-volume statutory filings, claims processing, onboarding checks, and database management to secure service centers.",
-      image: heroDrone,
-      badge: "BPO Services"
+      title: "Payroll Is Not HR's Job.",
+      highlight: "It's Ours.",
+      description: "Accurate salary computation, TDS filing, and HR policy drafting under one unified roof—so your finance team focuses on strategy, not spreadsheets.",
+      outcome: "Eliminate 99% of payroll discrepancies and reclaim 20+ hours monthly",
+      icp: "Finance Controllers in Mid-Market Firms",
+      cta: "Outsource Payroll",
+      badge: "Managed Payroll",
+      image: heroAiDriven
+    },
+    {
+      title: "Your Supply Chain Is Your Weakest Link.",
+      highlight: "Until Now.",
+      description: "Continuously monitor vendors for labor violations, EHS risks, and cyber exposure—protecting your brand from the scandals you didn't cause but will own.",
+      outcome: "Mitigate vendor risk exposure by 70% and protect brand equity",
+      icp: "Procurement Heads in Global Supply Chains",
+      cta: "Manage Vendor Risk",
+      badge: "Vendor Risk",
+      image: heroDrone
+    },
+    {
+      title: "Stop Checking Boxes.",
+      highlight: "Start Finding Gold.",
+      description: "Agile, continuous auditing methodologies that go beyond tick-box compliance to uncover operational leaks, cost drains, and hidden savings.",
+      outcome: "Uncover 30% more operational savings and strengthen governance",
+      icp: "Audit Committee Chairs in Listed Entities",
+      cta: "Book an Audit",
+      badge: "Internal Audit",
+      image: heroCommand
     }
   ];
 
@@ -187,14 +226,23 @@ export default function GrcPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent z-10" />
                 <div className="container mx-auto px-6 md:px-12 relative z-20 text-left max-w-5xl">
                   <div className="space-y-4 max-w-xl">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-600 rounded-full">
-                      <Shield className="w-3.5 h-3.5" />
-                      <span className="text-[10px] font-extrabold tracking-widest uppercase">
-                        GRC Division • {slide.badge}
-                      </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-650 rounded-full">
+                        <Shield className="w-3.5 h-3.5" />
+                        <span className="text-[10px] font-extrabold tracking-widest uppercase">
+                          GRC Division • {slide.badge}
+                        </span>
+                      </div>
+                      {slide.icp && (
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-150 border border-slate-200 text-slate-600 rounded-full">
+                          <span className="text-[9px] font-bold tracking-wide uppercase">
+                            Target: {slide.icp}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight font-heading">
-                      {slide.title.split(",")[0]}{" "}
+                      {slide.title}{" "}
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-black block">
                         {slide.highlight}
                       </span>
@@ -202,9 +250,15 @@ export default function GrcPage() {
                     <p className="text-xs md:text-sm text-slate-550 leading-relaxed font-semibold">
                       {slide.description}
                     </p>
+                    {slide.outcome && (
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-850 rounded-xl text-[10px] font-bold shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>Outcome: {slide.outcome}</span>
+                      </div>
+                    )}
                     <div className="pt-2">
                       <a href="#compliance" className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]">
-                        Explore Offerings <ChevronRight className="w-4 h-4" />
+                        {slide.cta} <ChevronRight className="w-4 h-4" />
                       </a>
                     </div>
                   </div>

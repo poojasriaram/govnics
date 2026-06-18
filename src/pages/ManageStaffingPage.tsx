@@ -23,46 +23,84 @@ export default function ManageStaffingPage() {
 
   const heroSlides = [
     {
-      title: "Statutory Workforce Sourcing & Deployment",
-      highlight: "SLA-Managed Contract Staffing",
-      description: "Deploy domain-vetted blue, grey, and white-collar talent across 28+ Indian states under structured operational compliance SLAs.",
-      image: heroVerify,
-      badge: "Contract Staffing"
-    },
-    {
-      title: "Employer of Record & Statutory Payrolling",
-      highlight: "Principal Employer Shield",
-      description: "Absorb PF, ESIC, PT, and compensation liabilities with legal indemnity, shielding your business from co-employment litigation.",
-      image: heroCommand,
-      badge: "Risk Transfer"
-    },
-    {
-      title: "Pre-Vetted GRC & Cybersecurity Bench",
-      highlight: "GRC Talent-as-a-Service (TaaS)",
-      description: "On-demand dispatch of CISOs, SOC analysts, ISO 27001 coordinators, ESG reporting leads, and factory EHS auditors.",
-      image: heroAiDriven,
-      badge: "GRC Talent"
-    },
-    {
-      title: "Permanent Hiring & Direct Placements",
-      highlight: "Mid-to-Senior Placements",
-      description: "Identify and recruit domain-specific leaders, executive officers, and directors with certified compliance track records.",
-      image: heroIntegration,
-      badge: "Direct Hire"
-    },
-    {
-      title: "Master Vendor Program Governance",
-      highlight: "Managed Service Provider (MSP)",
-      description: "Consolidate and govern tier-2/3 staffing sub-vendors, unify rate cards, and automate billing within a secure VMS dashboard.",
+      title: "Need 100 Workers by Monday?",
+      highlight: "We Deliver by Friday.",
+      description: "Scale your blue, grey, and white-collar workforce without absorbing direct HR liabilities—because agility shouldn't come at the cost of compliance.",
+      outcome: "Scale workforce up or down in 48 hours with full statutory coverage",
+      icp: "Operations Heads in E-Commerce, Logistics & Quick Commerce",
+      cta: "Scale Workforce Now",
       image: verticalsFacility,
-      badge: "Vendor Governance"
+      badge: "Workforce Sourcing"
     },
     {
-      title: "Embedded On-Site Recruitment",
-      highlight: "Recruitment Process Outsourcing",
-      description: "Deploy dedicated, scalable recruitment teams directly into your workspace to manage high-volume permanent talent pipelines.",
+      title: "Hire Globally.",
+      highlight: "Pay Locally. Risk Zero.",
+      description: "You source the talent anywhere in the world; we put them on our payroll, absorbing all statutory, tax, and compliance risks—borderless hiring, bulletproof compliance.",
+      outcome: "Onboard global/remote staff in 3 days, not 3 months",
+      icp: "Founders & CEOs of Funded Startups & Scale-ups",
+      cta: "Hire via EOR",
+      image: heroIntegration,
+      badge: "EOR Service"
+    },
+    {
+      title: "One Vendor. One Umbrella.",
+      highlight: "Zero Labor Arrests.",
+      description: "We consolidate your fragmented staffing vendors under one audited compliance umbrella—because when labour inspectors knock, you need one answer, not twenty.",
+      outcome: "Shield against 100% of labor arrests and compliance actions",
+      icp: "HR VPs in Large Manufacturing & Industrial",
+      cta: "Transfer Risk Now",
+      image: heroVerify,
+      badge: "Compliance Shield"
+    },
+    {
+      title: "C-Suite Expertise. Fractional Cost.",
+      highlight: "Full Impact.",
+      description: "Hire fractional CISOs, ISO Lead Auditors, and DPDP Officers on a part-time basis—accessing enterprise-grade expertise without enterprise-grade overhead.",
+      outcome: "Access C-Suite talent at 50% cost with 100% impact",
+      icp: "CTOs & CISOs in Mid-Market Tech Firms",
+      cta: "Hire GRC Experts",
       image: heroDrone,
-      badge: "RPO Services"
+      badge: "Fractional GRC"
+    },
+    {
+      title: "Niche ESG Roles.",
+      highlight: "Filled in 30 Days. Guaranteed.",
+      description: "Deploy experienced environmental engineers, ESG analysts, and safety officers on demand—because sustainability deadlines don't wait for recruitment cycles.",
+      outcome: "Fill niche ESG roles in under 30 days with pre-vetted specialists",
+      icp: "Sustainability Directors in Cement, Steel, Chemicals & Energy",
+      cta: "Find ESG Talent",
+      image: verticalsFacility,
+      badge: "ESG Staffing"
+    },
+    {
+      title: "One Master Vendor. Seventeen Smaller Ones.",
+      highlight: "Zero Headaches.",
+      description: "We act as your master vendor, managing a panel of smaller staffing agencies—reducing your vendor management overhead to near zero.",
+      outcome: "Reduce vendor management overhead by 70% and standardize quality",
+      icp: "Procurement Heads in IT/ITES & Global Capability Centers",
+      cta: "Activate MSP",
+      image: heroCommand,
+      badge: "MSP Service"
+    },
+    {
+      title: "Your Recruiters Are Overwhelmed.",
+      highlight: "Ours Are Embedded.",
+      description: "Our embedded recruiters act as an extension of your team for high-volume permanent hiring—scaling your talent acquisition without scaling your fixed costs.",
+      outcome: "Cut cost-per-hire by 40% and accelerate time-to-fill",
+      icp: "Talent Acquisition Heads in Rapid-Growth Firms",
+      cta: "Start RPO Now",
+      image: heroAiDriven,
+      badge: "RPO Embedded"
+    },
+    {
+      title: "The Right Risk Leader Changes Everything.",
+      highlight: "We Find Them.",
+      description: "Headhunt C-Suite leaders, Chief Risk Officers, and Compliance Directors for critical roles—because the wrong hire in risk is a risk itself.",
+      outcome: "Place top-tier executives in 45 days with 95% retention",
+      icp: "Board Members, PE Firms & CHROs at Large Enterprises",
+      cta: "Source Leaders",
+      image: heroVerify,
+      badge: "Executive Search"
     }
   ];
 
@@ -315,14 +353,23 @@ export default function ManageStaffingPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent z-10" />
                 <div className="container mx-auto px-6 md:px-12 relative z-20 text-left max-w-5xl">
                   <div className="space-y-4 max-w-xl">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-650 rounded-full">
-                      <Briefcase className="w-3.5 h-3.5" />
-                      <span className="text-[10px] font-extrabold tracking-widest uppercase">
-                        Manpower Services • {slide.badge}
-                      </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-650 rounded-full">
+                        <Briefcase className="w-3.5 h-3.5" />
+                        <span className="text-[10px] font-extrabold tracking-widest uppercase">
+                          Manpower Services • {slide.badge}
+                        </span>
+                      </div>
+                      {slide.icp && (
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50/90 border border-blue-200/50 rounded-full shadow-sm">
+                          <span className="text-[10px] font-extrabold text-blue-750 tracking-[0.03em] uppercase">
+                            Target: {slide.icp}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight font-heading">
-                      {slide.title.split("Sourcing")[0]}{" "}
+                      {slide.title}{" "}
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-black block">
                         {slide.highlight}
                       </span>
@@ -330,9 +377,21 @@ export default function ManageStaffingPage() {
                     <p className="text-xs md:text-sm text-slate-550 leading-relaxed font-semibold">
                       {slide.description}
                     </p>
+                    {slide.outcome && (
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-850 rounded-xl text-[10px] md:text-xs font-bold shadow-sm self-start">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>Outcome: {slide.outcome}</span>
+                      </div>
+                    )}
                     <div className="pt-2">
-                      <a href="#contracting" className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]">
-                        Explore Solutions <ChevronRight className="w-4 h-4" />
+                      <a href="#contracting" onClick={(e) => {
+                        const targetEl = document.getElementById("contracting");
+                        if (targetEl) {
+                          e.preventDefault();
+                          targetEl.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }} className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]">
+                        {slide.cta || "Explore Solutions"} <ChevronRight className="w-4 h-4" />
                       </a>
                     </div>
                   </div>
