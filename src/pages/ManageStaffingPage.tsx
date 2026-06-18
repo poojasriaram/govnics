@@ -333,7 +333,7 @@ export default function ManageStaffingPage() {
       <div className="bg-slate-50/50 pb-24 text-slate-600 relative overflow-hidden">
         
         {/* Slider 1: Hero Carousel Section */}
-        <section className="relative h-[65dvh] flex items-center bg-white border-b border-slate-200/85">
+        <section className="relative min-h-[70dvh] flex items-center bg-white border-b border-slate-200/85">
           <GrcCarousel
             autoplay
             autoplayInterval={6000}
@@ -346,7 +346,7 @@ export default function ManageStaffingPage() {
             items={heroSlides.map((slide, idx) => (
               <div
                 key={idx}
-                className="relative w-full h-[65dvh] flex items-center bg-cover bg-center select-none"
+                className="relative w-full min-h-[70dvh] flex items-center bg-cover bg-center select-none pt-28 md:pt-36 pb-16 md:pb-24"
                 style={{ backgroundImage: `url(${slide.image})`, width: "100%" }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent/10 z-10" />

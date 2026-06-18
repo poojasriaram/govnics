@@ -92,7 +92,7 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
 
   return (
     <section
-      className="relative min-h-[60dvh] md:h-[60dvh] flex items-center bg-white overflow-hidden pt-28 pb-16 md:py-0 select-none border-b border-slate-200/85"
+      className="relative min-h-[70dvh] flex items-center bg-white overflow-hidden pt-28 md:pt-36 pb-16 md:pb-24 select-none border-b border-slate-200/85"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
