@@ -20,8 +20,90 @@ interface CyberItem {
   frameworks: string[];
 }
 
+const CyberCard = ({ item }: { item: CyberItem }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <div 
+      className="w-full h-[320px] [perspective:1000px] select-none cursor-pointer"
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <div 
+        className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
+          isFlipped ? "[transform:rotateY(180deg)]" : ""
+        }`}
+      >
+        {/* Front Side */}
+        <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-white border border-slate-200/80 hover:border-blue-500/30 rounded-3xl p-6 flex flex-col justify-between shadow-md hover:shadow-xl transition-all">
+          <div className="space-y-4 text-left">
+            <div className="flex justify-between items-center">
+              <span className="text-[9px] font-black tracking-widest text-blue-500 uppercase">
+                {item.subCategory}
+              </span>
+              <span className="px-1.5 py-0.5 rounded bg-slate-50 border border-slate-200 text-[8px] font-bold text-slate-500 uppercase">
+                {item.frameworks[0]}
+              </span>
+            </div>
+            <h3 className="text-base font-black text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+              {item.title}
+            </h3>
+            <p className="text-xs text-slate-650 line-clamp-4 leading-relaxed font-semibold">
+              {item.desc}
+            </p>
+          </div>
+          <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">
+              Outcome Aligned
+            </span>
+            <span className="flex items-center gap-0.5 text-[9px] font-bold text-blue-600 uppercase tracking-wider">
+              View Metrics <ArrowRight className="w-3 h-3 text-blue-500" />
+            </span>
+          </div>
+        </div>
+
+        {/* Back Side */}
+        <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-slate-950 text-white border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-xl [transform:rotateY(180deg)]">
+          <div className="space-y-4 text-left">
+            <div className="flex justify-between items-center">
+              <span className="text-[9px] font-black tracking-widest text-blue-400 uppercase">
+                Deliverables
+              </span>
+              <span className="text-[9px] font-bold text-slate-500 uppercase">
+                {item.frameworks[0]}
+              </span>
+            </div>
+            <h3 className="text-sm font-black text-white line-clamp-1">
+              {item.title}
+            </h3>
+            
+            <div className="space-y-2 pt-2 border-t border-slate-800">
+              <span className="text-[9px] font-bold text-slate-450 uppercase tracking-wider block">Target Deliverables:</span>
+              <ul className="space-y-1.5">
+                {item.outcomes.slice(0, 3).map((out, i) => (
+                  <li key={i} className="text-[11px] text-slate-300 flex items-start gap-1.5 font-semibold">
+                    <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="line-clamp-1">{out}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          
+          <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">
+              SLA Mapped
+            </span>
+            <span className="text-[9px] font-bold text-blue-400 uppercase tracking-wider flex items-center gap-1">
+              Go Back <span className="rotate-180">↺</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function CyberSecurityPage() {
-  const [selectedItem, setSelectedItem] = useState<CyberItem | null>(null);
 
   const heroSlides = [
     {
@@ -323,44 +405,10 @@ export default function CyberSecurityPage() {
     { name: "Okta", cat: "Identity & Access (IAM)" }
   ];
 
-  const renderCard = (item: CyberItem, idx: number) => (
-    <div 
-      key={idx} 
-      onClick={() => setSelectedItem(item)}
-      className="group h-full relative bg-white border border-slate-200/80 hover:border-blue-500/30 rounded-3xl transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-md hover:shadow-xl p-6 cursor-pointer select-none min-h-[290px]"
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-350" />
-      <div className="space-y-4 relative z-10 text-left">
-        <div className="flex justify-between items-center">
-          <span className="text-[9px] font-black tracking-widest text-blue-500 uppercase">
-            {item.subCategory}
-          </span>
-          <span className="px-1.5 py-0.5 rounded bg-slate-50 border border-slate-200 text-[8px] font-bold text-slate-500 uppercase">
-            {item.frameworks[0]}
-          </span>
-        </div>
-        <h3 className="text-base font-black text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2">
-          {item.title}
-        </h3>
-        <p className="text-xs text-slate-605 line-clamp-3 leading-relaxed font-semibold">
-          {item.desc}
-        </p>
-      </div>
-      <div className="pt-4 border-t border-slate-100 flex items-center justify-between relative z-10">
-        <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">
-          Outcome Aligned
-        </span>
-        <span className="flex items-center gap-0.5 text-[9px] font-bold text-blue-600 uppercase tracking-wider group-hover:underline">
-          View Metrics <ArrowRight className="w-3 h-3 text-blue-500 group-hover:translate-x-0.5 transition-transform" />
-        </span>
-      </div>
-    </div>
-  );
-
-  const grcCards = grcItems.map((item, idx) => renderCard(item, idx));
-  const offensiveCards = offensiveItems.map((item, idx) => renderCard(item, idx));
-  const incidentCards = incidentItems.map((item, idx) => renderCard(item, idx));
-  const specializedCards = specializedItems.map((item, idx) => renderCard(item, idx));
+  const grcCards = grcItems.map((item, idx) => <CyberCard item={item} key={idx} />);
+  const offensiveCards = offensiveItems.map((item, idx) => <CyberCard item={item} key={idx} />);
+  const incidentCards = incidentItems.map((item, idx) => <CyberCard item={item} key={idx} />);
+  const specializedCards = specializedItems.map((item, idx) => <CyberCard item={item} key={idx} />);
 
   const partnerCards = integrationLogos.map((logo, idx) => (
     <div key={idx} className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm text-center flex flex-col justify-center items-center hover:border-blue-500/20 transition-all aspect-[5/3] select-none">
@@ -510,62 +558,6 @@ export default function CyberSecurityPage() {
 
         </div>
       </div>
-
-      {/* Interactive Detail Modal Panel */}
-      {selectedItem && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/60 backdrop-blur-sm">
-          <div className="bg-white rounded-3xl border border-slate-200 max-w-2xl w-full p-8 shadow-2xl relative animate-slide-up-dropdown text-left space-y-6">
-            <button 
-              onClick={() => setSelectedItem(null)}
-              className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 font-black text-sm p-1.5"
-            >
-              ✕
-            </button>
-            <div className="space-y-2">
-              <span className="text-[10px] font-black tracking-widest text-blue-500 uppercase">
-                {selectedItem.subCategory}
-              </span>
-              <h3 className="text-xl font-black text-slate-900 leading-tight">
-                {selectedItem.title}
-              </h3>
-            </div>
-            <p className="text-xs text-slate-650 leading-relaxed font-semibold">
-              {selectedItem.desc}
-            </p>
-            <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
-              <div className="space-y-2">
-                <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Target Deliverables</h4>
-                <ul className="space-y-1.5">
-                  {selectedItem.outcomes.map((out, i) => (
-                    <li key={i} className="text-xs text-slate-700 flex items-start gap-2 font-semibold">
-                      <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                      <span>{out}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="space-y-2">
-                <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Aligned Standards</h4>
-                <div className="flex flex-wrap gap-1.5">
-                  {selectedItem.frameworks.map((fw, i) => (
-                    <span key={i} className="px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-[10px] font-bold text-slate-600">
-                      {fw}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="pt-4 flex justify-end">
-              <button 
-                onClick={() => setSelectedItem(null)}
-                className="px-5 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition-colors"
-              >
-                Close Details
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </Layout>
   );
 }
