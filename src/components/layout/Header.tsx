@@ -27,13 +27,13 @@ export const Header = () => {
 
   const getLinkClass = (path: string) => {
     const isActive = pathname === path;
-    const baseClass = "px-3 h-full flex items-center text-sm font-semibold transition-colors duration-200";
-    return `${baseClass} ${isActive ? "text-blue-600 font-bold" : "text-slate-700 hover:text-blue-600"}`;
+    const baseClass = "px-3 h-full flex items-center text-sm font-bold transition-colors duration-200";
+    return `${baseClass} ${isActive ? "text-blue-600" : "text-black hover:text-blue-600"}`;
   };
 
   const getNavItemClass = () => {
-    const baseClass = "px-3 h-full flex items-center gap-1 text-sm font-semibold transition-colors duration-200";
-    return `${baseClass} text-slate-700 hover:text-blue-600`;
+    const baseClass = "px-3 h-full flex items-center gap-1 text-sm font-bold transition-colors duration-200";
+    return `${baseClass} text-black hover:text-blue-600`;
   };
 
   const clusters = [

@@ -175,7 +175,7 @@ export const GrcHero = () => {
 
   return (
     <section
-      className="relative min-h-[92dvh] md:h-[92dvh] flex items-center bg-white overflow-hidden pt-24 pb-16 md:py-0 select-none"
+      className="relative h-[100dvh] min-h-[600px] bg-white overflow-hidden select-none"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -202,8 +202,9 @@ export const GrcHero = () => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,82,255,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,82,255,0.012)_1px,transparent_1px)] bg-[size:4rem_4rem] z-10 pointer-events-none" />
 
       {/* Main Content Overlay */}
-      <div className="container mx-auto px-6 md:px-12 relative z-20 flex flex-col items-center justify-center text-center w-full h-full">
-        <div className="max-w-3xl w-full mx-auto">
+      <div className="absolute inset-0 flex items-center pt-28 md:pt-32 lg:pt-36 z-20">
+        <div className="container mx-auto px-6 md:px-12 w-full">
+          <div className="max-w-5xl w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -211,10 +212,10 @@ export const GrcHero = () => {
               initial="initial"
               animate="animate"
               exit="initial"
-              className="space-y-6 md:space-y-7 flex flex-col items-center text-center"
+              className="space-y-4 md:space-y-5 flex flex-col items-start text-left"
             >
               {/* Premium GRC Badge & Target ICP */}
-              <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <div className="flex flex-wrap items-center justify-start gap-2.5">
                 <motion.div
                   variants={elementVariants}
                   className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100/90 border border-slate-200 rounded-full shadow-sm"
@@ -239,7 +240,7 @@ export const GrcHero = () => {
               {/* Slide Heading with Highlight */}
               <motion.h1
                 variants={elementVariants}
-                className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 leading-[1.12] tracking-tight font-heading"
+                className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 leading-[1.12] tracking-tight font-heading text-left"
               >
                 {grcSlides[activeIndex].title}{" "}
                 <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent block sm:inline">
@@ -251,7 +252,7 @@ export const GrcHero = () => {
               {/* Slide Description */}
               <motion.p
                 variants={elementVariants}
-                className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-sans leading-relaxed font-medium"
+                className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl font-sans leading-relaxed font-medium text-left"
               >
                 {grcSlides[activeIndex].description}
               </motion.p>
@@ -270,15 +271,15 @@ export const GrcHero = () => {
               {/* CTA Buttons */}
               <motion.div
                 variants={elementVariants}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"
+                className="flex flex-row flex-wrap items-center justify-start gap-4 pt-2 w-full"
               >
-                <Link to="/contact" className="w-full sm:w-auto">
-                  <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-sm font-bold tracking-wide transition-all shadow-lg shadow-blue-500/20 hover:scale-[1.02]">
+                <Link to="/contact" className="shrink-0">
+                  <button className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-sm font-bold tracking-wide transition-all shadow-lg shadow-blue-500/20 hover:scale-[1.02]">
                     {grcSlides[activeIndex].cta} <ArrowRight className="w-4 h-4" />
                   </button>
                 </Link>
-                <a href="#industries" className="w-full sm:w-auto">
-                  <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-2xl text-sm font-bold tracking-wide transition-all hover:scale-[1.02]">
+                <a href="#industries" className="shrink-0">
+                  <button className="flex items-center justify-center gap-2 px-8 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-2xl text-sm font-bold tracking-wide transition-all hover:scale-[1.02]">
                     Explore Verticals
                   </button>
                 </a>
@@ -287,17 +288,17 @@ export const GrcHero = () => {
               {/* Trust Indicators */}
               <motion.div
                 variants={elementVariants}
-                className="flex flex-wrap md:flex-nowrap justify-center gap-x-5 md:gap-x-8 gap-y-3 pt-6 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-slate-400 border-t border-slate-100 w-full"
+                className="flex flex-wrap md:flex-nowrap justify-start gap-x-5 md:gap-x-8 gap-y-3 pt-6 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-slate-400 border-t border-slate-100 w-full"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 whitespace-nowrap">
                   <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
                   <span className="text-slate-600">100% Statutory Assurance</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 whitespace-nowrap">
                   <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
                   <span className="text-slate-600">15+ Enterprise Industries</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 whitespace-nowrap">
                   <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
                   <span className="text-slate-600">SLA & Cyber Guaranteed</span>
                 </div>
@@ -306,6 +307,7 @@ export const GrcHero = () => {
           </AnimatePresence>
         </div>
       </div>
+    </div>
 
       {/* Manual Slide Navigation Arrows */}
       <div className="absolute right-8 bottom-12 z-20 hidden md:flex items-center gap-3">

@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { useLocation } from "react-router-dom";
+import { GrcExitIntentPopup } from "../ui/GrcExitIntentPopup";
 
 interface LayoutProps {
   children: React.ReactNode;
+  noPadding?: boolean;
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children, noPadding = false }: LayoutProps) => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
@@ -52,10 +54,11 @@ export const Layout = ({ children }: LayoutProps) => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.012)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none -z-10" />
 
       <Header />
-      <main className="flex-grow pt-32 relative">
+      <main className={`flex-grow relative ${noPadding ? "" : "pt-32"}`}>
         {children}
       </main>
       <Footer />
+      <GrcExitIntentPopup />
     </div>
   );
 };

@@ -215,9 +215,8 @@ export default function IndustriesPage() {
   return (
     <Layout>
       <div className="bg-slate-50/50 pb-24 text-slate-600 relative overflow-hidden">
-        
-        {/* Slider 1: Hero Carousel Section */}
-        <section className="relative min-h-[70dvh] flex items-center bg-white border-b border-slate-200/85">
+         {/* Slider 1: Hero Carousel Section */}
+        <section className="relative min-h-[85dvh] flex items-center bg-white border-b border-slate-200/85">
           <GrcCarousel
             autoplay
             autoplayInterval={6000}
@@ -230,45 +229,45 @@ export default function IndustriesPage() {
             items={heroSlides.map((slide, idx) => (
               <div
                 key={idx}
-                className="relative w-full min-h-[70dvh] flex items-center bg-cover bg-center select-none pt-28 md:pt-36 pb-16 md:pb-24"
+                className="relative w-full min-h-[85dvh] flex items-center bg-cover bg-center select-none pt-28 md:pt-36 pb-16 md:pb-24"
                 style={{ backgroundImage: `url(${slide.image})`, width: "100%" }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent/10 z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent z-10" />
-                <div className="container mx-auto px-6 md:px-12 relative z-20 text-left max-w-5xl">
-                  <div className="space-y-4 max-w-xl">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-650 rounded-full">
-                        <Settings className="w-3.5 h-3.5" />
-                        <span className="text-[10px] font-extrabold tracking-widest uppercase">
+                <div className="container mx-auto px-6 relative z-20 text-left max-w-6xl">
+                  <div className="space-y-4 md:space-y-5 flex flex-col items-start">
+                    <div className="flex flex-wrap items-center justify-start gap-2.5">
+                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100/90 border border-slate-200 rounded-full shadow-sm">
+                        <Settings className="w-4 h-4 text-blue-600" />
+                        <span className="text-xs font-extrabold text-slate-700 tracking-[0.2em] uppercase">
                           Compliance • {slide.badge}
                         </span>
                       </div>
                       {slide.icp && (
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-150 border border-slate-200 text-slate-600 rounded-full">
-                          <span className="text-[9px] font-bold tracking-wide uppercase">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50/90 border border-blue-200/50 rounded-full shadow-sm">
+                          <span className="text-xs font-extrabold text-blue-750 tracking-[0.03em] uppercase">
                             Target: {slide.icp}
                           </span>
                         </div>
                       )}
                     </div>
-                    <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight font-heading">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 leading-[1.12] tracking-tight font-heading text-left">
                       {slide.title}{" "}
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-black block">
+                      <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent block sm:inline">
                         {slide.highlight}
                       </span>
                     </h1>
-                    <p className="text-xs md:text-sm text-slate-550 leading-relaxed font-semibold">
+                    <p className="text-base sm:text-lg md:text-xl text-slate-650 max-w-2xl font-sans leading-relaxed font-medium text-left">
                       {slide.description}
                     </p>
                     {slide.outcome && (
-                      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-850 rounded-xl text-[10px] font-bold shadow-sm">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-50/90 border border-emerald-200/60 text-emerald-850 rounded-2xl text-xs sm:text-sm font-bold shadow-sm animate-pulse-subtle">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                         <span>Outcome: {slide.outcome}</span>
                       </div>
                     )}
                     <div className="pt-2">
-                      <a href="#manufacturing" className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]">
+                      <a href="#manufacturing" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl shadow-lg shadow-blue-500/20 text-sm font-bold transition-all hover:scale-[1.02]">
                         {slide.cta} <ChevronRight className="w-4 h-4" />
                       </a>
                     </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Shield, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
+import { Shield, ChevronLeft, ChevronRight, ArrowLeft, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 
 export interface Slide {
@@ -92,7 +92,7 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
 
   return (
     <section
-      className="relative min-h-[70dvh] flex items-center bg-white overflow-hidden pt-28 md:pt-36 pb-16 md:pb-24 select-none border-b border-slate-200/85"
+      className="relative min-h-[85dvh] flex items-center bg-white overflow-hidden pt-28 md:pt-36 pb-24 md:pb-28 select-none border-b border-slate-200/85"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -119,7 +119,7 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,82,255,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,82,255,0.012)_1px,transparent_1px)] bg-[size:4rem_4rem] z-10 pointer-events-none" />
 
       {/* Main Content Overlay */}
-      <div className="container mx-auto px-6 md:px-12 relative z-20 flex flex-col items-center justify-center text-center w-full h-full">
+      <div className="container mx-auto px-6 relative z-20 flex flex-col items-start justify-center text-left w-full h-full">
         {backLink && (
           <div className="mb-4">
             <Link to={backLink.to}>
@@ -130,7 +130,7 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
           </div>
         )}
 
-        <div className="max-w-3xl w-full mx-auto">
+        <div className="max-w-6xl w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -138,25 +138,25 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
               initial="initial"
               animate="animate"
               exit="initial"
-              className="space-y-4 md:space-y-5 flex flex-col items-center text-center"
+              className="space-y-4 md:space-y-5 flex flex-col items-start text-left"
             >
               {/* Premium GRC Badge & Target ICP */}
-              <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <div className="flex flex-wrap items-center justify-start gap-2.5">
                 <motion.div
                   variants={elementVariants}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-100/90 border border-slate-200 rounded-full shadow-sm"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100/90 border border-slate-200 rounded-full shadow-sm"
                 >
-                  <Shield className="w-3.5 h-3.5 text-blue-600" />
-                  <span className="text-[10px] sm:text-xs font-extrabold text-slate-700 tracking-[0.2em] uppercase">
+                  <Shield className="w-4 h-4 text-blue-600" />
+                  <span className="text-xs font-extrabold text-slate-700 tracking-[0.2em] uppercase">
                     {categoryLabel} • {slides[activeIndex].badge}
                   </span>
                 </motion.div>
                 {slides[activeIndex].icp && (
                   <motion.div
                     variants={elementVariants}
-                    className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-50/90 border border-blue-200/50 rounded-full shadow-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50/90 border border-blue-200/50 rounded-full shadow-sm"
                   >
-                    <span className="text-[10px] font-extrabold text-blue-750 tracking-[0.03em] uppercase">
+                    <span className="text-xs font-extrabold text-blue-750 tracking-[0.03em] uppercase">
                       Target: {slides[activeIndex].icp}
                     </span>
                   </motion.div>
@@ -166,7 +166,7 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
               {/* Slide Heading with Highlight */}
               <motion.h1
                 variants={elementVariants}
-                className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.12] tracking-tight font-heading"
+                className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 leading-[1.12] tracking-tight font-heading text-left"
               >
                 {slides[activeIndex].title}{" "}
                 <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent block sm:inline">
@@ -178,7 +178,7 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
               {/* Slide Description */}
               <motion.p
                 variants={elementVariants}
-                className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto font-sans leading-relaxed font-medium"
+                className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl font-sans leading-relaxed font-medium text-left"
               >
                 {slides[activeIndex].description}
               </motion.p>
@@ -187,16 +187,19 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
               {slides[activeIndex].outcome && (
                 <motion.div
                   variants={elementVariants}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-850 rounded-xl text-[10px] sm:text-xs font-bold shadow-sm animate-pulse-subtle"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-50/90 border border-emerald-200/60 text-emerald-800 rounded-2xl text-xs sm:text-sm font-bold shadow-sm animate-pulse-subtle"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Outcome: {slides[activeIndex].outcome}</span>
                 </motion.div>
               )}
 
-              {/* Dynamic CTA */}
-              {slides[activeIndex].cta && (
-                <motion.div variants={elementVariants} className="pt-2">
+              {/* CTA Buttons */}
+              <motion.div
+                variants={elementVariants}
+                className="flex flex-row flex-wrap items-center justify-start gap-4 pt-2 w-full"
+              >
+                {slides[activeIndex].cta && (
                   <a
                     href="#partner-form"
                     onClick={(e) => {
@@ -206,12 +209,43 @@ export const GrcSliderHero = ({ slides, backLink, categoryLabel = "Solution" }: 
                         formEl.scrollIntoView({ behavior: "smooth" });
                       }
                     }}
-                    className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold transition-all hover:scale-[1.02]"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl shadow-lg shadow-blue-500/20 text-sm font-bold transition-all hover:scale-[1.02] shrink-0"
                   >
                     {slides[activeIndex].cta}
                   </a>
-                </motion.div>
-              )}
+                )}
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const formEl = document.getElementById("partner-form") || document.getElementById("contact-form") || document.getElementById("compliance");
+                    if (formEl) {
+                      formEl.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-2xl text-sm font-bold transition-all hover:scale-[1.02] shrink-0"
+                >
+                  Watch Overview
+                </button>
+              </motion.div>
+
+              {/* Trust Indicators matching homepage style */}
+              <motion.div
+                variants={elementVariants}
+                className="flex flex-wrap md:flex-nowrap justify-start gap-x-5 md:gap-x-8 gap-y-3 pt-6 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-slate-400 border-t border-slate-200/60 w-full"
+              >
+                <div className="flex items-center gap-2 whitespace-nowrap">
+                  <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
+                  <span className="text-slate-600">100% Statutory Assurance</span>
+                </div>
+                <div className="flex items-center gap-2 whitespace-nowrap">
+                  <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
+                  <span className="text-slate-600">15+ Enterprise Industries</span>
+                </div>
+                <div className="flex items-center gap-2 whitespace-nowrap">
+                  <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
+                  <span className="text-slate-600">SLA & Cyber Guaranteed</span>
+                </div>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
         </div>
