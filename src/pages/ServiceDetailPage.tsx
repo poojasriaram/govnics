@@ -37,6 +37,12 @@ export default function ServiceDetailPage() {
     service.industries.includes(ind.id)
   );
 
+  const getClusterId = (name: string) => {
+    return name.toLowerCase()
+      .replace(/ & /g, "-")
+      .replace(/ /g, "-");
+  };
+
   // Dynamic Metrics generator based on service profile
   const getServiceStats = (id: string) => {
     if (id.includes("cybersecurity") || id.includes("privacy") || id.includes("incident")) {
@@ -418,7 +424,7 @@ export default function ServiceDetailPage() {
                 return (
                   <Link
                     key={ind.id}
-                    to={`/industries/${ind.id}`}
+                    to={`/industries/${getClusterId(ind.cluster)}#${ind.id}`}
                     className="flex flex-col items-center gap-3 p-5 bg-white border border-slate-200/80 hover:border-blue-500/25 rounded-3xl group transition-all hover:scale-[1.03] hover:shadow-md"
                   >
                     <div className="p-3 bg-blue-500/10 text-blue-600 rounded-2xl group-hover:bg-blue-600 group-hover:text-white transition-colors shrink-0">

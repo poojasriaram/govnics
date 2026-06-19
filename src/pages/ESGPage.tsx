@@ -521,7 +521,7 @@ export default function ESGPage() {
           </section>
 
           {/* Slider 3: Supply Chain & Labor Compliance */}
-          <section className="space-y-6">
+          <section id="labor" className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-4 text-left">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Social Audits</span>
               <h2 className="text-2xl font-black text-slate-900 font-heading">Supply Chain & Labor Compliance</h2>
@@ -533,7 +533,7 @@ export default function ESGPage() {
           </section>
 
           {/* Slider 4: Privacy & Disclosures */}
-          <section className="space-y-6">
+          <section id="privacy" className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-4 text-left">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Reporting & Data Privacy</span>
               <h2 className="text-2xl font-black text-slate-900 font-heading">Global Privacy & Mandatory Disclosures</h2>
@@ -545,7 +545,7 @@ export default function ESGPage() {
           </section>
 
           {/* Slider 5: Decarbonization & Climate Strategy */}
-          <section className="space-y-6">
+          <section id="climate" className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-4 text-left">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Carbon Telemetry</span>
               <h2 className="text-2xl font-black text-slate-900 font-heading">Decarbonization & Climate Strategy</h2>
@@ -557,7 +557,7 @@ export default function ESGPage() {
           </section>
 
           {/* Slider 6: Sustainability & Governance Advisory */}
-          <section className="space-y-6">
+          <section id="advisory" className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-4 text-left">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Advisory & Governance</span>
               <h2 className="text-2xl font-black text-slate-900 font-heading">Sustainability & Governance Advisory</h2>
@@ -569,7 +569,7 @@ export default function ESGPage() {
           </section>
 
           {/* Slider 7: ESG Partners & Certifications */}
-          <section className="space-y-6">
+          <section id="partners" className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-4 text-left">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Partner Frameworks</span>
               <h2 className="text-2xl font-black text-slate-900 font-heading">ESG Framework Partners & Certifications</h2>

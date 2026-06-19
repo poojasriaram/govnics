@@ -380,10 +380,10 @@ export const Header = () => {
                     </h4>
                   </div>
                   <div className="flex flex-col gap-1.5 pl-2.5">
-                    <Link to="/esg#compliance-services" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Environmental & EHS Regulatory</Link>
-                    <Link to="/esg#compliance-services" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Supply Chain & Labor Compliance</Link>
-                    <Link to="/esg#compliance-services" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Global Data Privacy (G in ESG)</Link>
-                    <Link to="/esg#compliance-services" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Mandatory Disclosure Readiness</Link>
+                    <Link to="/esg#ehs" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Environmental & EHS Regulatory</Link>
+                    <Link to="/esg#labor" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Supply Chain & Labor Compliance</Link>
+                    <Link to="/esg#privacy" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Global Data Privacy (G in ESG)</Link>
+                    <Link to="/esg#privacy" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Mandatory Disclosure Readiness</Link>
                   </div>
                 </div>
 
@@ -395,11 +395,11 @@ export const Header = () => {
                     </h4>
                   </div>
                   <div className="flex flex-col gap-1.5 pl-2.5">
-                    <Link to="/esg#sustainability-advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Decarbonization & Climate Strategy</Link>
-                    <Link to="/esg#sustainability-advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Global ESG Reporting Frameworks</Link>
-                    <Link to="/esg#sustainability-advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Circular Economy & Resource Efficiency</Link>
-                    <Link to="/esg#sustainability-advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Board Governance & ESG Integration</Link>
-                    <Link to="/esg#sustainability-advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Transaction Advisory (M&A)</Link>
+                    <Link to="/esg#climate" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Decarbonization & Climate Strategy</Link>
+                    <Link to="/esg#advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Global ESG Reporting Frameworks</Link>
+                    <Link to="/esg#advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Circular Economy & Resource Efficiency</Link>
+                    <Link to="/esg#advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Board Governance & ESG Integration</Link>
+                    <Link to="/esg#advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Transaction Advisory (M&A)</Link>
                   </div>
                 </div>
 
@@ -728,10 +728,10 @@ export const Header = () => {
                       ESG Compliance Services
                     </div>
                     <div className="pl-2 flex flex-col gap-1">
-                      <Link to="/esg#compliance-services" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Environmental & EHS Regulatory</Link>
-                      <Link to="/esg#compliance-services" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Supply Chain & Labor Compliance</Link>
-                      <Link to="/esg#compliance-services" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Global Data Privacy (G in ESG)</Link>
-                      <Link to="/esg#compliance-services" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Mandatory Disclosure Readiness</Link>
+                      <Link to="/esg#ehs" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Environmental & EHS Regulatory</Link>
+                      <Link to="/esg#labor" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Supply Chain & Labor Compliance</Link>
+                      <Link to="/esg#privacy" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Global Data Privacy (G in ESG)</Link>
+                      <Link to="/esg#privacy" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Mandatory Disclosure Readiness</Link>
                     </div>
                   </div>
 
@@ -741,11 +741,11 @@ export const Header = () => {
                       Sustainability & Advisory
                     </div>
                     <div className="pl-2 flex flex-col gap-1">
-                      <Link to="/esg#sustainability-advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Decarbonization & Climate Strategy</Link>
-                      <Link to="/esg#sustainability-advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Global ESG Reporting Frameworks</Link>
-                      <Link to="/esg#sustainability-advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Circular Economy & Resource Efficiency</Link>
-                      <Link to="/esg#sustainability-advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Board Governance & ESG Integration</Link>
-                      <Link to="/esg#sustainability-advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Transaction Advisory (M&A)</Link>
+                      <Link to="/esg#climate" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Decarbonization & Climate Strategy</Link>
+                      <Link to="/esg#advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Global ESG Reporting Frameworks</Link>
+                      <Link to="/esg#advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Circular Economy & Resource Efficiency</Link>
+                      <Link to="/esg#advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Board Governance & ESG Integration</Link>
+                      <Link to="/esg#advisory" onClick={() => setMobileOpen(false)} className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block">Transaction Advisory (M&A)</Link>
                     </div>
                   </div>
                 </div>

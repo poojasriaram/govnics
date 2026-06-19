@@ -476,8 +476,8 @@ export default function CyberSecurityPage() {
                       </div>
                     )}
                     <div className="pt-2">
-                      <a href="#grc" onClick={(e) => {
-                        const targetEl = document.getElementById("grc");
+                      <a href="#grc-compliance" onClick={(e) => {
+                        const targetEl = document.getElementById("grc-compliance");
                         if (targetEl) {
                           e.preventDefault();
                           targetEl.scrollIntoView({ behavior: "smooth" });
@@ -497,7 +497,7 @@ export default function CyberSecurityPage() {
         <div className="container mx-auto px-6 max-w-7xl pt-16 space-y-20">
           
           {/* Slider 2: Cyber GRC & Compliance */}
-          <section id="grc" className="space-y-6">
+          <section id="grc-compliance" className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-4 text-left">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Policy & Certifications</span>
               <h2 className="text-2xl font-black text-slate-900 font-heading">Cyber GRC & Compliance</h2>
@@ -509,7 +509,7 @@ export default function CyberSecurityPage() {
           </section>
 
           {/* Slider 3: Offensive Security (VAPT) */}
-          <section className="space-y-6">
+          <section id="offensive-security" className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-4 text-left">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Vulnerability Validation</span>
               <h2 className="text-2xl font-black text-slate-900 font-heading">Offensive Security (VAPT)</h2>
@@ -521,7 +521,7 @@ export default function CyberSecurityPage() {
           </section>
 
           {/* Slider 4: Incident Response & Defense */}
-          <section className="space-y-6">
+          <section id="incident-defense" className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-4 text-left">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Response & Overwatch</span>
               <h2 className="text-2xl font-black text-slate-900 font-heading">Incident Response & Defense</h2>
@@ -533,7 +533,7 @@ export default function CyberSecurityPage() {
           </section>
 
           {/* Slider 5: Specialized Cyber Solutions */}
-          <section className="space-y-6">
+          <section id="specialized-solutions" className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-4 text-left">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">OT & Transaction Protection</span>
               <h2 className="text-2xl font-black text-slate-900 font-heading">Specialized Cyber Solutions</h2>
