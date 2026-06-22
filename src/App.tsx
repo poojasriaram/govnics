@@ -14,6 +14,11 @@ import ESGPage from "@/pages/ESGPage";
 import PartnersPage from "@/pages/PartnersPage";
 import GrcPage from "@/pages/GrcPage";
 import IndustriesPage from "@/pages/IndustriesPage";
+import SgrcServiceDetailPage from "@/pages/SgrcServiceDetailPage";
+import SgrceLibraryPage from "@/pages/SgrceLibraryPage";
+import SgrcEstimatorPage from "@/pages/SgrcEstimatorPage";
+import SgrcServicesListPage from "@/pages/SgrcServicesListPage";
+import SgrcResourcesListPage from "@/pages/SgrcResourcesListPage";
 
 function App() {
   return (
@@ -27,6 +32,11 @@ function App() {
         <Route path="/industries" element={<IndustriesPage />} />
         <Route path="/industries/:clusterId" element={<IndustryDetailPage />} />
         <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
+        <Route path="/sgrc/services" element={<SgrcServicesListPage />} />
+        <Route path="/sgrc/services/:serviceId" element={<SgrcServiceDetailPage />} />
+        <Route path="/sgrc/resources" element={<SgrcResourcesListPage />} />
+        <Route path="/sgrc/e-library" element={<SgrceLibraryPage />} />
+        <Route path="/sgrc/estimator" element={<SgrcEstimatorPage />} />
         <Route path="/resources" element={<ResourceHubPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
@@ -41,3 +51,4 @@ function App() {
 }
 
 export default App;
+

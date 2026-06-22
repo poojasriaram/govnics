@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ArrowRight, ShieldCheck, ChevronDown } from "lucide-react";
+import { 
+  Menu, X, ArrowRight, ShieldCheck, ChevronDown,
+  Scale, Building, CreditCard, Factory, Users, ShieldAlert, UserPlus, FileSpreadsheet, Leaf,
+  Calendar, BookOpen, FileText, Megaphone, Heart, Video, Coins, Percent, Clock, CalendarCheck, Globe
+} from "lucide-react";
 import { industriesData } from "@/data/industries-data";
 import { servicesData } from "@/data/services-data";
+
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -20,19 +25,18 @@ export const Header = () => {
     setMobileOpen(false);
     setActiveDropdown(null);
   }, [pathname]);
-
   const toggleDropdown = (name: string) => {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
 
   const getLinkClass = (path: string) => {
     const isActive = pathname === path;
-    const baseClass = "px-3 h-full flex items-center text-sm font-bold transition-colors duration-200";
+    const baseClass = "px-2 xl:px-1.5 2xl:px-3 h-full flex items-center text-[13px] 2xl:text-sm font-bold transition-colors duration-200 whitespace-nowrap";
     return `${baseClass} ${isActive ? "text-blue-600" : "text-black hover:text-blue-600"}`;
   };
 
   const getNavItemClass = () => {
-    const baseClass = "px-3 h-full flex items-center gap-1 text-sm font-bold transition-colors duration-200";
+    const baseClass = "px-2 xl:px-1.5 2xl:px-3 h-full flex items-center gap-1 text-[13px] 2xl:text-sm font-bold transition-colors duration-200 whitespace-nowrap";
     return `${baseClass} text-black hover:text-blue-600`;
   };
 
@@ -270,6 +274,160 @@ export const Header = () => {
                     })}
                   </div>
                 </div>
+              </div>
+            )}
+          </div>
+
+          {/* SGRC Services Dropdown */}
+          <div
+            className="h-full flex items-center"
+            onMouseEnter={() => setActiveDropdown("sgrc-services")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <span className={`${getNavItemClass()} cursor-pointer select-none`}>
+              SGRC Services <ChevronDown className="w-4 h-4 text-current" />
+            </span>
+            {activeDropdown === "sgrc-services" && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95dvw] max-w-5xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-3 gap-4 animate-slide-up-dropdown mt-1 text-left">
+                {/* Bridge to prevent hover loss */}
+                <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
+                <div className="col-span-3 pb-2 mb-1 border-b border-slate-100 flex justify-between items-center">
+                  <Link 
+                    to="/sgrc/services"
+                    onClick={() => setActiveDropdown(null)}
+                    className="text-xs font-bold text-blue-600 hover:text-blue-700 uppercase tracking-widest flex items-center gap-2"
+                  >
+                    Explore All Services &rarr;
+                  </Link>
+                </div>
+                {[
+                  { id: "compliance-risk-audit", label: "Compliance Risk Audit", desc: "Labor law due diligence & gap audits", icon: Scale },
+                  { id: "establishment-compliances", label: "Establishment Compliances", desc: "Shops, trade licenses & filings", icon: Building },
+                  { id: "payroll-compliance", label: "Payroll Compliance Services", desc: "PF, ESIC, LWF & PT monitoring", icon: CreditCard },
+                  { id: "factory-compliance", label: "Factory Compliance Services", desc: "Safety registers & Factories Act compliance", icon: Factory },
+                  { id: "vendor-compliance", label: "Vendor Compliance Services", desc: "Contractor audit & risk shield", icon: Users },
+                  { id: "mines-compliance", label: "Mines Compliance Services", desc: "Mines Act safety & DGMS approvals", icon: ShieldAlert },
+                  { id: "flexi-staffing", label: "Flexi Staffing Services", desc: "Managed staffing with absorbed liability", icon: UserPlus },
+                  { id: "payroll-services", label: "Payroll Services", desc: "Airtight salary, FnF & ledger processing", icon: FileSpreadsheet },
+                  { id: "ehs", label: "Environmental, Health & Safety (EHS)", desc: "Pollution consent & ISO 45001 standards", icon: Leaf }
+                ].map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.id}
+                      to={`/sgrc/services/${item.id}`}
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-3 p-3 rounded-xl hover:bg-blue-50/50 hover:border-blue-500/20 border border-transparent transition-all group"
+                    >
+                      <div className="p-2 bg-blue-500/10 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors mt-0.5">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                          {item.label}
+                        </span>
+                        <span className="text-[10px] text-slate-400 font-medium leading-snug mt-0.5">
+                          {item.desc}
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {/* SGRC Resources Dropdown */}
+          <div
+            className="h-full flex items-center"
+            onMouseEnter={() => setActiveDropdown("sgrc-resources")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <span className={`${getNavItemClass()} cursor-pointer select-none`}>
+              SGRC Resources <ChevronDown className="w-4 h-4 text-current" />
+            </span>
+            {activeDropdown === "sgrc-resources" && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95dvw] max-w-5xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-2 gap-8 animate-slide-up-dropdown mt-1 text-left">
+                {/* Bridge to prevent hover loss */}
+                <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
+                
+                {/* Column 1: Explore All Resources */}
+                <div className="space-y-4">
+                  <div className="pb-2 border-b border-slate-100">
+                    <Link 
+                      to="/sgrc/resources"
+                      onClick={() => setActiveDropdown(null)}
+                      className="text-xs font-bold text-slate-800 hover:text-blue-600 uppercase tracking-widest block"
+                    >
+                      Explore All Resources
+                    </Link>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { id: "events", label: "Events", icon: Calendar },
+                      { id: "case-studies", label: "Case Studies", icon: BookOpen },
+                      { id: "blog", label: "Blog", icon: FileText },
+                      { id: "media", label: "Media & Press Release", icon: Megaphone },
+                      { id: "csr", label: "CSR", icon: Heart },
+                      { id: "webinar", label: "Webinar", icon: Video }
+                    ].map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.id}
+                          to={`/sgrc/e-library?tab=webinar`}
+                          onClick={() => setActiveDropdown(null)}
+                          className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-50 transition-all group"
+                        >
+                          <Icon className="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-colors shrink-0" />
+                          <span className="text-xs font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
+                            {item.label}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Column 2: Explore e-Library */}
+                <div className="space-y-4 border-l border-slate-100 pl-8">
+                  <div className="pb-2 border-b border-slate-100 flex justify-between items-center">
+                    <Link 
+                      to="/sgrc/e-library"
+                      onClick={() => setActiveDropdown(null)}
+                      className="text-xs font-bold text-slate-800 hover:text-blue-600 uppercase tracking-widest flex items-center gap-1.5"
+                    >
+                      Explore e-Library &rarr;
+                    </Link>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { id: "minimum-wages", label: "Latest Minimum Wages", icon: Coins },
+                      { id: "professional-tax", label: "Professional Tax", icon: Percent },
+                      { id: "labour-welfare-fund", label: "Labour Welfare Fund", icon: Users },
+                      { id: "leaves-working-hours", label: "Leave & Working Hours", icon: Clock },
+                      { id: "holidays-list", label: "Holidays List", icon: Calendar },
+                      { id: "fcc", label: "FCC Compliance Calendar", icon: CalendarCheck },
+                      { id: "lei", label: "LEI Compliance Calendar", icon: Globe }
+                    ].map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.id}
+                          to={`/sgrc/e-library?tab=${item.id}`}
+                          onClick={() => setActiveDropdown(null)}
+                          className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-50 transition-all group"
+                        >
+                          <Icon className="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-colors shrink-0" />
+                          <span className="text-xs font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
+                            {item.label}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
               </div>
             )}
           </div>
@@ -623,6 +781,107 @@ export const Header = () => {
                         <Link
                           key={item.id}
                           to={`/services/${item.id}`}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Accordion for SGRC Services */}
+            <div>
+              <button
+                onClick={() => toggleDropdown("sgrc-services")}
+                className="w-full flex justify-between items-center p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg text-left"
+              >
+                <span>SGRC Services</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === "sgrc-services" ? "rotate-180" : ""}`} />
+              </button>
+              {activeDropdown === "sgrc-services" && (
+                <div className="pl-4 my-1 flex flex-col gap-2 bg-slate-50 rounded-lg p-3 border border-slate-100 max-h-[300px] overflow-y-auto text-left">
+                  {[
+                    { id: "compliance-risk-audit", label: "Compliance Risk Audit" },
+                    { id: "establishment-compliances", label: "Establishment Compliances" },
+                    { id: "payroll-compliance", label: "Payroll Compliance Services" },
+                    { id: "factory-compliance", label: "Factory Compliance Services" },
+                    { id: "vendor-compliance", label: "Vendor Compliance Services" },
+                    { id: "mines-compliance", label: "Mines Compliance Services" },
+                    { id: "flexi-staffing", label: "Flexi Staffing Services" },
+                    { id: "payroll-services", label: "Payroll Services" },
+                    { id: "ehs", label: "Environmental, Health & Safety (EHS)" }
+                  ].map((item) => (
+                    <Link
+                      key={item.id}
+                      to={`/sgrc/services/${item.id}`}
+                      onClick={() => setMobileOpen(false)}
+                      className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-1 block"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Accordion for SGRC Resources */}
+            <div>
+              <button
+                onClick={() => toggleDropdown("sgrc-resources")}
+                className="w-full flex justify-between items-center p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg text-left"
+              >
+                <span>SGRC Resources</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === "sgrc-resources" ? "rotate-180" : ""}`} />
+              </button>
+              {activeDropdown === "sgrc-resources" && (
+                <div className="pl-4 my-1 flex flex-col gap-3 bg-slate-50 rounded-lg p-3 border border-slate-100 max-h-[300px] overflow-y-auto text-left">
+                  {/* Explore All Resources */}
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
+                      Explore Resources
+                    </div>
+                    <div className="pl-2 flex flex-col gap-1.5">
+                      {[
+                        { id: "events", label: "Events" },
+                        { id: "case-studies", label: "Case Studies" },
+                        { id: "blog", label: "Blog" },
+                        { id: "media", label: "Media & Press Release" },
+                        { id: "csr", label: "CSR" },
+                        { id: "webinar", label: "Webinar" }
+                      ].map((item) => (
+                        <Link
+                          key={item.id}
+                          to={`/sgrc/e-library?tab=webinar`}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Explore e-Library */}
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
+                      Explore e-Library
+                    </div>
+                    <div className="pl-2 flex flex-col gap-1.5">
+                      {[
+                        { id: "minimum-wages", label: "Latest Minimum Wages" },
+                        { id: "professional-tax", label: "Professional Tax" },
+                        { id: "labour-welfare-fund", label: "Labour Welfare Fund" },
+                        { id: "leaves-working-hours", label: "Leave & Working Hours" },
+                        { id: "holidays-list", label: "Holidays List" },
+                        { id: "fcc", label: "FCC Compliance Calendar" },
+                        { id: "lei", label: "LEI Compliance Calendar" }
+                      ].map((item) => (
+                        <Link
+                          key={item.id}
+                          to={`/sgrc/e-library?tab=${item.id}`}
                           onClick={() => setMobileOpen(false)}
                           className="text-xs text-slate-700 hover:text-blue-600 font-semibold py-0.5 block"
                         >

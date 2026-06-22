@@ -1,8 +1,30 @@
 import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { GrcCarousel } from "@/components/ui/GrcCarousel";
-import { screeningPhases } from "@/data/staffing-compendium-data";
-import { Shield, CheckCircle2, ChevronRight, Briefcase } from "lucide-react";
+import { 
+  screeningPhases, 
+  skillTiers, 
+  hiringFormats, 
+  engagementModels, 
+  industryMatrix, 
+  detailedOfferings, 
+  clientBenefits 
+} from "@/data/staffing-compendium-data";
+import { 
+  Shield, 
+  CheckCircle2, 
+  ChevronRight, 
+  Briefcase, 
+  Award, 
+  Clock, 
+  Layers, 
+  BookOpen, 
+  Check, 
+  Activity, 
+  TrendingUp, 
+  ShieldCheck, 
+  Building2
+} from "lucide-react";
 import heroVerify from "@/assets/hero-verify.jpg";
 import heroCommand from "@/assets/command_center_1.jpg";
 import heroAiDriven from "@/assets/hero-ai-driven.jpg";
@@ -20,6 +42,11 @@ interface StaffingItem {
 
 export default function ManageStaffingPage() {
   const [selectedPhase, setSelectedPhase] = useState<number>(0);
+  const [compendiumTab, setCompendiumTab] = useState<string>("skill-tiers");
+  const [selectedSkillTier, setSelectedSkillTier] = useState<number>(0);
+  const [selectedHiringTab, setSelectedHiringTab] = useState<"formats" | "models">("formats");
+  const [selectedMatrixIndustry, setSelectedMatrixIndustry] = useState<string>("manufacturing");
+  const [selectedOffering, setSelectedOffering] = useState<string>("offering-perm");
 
   const heroSlides = [
     {
@@ -415,6 +442,467 @@ export default function ManageStaffingPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* THE DEFINITIVE COMPENDIUM OF MANPOWER STAFFING & SERVICES */}
+        <section className="py-16 bg-slate-50/30 border-b border-slate-200/50">
+          <div className="container mx-auto px-6 max-w-7xl">
+            <div className="bg-white border border-slate-200/80 rounded-[2.5rem] p-8 md:p-12 shadow-xl space-y-10">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-slate-100">
+                <div className="space-y-2 text-left">
+                  <span className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100/50">
+                    Definitive Compendium
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
+                    Manpower Staffing & Services Portfolio
+                  </h2>
+                  <p className="text-xs sm:text-sm text-slate-555 font-semibold max-w-2xl leading-relaxed">
+                    A comprehensive taxonomy of our skill tiers, deployment timelines, regulatory engagement models, and industry alignment grids.
+                  </p>
+                </div>
+                {/* Dashboard Tabs Selector */}
+                <div className="flex flex-wrap gap-2 lg:self-center">
+                  {[
+                    { id: "skill-tiers", label: "Skill Categories", icon: Layers },
+                    { id: "hiring-formats", label: "Hiring & Engagement", icon: Briefcase },
+                    { id: "industry-matrix", label: "Industry Matrix", icon: Building2 },
+                    { id: "service-offerings", label: "Service Deep-Dives", icon: BookOpen },
+                    { id: "benefits", label: "Client Advantages", icon: Award }
+                  ].map((tab) => {
+                    const TabIcon = tab.icon;
+                    const isActive = compendiumTab === tab.id;
+                    return (
+                      <button
+                        key={tab.id}
+                        onClick={() => setCompendiumTab(tab.id)}
+                        className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-[10px] font-extrabold uppercase tracking-wider transition-all border ${
+                          isActive
+                            ? "bg-blue-600 text-white border-blue-650 shadow-md shadow-blue-500/10"
+                            : "bg-slate-50 text-slate-705 border-slate-200/80 hover:bg-slate-105"
+                        }`}
+                      >
+                        <TabIcon className="w-4 h-4 shrink-0" />
+                        {tab.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* TAB CONTENT PANEL */}
+              <div className="w-full transition-all duration-300">
+                
+                {/* 1. Skill Categories Tab */}
+                {compendiumTab === "skill-tiers" && (
+                  <div className="space-y-8 animate-fade-in text-left">
+                    {/* Tier selector */}
+                    <div className="grid grid-cols-3 gap-2 max-w-2xl mx-auto p-1 bg-slate-100 rounded-2xl border border-slate-200/40">
+                      {skillTiers.map((tier, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setSelectedSkillTier(idx)}
+                          className={`py-3 text-[10px] font-black uppercase tracking-wider rounded-xl transition-all ${
+                            selectedSkillTier === idx
+                              ? "bg-white text-blue-600 shadow-sm font-extrabold"
+                              : "text-slate-500 hover:text-slate-800"
+                          }`}
+                        >
+                          {tier.title.split(" ")[0]} Collar
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Active tier info */}
+                    <div className="grid lg:grid-cols-3 gap-8 pt-4">
+                      {/* Left: Profile & Characteristics */}
+                      <div className="lg:col-span-1 space-y-6 text-left border-r border-slate-100 pr-0 lg:pr-8">
+                        <div>
+                          <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest block mb-1">
+                            Education & Experience
+                          </span>
+                          <h4 className="text-xl font-black text-slate-900 leading-tight mb-3">
+                            {skillTiers[selectedSkillTier].title}
+                          </h4>
+                          <p className="text-xs sm:text-sm text-slate-550 leading-relaxed font-semibold">
+                            {skillTiers[selectedSkillTier].profile}
+                          </p>
+                        </div>
+                        <div className="space-y-3">
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">
+                            Functional Characteristics
+                          </span>
+                          <ul className="space-y-2.5">
+                            {skillTiers[selectedSkillTier].characteristics.map((char, idx) => (
+                              <li key={idx} className="text-xs text-slate-700 font-semibold flex items-start gap-2.5">
+                                <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                                <span>{char}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Right: Representative Roles by Domain */}
+                      <div className="lg:col-span-2 space-y-4 text-left">
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">
+                          Representative Roles by Industry Sector
+                        </span>
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          {Object.entries(skillTiers[selectedSkillTier].roles).map(([domain, roles]) => (
+                            <div key={domain} className="bg-slate-50/70 border border-slate-200/50 rounded-2xl p-5 hover:border-blue-500/20 transition-all">
+                              <h5 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-b border-slate-200/60 pb-2 mb-3">
+                                {domain}
+                              </h5>
+                              <ul className="space-y-1.5">
+                                {roles.map((role, idx) => (
+                                  <li key={idx} className="text-[11px] text-slate-600 flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                                    <span>{role}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 2. Hiring & Engagement Tab */}
+                {compendiumTab === "hiring-formats" && (
+                  <div className="space-y-8 animate-fade-in text-left">
+                    {/* Inner selector */}
+                    <div className="flex justify-center">
+                      <div className="inline-flex p-1 bg-slate-100 rounded-2xl border border-slate-200/40">
+                        <button
+                          onClick={() => setSelectedHiringTab("formats")}
+                          className={`px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${
+                            selectedHiringTab === "formats"
+                              ? "bg-white text-blue-600 shadow-sm"
+                              : "text-slate-500 hover:text-slate-800"
+                          }`}
+                        >
+                          Hiring Formats
+                        </button>
+                        <button
+                          onClick={() => setSelectedHiringTab("models")}
+                          className={`px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${
+                            selectedHiringTab === "models"
+                              ? "bg-white text-blue-600 shadow-sm"
+                              : "text-slate-500 hover:text-slate-800"
+                          }`}
+                        >
+                          Engagement Models
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Dynamic grid rendering */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4 text-left">
+                      {selectedHiringTab === "formats" ? (
+                        hiringFormats.map((format) => (
+                          <div key={format.id} className="group relative bg-white border border-slate-200/80 hover:border-blue-500/25 rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between overflow-hidden min-h-[260px]">
+                            <div className="space-y-4">
+                              <div className="flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
+                                <h4 className="text-sm font-black text-slate-900 group-hover:text-blue-600 transition-colors">
+                                  {format.title}
+                                </h4>
+                                <span className="text-[8px] font-extrabold bg-blue-50 text-blue-600 border border-blue-150 px-2 py-0.5 rounded-full shrink-0 uppercase tracking-wider">
+                                  {format.urgency.split(" ")[0]}
+                                </span>
+                              </div>
+                              <p className="text-xs text-slate-500 leading-relaxed font-semibold">
+                                {format.definition}
+                              </p>
+                              <div className="space-y-1.5 pt-2">
+                                <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block">
+                                  Ideal Scenarios
+                                </span>
+                                <ul className="space-y-1">
+                                  {format.whenToUse.map((scenario, idx) => (
+                                    <li key={idx} className="text-[10px] text-slate-600 font-semibold flex items-start gap-1.5">
+                                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5" />
+                                      <span>{scenario}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        engagementModels.map((model) => (
+                          <div key={model.id} className="group relative bg-white border border-slate-200/80 hover:border-blue-500/25 rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between overflow-hidden min-h-[260px]">
+                            <div className="space-y-4">
+                              <div className="border-b border-slate-100 pb-3">
+                                <h4 className="text-sm font-black text-slate-900 group-hover:text-blue-600 transition-colors">
+                                  {model.title}
+                                </h4>
+                              </div>
+                              <p className="text-xs text-slate-500 leading-relaxed font-semibold">
+                                {model.howItWorks}
+                              </p>
+                              <div className="space-y-1.5 pt-2">
+                                <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block">
+                                  Framework Features
+                                </span>
+                                <ul className="space-y-1">
+                                  {model.details.map((detail, idx) => (
+                                    <li key={idx} className="text-[10px] text-slate-600 font-semibold flex items-start gap-1.5">
+                                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5" />
+                                      <span>{detail}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* 3. Industry Matrix Tab */}
+                {compendiumTab === "industry-matrix" && (
+                  <div className="grid lg:grid-cols-12 gap-8 pt-2 text-left animate-fade-in">
+                    {/* Industry Selector Grid */}
+                    <div className="lg:col-span-4 grid grid-cols-2 gap-2 border-r border-slate-100 pr-0 lg:pr-6 max-h-[460px] overflow-y-auto">
+                      {industryMatrix.map((item) => (
+                        <button
+                          key={item.id}
+                          onClick={() => setSelectedMatrixIndustry(item.id)}
+                          className={`p-4 text-[10px] font-black uppercase tracking-wider rounded-2xl border text-center transition-all flex flex-col items-center justify-center gap-2 aspect-[4/3] ${
+                            selectedMatrixIndustry === item.id
+                              ? "bg-slate-950 text-white border-slate-950 shadow-lg"
+                              : "bg-slate-50 border-slate-200/80 hover:bg-slate-100 text-slate-800"
+                          }`}
+                        >
+                          <Building2 className="w-5 h-5 text-blue-500" />
+                          <span>{item.title}</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Active Industry Analysis */}
+                    {(() => {
+                      const ind = industryMatrix.find((item) => item.id === selectedMatrixIndustry);
+                      if (!ind) return null;
+                      return (
+                        <div className="lg:col-span-8 space-y-6">
+                          <div className="border-b border-slate-100 pb-4">
+                            <span className="text-[9px] font-black text-blue-600 uppercase tracking-widest">
+                              Sector Specifications
+                            </span>
+                            <h3 className="text-xl font-black text-slate-900 mt-1">
+                              {ind.title} Workforce Blueprint
+                            </h3>
+                          </div>
+
+                          {/* Skill Tiers Config Matrix */}
+                          <div className="grid md:grid-cols-3 gap-4">
+                            {[
+                              { label: "Low-Skill Tier", key: "lowSkill" as const },
+                              { label: "Medium-Skill Tier", key: "mediumSkill" as const },
+                              { label: "High-Skill Tier", key: "highSkill" as const }
+                            ].map((tier) => {
+                              const tData = ind[tier.key];
+                              return (
+                                <div key={tier.key} className="bg-slate-50/50 border border-slate-200/60 rounded-2xl p-4 space-y-3">
+                                  <div className="border-b border-slate-100 pb-2">
+                                    <span className="text-[10px] font-black text-slate-800 uppercase tracking-wider">
+                                      {tier.label}
+                                    </span>
+                                  </div>
+                                  <div className="space-y-2">
+                                    <div>
+                                      <span className="text-[8px] font-bold text-slate-400 uppercase block">Formats</span>
+                                      <span className="text-[10px] font-semibold text-slate-700">{tData.category}</span>
+                                    </div>
+                                    <div>
+                                      <span className="text-[8px] font-bold text-slate-400 uppercase block">Models</span>
+                                      <span className="text-[10px] font-semibold text-slate-700">{tData.model}</span>
+                                    </div>
+                                    <div>
+                                      <span className="text-[8px] font-bold text-slate-400 uppercase block mb-1">Target Roles</span>
+                                      <div className="flex flex-wrap gap-1">
+                                        {tData.roles.map((r, i) => (
+                                          <span key={i} className="text-[9px] font-semibold bg-white border border-slate-200 px-2 py-0.5 rounded-lg text-slate-600">
+                                            {r}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                          {/* Considerations Box */}
+                          <div className="bg-slate-950 text-white rounded-3xl p-6 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-xl pointer-events-none" />
+                            <div className="space-y-3 relative z-10">
+                              <h5 className="text-[10px] font-black text-blue-400 uppercase tracking-[0.15em] flex items-center gap-1.5">
+                                <ShieldCheck className="w-4.5 h-4.5 text-blue-400" />
+                                Sector Specific Compliance & SLA Considerations
+                              </h5>
+                              <ul className="space-y-2">
+                                {ind.considerations.map((c, i) => (
+                                  <li key={i} className="text-xs text-slate-350 font-semibold flex items-start gap-2.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-2" />
+                                    <span>{c}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </div>
+                )}
+
+                {/* 4. Detailed Offerings Tab */}
+                {compendiumTab === "service-offerings" && (
+                  <div className="grid lg:grid-cols-12 gap-8 text-left animate-fade-in">
+                    {/* Left List */}
+                    <div className="lg:col-span-4 space-y-1.5 border-r border-slate-100 pr-0 lg:pr-6 max-h-[500px] overflow-y-auto">
+                      {detailedOfferings.map((offering) => (
+                        <button
+                          key={offering.id}
+                          onClick={() => setSelectedOffering(offering.id)}
+                          className={`w-full text-left px-4 py-3.5 rounded-2xl border transition-all duration-300 flex items-center justify-between gap-3 ${
+                            selectedOffering === offering.id
+                              ? "bg-slate-950 text-white border-slate-950 shadow-md"
+                              : "bg-slate-50 border-slate-200/80 hover:bg-slate-100 text-slate-800"
+                          }`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className={`w-6 h-6 rounded-lg font-black text-[9px] flex items-center justify-center shrink-0 ${
+                              selectedOffering === offering.id ? "bg-blue-600 text-white" : "bg-blue-50 text-blue-600"
+                            }`}>
+                              {detailedOfferings.findIndex(o => o.id === offering.id) + 1}
+                            </span>
+                            <span className="text-[10px] font-black uppercase tracking-wider">{offering.title.replace(" Staffing", "")}</span>
+                          </div>
+                          <ChevronRight className="w-4 h-4 opacity-50 shrink-0" />
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Right Details Panel */}
+                    {(() => {
+                      const off = detailedOfferings.find((o) => o.id === selectedOffering);
+                      if (!off) return null;
+                      return (
+                        <div className="lg:col-span-8 space-y-8 max-h-[600px] overflow-y-auto pr-2">
+                          {/* Overview */}
+                          <div className="space-y-2 border-b border-slate-100 pb-4">
+                            <h3 className="text-xl font-black text-slate-900">
+                              {off.title}
+                            </h3>
+                            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-semibold">
+                              {off.overview}
+                            </p>
+                          </div>
+
+                          {/* Recruitment & Deployment Timeline */}
+                          <div className="space-y-4">
+                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">
+                              Recruitment & Deployment Process
+                            </span>
+                            <div className="relative pl-6 border-l-2 border-slate-200 space-y-6">
+                              {off.processSteps.map((step, idx) => (
+                                <div key={idx} className="relative space-y-1">
+                                  {/* Timeline marker */}
+                                  <div className="absolute -left-[31px] top-0 w-4 h-4 bg-white border-2 border-blue-500 rounded-full flex items-center justify-center">
+                                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+                                  </div>
+                                  <h5 className="text-[11px] font-black text-slate-900 uppercase tracking-wider">
+                                    {step.title}
+                                  </h5>
+                                  <p className="text-[11px] text-slate-500 leading-relaxed font-semibold">
+                                    {step.desc}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Two column metrics block: benefits & deployment timeline */}
+                          <div className="grid md:grid-cols-2 gap-6 pt-4">
+                            {/* Key Benefits */}
+                            <div className="space-y-3 bg-slate-50 border border-slate-200/50 rounded-2xl p-5">
+                              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">
+                                Strategic Benefits
+                              </span>
+                              <ul className="space-y-2">
+                                {off.benefits.slice(0, 4).map((b, idx) => (
+                                  <li key={idx} className="text-[11px] text-slate-600 font-semibold flex items-start gap-2">
+                                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                                    <div>
+                                      <strong className="text-slate-900 block">{b.title}</strong>
+                                      <span className="text-[10px] text-slate-405">{b.desc}</span>
+                                    </div>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Standard Deploy Timeline */}
+                            <div className="space-y-3 bg-slate-50 border border-slate-200/50 rounded-2xl p-5">
+                              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">
+                                Expected Deployment Timelines
+                              </span>
+                              <div className="divide-y divide-slate-200/60">
+                                {Object.entries(off.deployTime).map(([tier, timeline]) => (
+                                  <div key={tier} className="py-2.5 flex items-center justify-between text-xs font-semibold">
+                                    <span className="text-slate-600 font-bold">{tier}</span>
+                                    <span className="text-blue-600 font-black flex items-center gap-1.5">
+                                      <Clock className="w-3.5 h-3.5" /> {timeline}
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </div>
+                )}
+
+                {/* 5. Client Advantages Tab */}
+                {compendiumTab === "benefits" && (
+                  <div className="space-y-8 animate-fade-in text-left">
+                    <div className="grid md:grid-cols-2 gap-6 pt-4">
+                      {clientBenefits.map((benefit, idx) => (
+                        <div key={idx} className="bg-slate-50 border border-slate-200/60 hover:border-blue-500/20 hover:shadow-md transition-all rounded-3xl p-6 md:p-8 flex items-start gap-5">
+                          <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
+                            {idx === 0 && <Award className="w-6 h-6 text-blue-600" />}
+                            {idx === 1 && <ShieldCheck className="w-6 h-6 text-blue-600" />}
+                            {idx === 2 && <TrendingUp className="w-6 h-6 text-blue-600" />}
+                            {idx === 3 && <Activity className="w-6 h-6 text-blue-600" />}
+                          </div>
+                          <div className="space-y-2">
+                            <h4 className="text-base font-black text-slate-950">
+                              {benefit.title}
+                            </h4>
+                            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-semibold">
+                              {benefit.desc}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+              </div>
             </div>
           </div>
         </section>
