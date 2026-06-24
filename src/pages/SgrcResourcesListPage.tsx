@@ -8,6 +8,7 @@ import {
 
 export default function SgrcResourcesListPage() {
   const [activeTab, setActiveTab] = useState<string>("all");
+  const [activeGrcType, setActiveGrcType] = useState<string>("all");
   const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
@@ -22,7 +23,8 @@ export default function SgrcResourcesListPage() {
       desc: "An overview of statutory changes under wage codes, social security mandates, and employee rest codes.",
       date: "July 12, 2026",
       author: "Advisory Council",
-      tag: "Live Webinar"
+      tag: "Live Webinar",
+      grcType: "Act"
     },
     {
       id: "blog-lwf-2026",
@@ -31,7 +33,8 @@ export default function SgrcResourcesListPage() {
       desc: "A comparative breakdown of state-specific contribution Slabs for employers and workers across Maharashtra, Karnataka, and Tamil Nadu.",
       date: "June 18, 2026",
       author: "Compliance Operations Team",
-      tag: "Statutory Article"
+      tag: "Statutory Article",
+      grcType: "Rule"
     },
     {
       id: "case-audit-manufacturing",
@@ -40,7 +43,8 @@ export default function SgrcResourcesListPage() {
       desc: "How Govenics GRC audited vendor registers, restructured contractor SLAs, and resolved statutory compliance gaps.",
       date: "May 29, 2026",
       author: "Risk Assessment Team",
-      tag: "Case Study"
+      tag: "Case Study",
+      grcType: "Compliance"
     },
     {
       id: "press-expansion-compliance",
@@ -49,7 +53,8 @@ export default function SgrcResourcesListPage() {
       desc: "Announcing the release of our real-time regional statutory databases and interactive EPF/Gratuity calculators.",
       date: "June 02, 2026",
       author: "Communications Board",
-      tag: "Press Release"
+      tag: "Press Release",
+      grcType: "Compliance"
     },
     {
       id: "events-conclave-south",
@@ -58,7 +63,8 @@ export default function SgrcResourcesListPage() {
       desc: "Meet regional statutory compliance experts, auditors, and board-advisory specialists to discuss dynamic GRC postures.",
       date: "August 15, 2026",
       author: "Events Management",
-      tag: "Conclave Session"
+      tag: "Conclave Session",
+      grcType: "Compliance"
     },
     {
       id: "csr-scholarship-miners",
@@ -67,15 +73,17 @@ export default function SgrcResourcesListPage() {
       desc: "Govenics partners with local mining and industrial communities to build statutory support structures and scholarships.",
       date: "June 10, 2026",
       author: "CSR Committee",
-      tag: "Social Responsibility"
+      tag: "Social Responsibility",
+      grcType: "Compliance"
     }
   ];
 
   const filtered = resourcesData.filter(item => {
     const matchesTab = activeTab === "all" || item.type === activeTab;
+    const matchesGrcType = activeGrcType === "all" || item.grcType === activeGrcType;
     const matchesSearch = item.title.toLowerCase().includes(search.toLowerCase()) || 
                           item.desc.toLowerCase().includes(search.toLowerCase());
-    return matchesTab && matchesSearch;
+    return matchesTab && matchesGrcType && matchesSearch;
   });
 
   return (
@@ -96,40 +104,68 @@ export default function SgrcResourcesListPage() {
         </section>
 
         {/* Filters and Search */}
-        <section className="container mx-auto px-6 max-w-5xl mb-8 space-y-6">
-          <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-white p-4 border border-slate-200/80 rounded-2xl shadow-sm">
-            {/* Search */}
-            <div className="relative w-full md:w-80">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input 
-                type="text"
-                placeholder="Search resources..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-10 pl-10 pr-4 rounded-xl border border-slate-250 bg-white text-xs font-semibold outline-none focus:border-blue-500 transition-all"
-              />
+        <section className="container mx-auto px-6 max-w-5xl mb-8">
+          <div className="bg-white p-6 border border-slate-200/80 rounded-3xl shadow-sm space-y-4">
+            <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+              {/* Search */}
+              <div className="relative w-full md:w-80 shrink-0">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <input 
+                  type="text"
+                  placeholder="Search resources..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-full h-10 pl-10 pr-4 rounded-xl border border-slate-250 bg-white text-xs font-semibold outline-none focus:border-blue-500 transition-all text-slate-800"
+                />
+              </div>
+
+              {/* Tabs */}
+              <div className="flex flex-wrap gap-1.5 justify-center md:justify-end w-full">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-450 self-center mr-2">Formats:</span>
+                {[
+                  { id: "all", label: "All Formats" },
+                  { id: "webinar", label: "Webinars" },
+                  { id: "blog", label: "Blogs" },
+                  { id: "case-studies", label: "Case Studies" },
+                  { id: "events", label: "Events" },
+                  { id: "csr", label: "CSR" }
+                ].map(tab => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-wider transition-all ${
+                      activeTab === tab.id
+                        ? "bg-blue-600 text-white shadow-sm"
+                        : "bg-slate-100 hover:bg-slate-200 text-slate-650"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {/* Tabs */}
-            <div className="flex flex-wrap gap-1.5 justify-center">
+            <hr className="border-slate-100" />
+
+            {/* GRC Classification Row */}
+            <div className="flex flex-wrap gap-1.5 items-center justify-center md:justify-start">
+              <span className="text-[10px] font-black uppercase tracking-wider text-slate-450 mr-2">GRC Topics:</span>
               {[
-                { id: "all", label: "All Formats" },
-                { id: "webinar", label: "Webinars" },
-                { id: "blog", label: "Blogs" },
-                { id: "case-studies", label: "Case Studies" },
-                { id: "events", label: "Events" },
-                { id: "csr", label: "CSR" }
-              ].map(tab => (
+                { id: "all", label: "All Classifications" },
+                { id: "Act", label: "Acts & Codes" },
+                { id: "Rule", label: "Rules & Deadlines" },
+                { id: "Compliance", label: "Compliances & Audits" }
+              ].map(type => (
                 <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
-                    activeTab === tab.id
+                  key={type.id}
+                  onClick={() => setActiveGrcType(type.id)}
+                  className={`px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-wider transition-all ${
+                    activeGrcType === type.id
                       ? "bg-blue-600 text-white shadow-sm"
-                      : "bg-slate-100 hover:bg-slate-200 text-slate-600"
+                      : "bg-slate-100 hover:bg-slate-200 text-slate-650"
                   }`}
                 >
-                  {tab.label}
+                  {type.label}
                 </button>
               ))}
             </div>
@@ -146,9 +182,16 @@ export default function SgrcResourcesListPage() {
               >
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="px-2.5 py-0.5 rounded bg-blue-50 border border-blue-100 text-[9px] font-black uppercase tracking-wider text-blue-650">
-                      {item.tag}
-                    </span>
+                    <div className="flex gap-1.5 items-center">
+                      <span className="px-2.5 py-0.5 rounded bg-blue-50 border border-blue-100 text-[9px] font-black uppercase tracking-wider text-blue-650">
+                        {item.tag}
+                      </span>
+                      {item.grcType && (
+                        <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-[9px] font-bold text-slate-600 uppercase tracking-widest">
+                          {item.grcType}
+                        </span>
+                      )}
+                    </div>
                     <span className="text-[10px] text-slate-400 font-bold">{item.date}</span>
                   </div>
                   <div className="space-y-2">

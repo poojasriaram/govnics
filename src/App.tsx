@@ -19,10 +19,13 @@ import SgrceLibraryPage from "@/pages/SgrceLibraryPage";
 import SgrcEstimatorPage from "@/pages/SgrcEstimatorPage";
 import SgrcServicesListPage from "@/pages/SgrcServicesListPage";
 import SgrcResourcesListPage from "@/pages/SgrcResourcesListPage";
+import AnalyticsPage from "@/pages/AnalyticsPage";
+import { TelemetryTracker } from "@/components/analytics/TelemetryTracker";
 
 function App() {
   return (
     <BrowserRouter>
+      <TelemetryTracker />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<AboutPage />} />
@@ -44,6 +47,7 @@ function App() {
         <Route path="/cookies" element={<CookiePolicyPage />} />
         <Route path="/staffing" element={<ManageStaffingPage />} />
         <Route path="/partners" element={<PartnersPage />} />
+        <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

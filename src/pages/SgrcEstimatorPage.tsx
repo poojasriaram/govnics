@@ -4,6 +4,7 @@ import {
   Bot, Shield, Cpu, RefreshCw, Layers, CheckCircle2, 
   Download, ArrowRight, Server, Database, Code, ShieldCheck, Clock
 } from "lucide-react";
+import { trackEvent } from "@/utils/analytics";
 
 
 export default function SgrcEstimatorPage() {
@@ -52,6 +53,16 @@ export default function SgrcEstimatorPage() {
     setLoading(true);
     setLoadingStep(0);
     setShowResults(false);
+
+    // Track telemetry calculations
+    trackEvent("estimator_calc", "Statutory GRC", {
+      state: statesCount === "1" ? "Single State" : statesCount === "2-5" ? "2-5 States" : statesCount === "6-15" ? "6-15 States" : "Pan-India",
+      employeeCount: empRange === "<100" ? 50 : empRange === "100-500" ? 250 : empRange === "500-2500" ? 1500 : 5000,
+      avgSalary: 22000,
+      totalLiability: empRange === "<100" ? 165000 : empRange === "100-500" ? 825000 : empRange === "500-2500" ? 4950000 : 16500000,
+      selectedModules: modules,
+      selectedAiLayers: aiSlabs
+    });
 
     // Simulate multi-step calculation logs
     const interval = setInterval(() => {

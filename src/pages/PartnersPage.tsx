@@ -14,6 +14,7 @@ import heroIntegration from "@/assets/hero-integration.jpg";
 import heroSoc from "@/assets/hero-soc.jpg";
 import heroDrone from "@/assets/hero-drone.jpg";
 import verticalsFacility from "@/assets/verticals-facility.jpg";
+import { trackEvent } from "@/utils/analytics";
 
 const partnerTypes = [
   {
@@ -213,6 +214,20 @@ export default function PartnersPage() {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
+
+    // Log Partner Form submit event to GRC analytics
+    trackEvent("form_submit", "General", {
+      formName: "PartnerForm",
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+      designation: formData.designation,
+      phone: formData.phone,
+      location: formData.location,
+      partnershipType: formData.partnershipType,
+      message: formData.message
+    });
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSuccess(true);

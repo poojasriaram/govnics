@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Mail, MapPin, Calendar, Clock, CheckCircle2, ShieldCheck } from "lucide-react";
 import { industriesData } from "@/data/industries-data";
+import { trackEvent } from "@/utils/analytics";
 
 export const GrcContact = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,18 @@ export const GrcContact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    
+    // Log form submit event to GRC analytics
+    trackEvent("form_submit", "Statutory GRC", {
+      name: formData.name,
+      email: formData.email,
+      company: formData.org,
+      interest: formData.industry || "General GRC Consultation",
+      phone: formData.phone,
+      slotTime: selectedTime || "Not Selected",
+      message: formData.requirement
+    });
+
     setTimeout(() => {
       setSubmitting(false);
       setSuccess(true);

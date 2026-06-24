@@ -8,6 +8,7 @@ export interface ResourceItem {
   readTime: string;
   author: string;
   downloadUrl?: string;
+  grcType?: "Act" | "Rule" | "Compliance" | "Standard";
 }
 
 export const resourcesData: ResourceItem[] = [
@@ -20,7 +21,8 @@ export const resourcesData: ResourceItem[] = [
     date: "May 28, 2026",
     readTime: "15 min read",
     author: "Senior GRC Privacy Counsel",
-    downloadUrl: "#"
+    downloadUrl: "#",
+    grcType: "Act"
   },
   {
     id: "rbi-it-outsource-alert",
@@ -30,7 +32,8 @@ export const resourcesData: ResourceItem[] = [
     summary: "Immediate compliance steps required for all commercial banks, NBFCs, and fintech partners regarding third-party audit trails, subcontractor SLAs, and continuous risk tracking.",
     date: "June 01, 2026",
     readTime: "5 min read",
-    author: "BFSI Advisory Team"
+    author: "BFSI Advisory Team",
+    grcType: "Rule"
   },
   {
     id: "brsr-esg-report",
@@ -41,7 +44,8 @@ export const resourcesData: ResourceItem[] = [
     date: "May 15, 2026",
     readTime: "22 min read",
     author: "Govenics ESG Task Force",
-    downloadUrl: "#"
+    downloadUrl: "#",
+    grcType: "Compliance"
   },
   {
     id: "iso27001-2022-update",
@@ -51,7 +55,8 @@ export const resourcesData: ResourceItem[] = [
     summary: "A step-by-step documentation brief explaining key differences in controls, threat intelligence integrations, and physical-security assessments required for renewal.",
     date: "April 30, 2026",
     readTime: "8 min read",
-    author: "Chief Information Security Auditor"
+    author: "Chief Information Security Auditor",
+    grcType: "Standard"
   },
   {
     id: "hospital-accreditation-blog",
@@ -61,6 +66,8 @@ export const resourcesData: ResourceItem[] = [
     summary: "Practical operational notes for hospital quality heads regarding patient risk consent forms, OT sterilization logs, and clinical governance audits.",
     date: "May 22, 2026",
     readTime: "6 min read",
-    author: "Director of Quality Accreditation"
+    author: "Director of Quality Accreditation",
+    grcType: "Compliance"
   }
 ];
+

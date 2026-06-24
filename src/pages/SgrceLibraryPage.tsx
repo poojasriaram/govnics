@@ -8,6 +8,38 @@ import {
   Calculator, UserCheck, Play, Scale, Leaf, Building, CalendarCheck, Copy, Check, Search
 } from "lucide-react";
 
+// Helpers for Advanced Search Filtering
+const getCleanJurisdiction = (enacted: string) => {
+  if (!enacted) return "Central";
+  if (enacted.toLowerCase().includes("central") || enacted.toLowerCase().includes("parliament") || enacted.toLowerCase().includes("ministry")) {
+    return "Central";
+  }
+  return enacted
+    .replace(/\s+State\s+Legislature/i, "")
+    .replace(/\s+Legislature/i, "")
+    .replace(/\s+Government/i, "")
+    .trim();
+};
+
+const matchesEra = (docYear: string, era: string) => {
+  if (era === "All") return true;
+  const yr = parseInt(docYear);
+  if (isNaN(yr)) return false;
+  if (era === "post-2020") return yr >= 2020;
+  if (era === "2010s") return yr >= 2010 && yr <= 2019;
+  if (era === "2000s") return yr >= 2000 && yr <= 2009;
+  if (era === "1990s") return yr >= 1990 && yr <= 1999;
+  if (era === "pre-1990") return yr < 1990;
+  return true;
+};
+
+const availableKeywords = [
+  { id: "labor", label: "Labor & Workers", terms: ["labour", "worker", "employment", "employee", "remuneration", "standing orders", "apprentice", "cine-worker"] },
+  { id: "safety", label: "Safety & Health", terms: ["safety", "health", "hazard", "medical", "pollution", "accident", "maternity", "water", "air", "public liability"] },
+  { id: "wages", label: "Wages & Money", terms: ["wage", "bonus", "gratuity", "pension", "provident", "cess", "tax", "welfare", "fund"] },
+  { id: "licensing", label: "Licensing & Registry", terms: ["license", "licensing", "registration", "register", "filing", "consent", "reporting", "audit"] },
+  { id: "corporate", label: "Corporate & SEZ", terms: ["company", "companies", "corporate", "sez", "listing", "sebi", "shareholding", "fema", "foreign exchange", "board"] }
+];
 
 export default function SgrceLibraryPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,6 +51,12 @@ export default function SgrceLibraryPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [expandedActs, setExpandedActs] = useState<{ [key: string]: boolean }>({});
+
+  // Advanced filters states
+  const [selectedJurisdiction, setSelectedJurisdiction] = useState<string>("All");
+  const [selectedEra, setSelectedEra] = useState<string>("All");
+  const [sortBy, setSortBy] = useState<string>("title-asc");
+  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
 
   // Calculator states
   const [epfBasic, setEpfBasic] = useState<string>("25000");
@@ -37,12 +75,21 @@ export default function SgrceLibraryPage() {
 
   const selectTab = (tabId: string) => {
     setSearchParams({ domain: activeDomain, tab: tabId });
+    setSelectedJurisdiction("All");
+    setSelectedEra("All");
+    setSortBy("title-asc");
+    setSelectedKeywords([]);
+    setSearchQuery("");
   };
 
   const selectDomain = (domainId: "lei" | "ehs" | "fcc") => {
     const structure = getSidebarStructure(domainId);
     const defaultTab = structure.statutory[0]?.id || "acts";
     setSearchParams({ domain: domainId, tab: defaultTab });
+    setSelectedJurisdiction("All");
+    setSelectedEra("All");
+    setSortBy("title-asc");
+    setSelectedKeywords([]);
     setSearchQuery("");
   };
 
@@ -526,11 +573,64 @@ export default function SgrceLibraryPage() {
     // 2. Structured Acts/Codes Database
     const docList: StatutoryDocument[] | undefined = (sgrcStatutoryDatabase[activeDomain] as any)?.[activeTab];
     if (docList) {
-      const filteredDocs = docList.filter(doc => 
-        doc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        doc.objective.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        doc.applicability.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      // Dynamic lists for filters
+      const uniqueJurisdictions = Array.from(
+        new Set(
+          docList.map((doc) => getCleanJurisdiction(doc.enactedBy))
+        )
+      ).filter(Boolean).sort();
+
+      const matchesKeywords = (doc: StatutoryDocument) => {
+        if (selectedKeywords.length === 0) return true;
+        const textToSearch = `${doc.title} ${doc.objective} ${doc.applicability} ${doc.keyProvisions.join(" ")}`.toLowerCase();
+        return selectedKeywords.every(kwId => {
+          const kw = availableKeywords.find(k => k.id === kwId);
+          if (!kw) return true;
+          return kw.terms.some(term => textToSearch.includes(term));
+        });
+      };
+
+      const sortDocs = (a: StatutoryDocument, b: StatutoryDocument) => {
+        if (sortBy === "title-asc") {
+          return a.title.localeCompare(b.title);
+        }
+        if (sortBy === "title-desc") {
+          return b.title.localeCompare(a.title);
+        }
+        if (sortBy === "year-desc") {
+          const yrA = parseInt(a.year) || 0;
+          const yrB = parseInt(b.year) || 0;
+          return yrB - yrA;
+        }
+        if (sortBy === "year-asc") {
+          const yrA = parseInt(a.year) || 0;
+          const yrB = parseInt(b.year) || 0;
+          return yrA - yrB;
+        }
+        return 0;
+      };
+
+      const filteredDocs = docList
+        .filter((doc) => {
+          // Search query match
+          const matchesSearch = searchQuery === "" ||
+            doc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            doc.objective.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            doc.applicability.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            doc.enactedBy.toLowerCase().includes(searchQuery.toLowerCase());
+          
+          // Jurisdiction match
+          const matchesJur = selectedJurisdiction === "All" || getCleanJurisdiction(doc.enactedBy) === selectedJurisdiction;
+
+          // Era match
+          const matchesYrEra = matchesEra(doc.year, selectedEra);
+
+          // Keywords match
+          const matchesKws = matchesKeywords(doc);
+
+          return matchesSearch && matchesJur && matchesYrEra && matchesKws;
+        })
+        .sort(sortDocs);
 
       return (
         <div className="space-y-6">
@@ -548,17 +648,118 @@ export default function SgrceLibraryPage() {
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
-              placeholder={`Search ${activeTab.replace(/-/g, " ")}...`}
+              placeholder={`Search ${activeTab.replace(/-/g, " ")} by title, objective or jurisdiction...`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full h-11 pl-10 pr-4 rounded-xl border border-slate-250 bg-white text-xs font-semibold outline-none focus:border-blue-500 transition-all text-slate-800"
             />
           </div>
 
+          {/* Advanced Filter Panel */}
+          <div className="bg-slate-50 border border-slate-200/80 rounded-3xl p-4 md:p-5 space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {/* Jurisdiction Select */}
+              <div className="space-y-1 text-left">
+                <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Jurisdiction / Region</label>
+                <select
+                  value={selectedJurisdiction}
+                  onChange={(e) => setSelectedJurisdiction(e.target.value)}
+                  className="w-full h-9 px-3 rounded-lg border border-slate-250 bg-white text-xs font-bold text-slate-700 outline-none focus:border-blue-500 transition-all"
+                >
+                  <option value="All">All Jurisdictions</option>
+                  <option value="Central">Central / Federal</option>
+                  {uniqueJurisdictions.filter(j => j !== "Central").map(jur => (
+                    <option key={jur} value={jur}>{jur}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Enactment Era Select */}
+              <div className="space-y-1 text-left">
+                <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Enactment Era</label>
+                <select
+                  value={selectedEra}
+                  onChange={(e) => setSelectedEra(e.target.value)}
+                  className="w-full h-9 px-3 rounded-lg border border-slate-250 bg-white text-xs font-bold text-slate-700 outline-none focus:border-blue-500 transition-all"
+                >
+                  <option value="All">All Eras</option>
+                  <option value="post-2020">Post-2020 (2020s)</option>
+                  <option value="2010s">2010 - 2019 (2010s)</option>
+                  <option value="2000s">2000 - 2009 (2000s)</option>
+                  <option value="1990s">1990 - 1999 (1990s)</option>
+                  <option value="pre-1990">Before 1990</option>
+                </select>
+              </div>
+
+              {/* Sort By Select */}
+              <div className="space-y-1 text-left">
+                <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Sort By</label>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="w-full h-9 px-3 rounded-lg border border-slate-250 bg-white text-xs font-bold text-slate-700 outline-none focus:border-blue-500 transition-all"
+                >
+                  <option value="title-asc">Title: A &rarr; Z</option>
+                  <option value="title-desc">Title: Z &rarr; A</option>
+                  <option value="year-desc">Year: Newest First</option>
+                  <option value="year-asc">Year: Oldest First</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Keyword Quick Tags */}
+            <div className="space-y-2 text-left pt-2 border-t border-slate-200/60">
+              <label className="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Quick Topic Filters</label>
+              <div className="flex flex-wrap gap-1.5">
+                {availableKeywords.map(kw => {
+                  const isSelected = selectedKeywords.includes(kw.id);
+                  return (
+                    <button
+                      key={kw.id}
+                      onClick={() => {
+                        setSelectedKeywords(prev => 
+                          prev.includes(kw.id) ? prev.filter(k => k !== kw.id) : [...prev, kw.id]
+                        );
+                      }}
+                      className={`px-3 py-1 rounded-lg text-[9px] font-extrabold uppercase tracking-wider transition-all border ${
+                        isSelected 
+                          ? "bg-blue-50 text-blue-650 border-blue-250 shadow-sm"
+                          : "bg-white text-slate-500 border-slate-200 hover:border-slate-300"
+                      }`}
+                    >
+                      {kw.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Reset Panel */}
+            {(selectedJurisdiction !== "All" || selectedEra !== "All" || sortBy !== "title-asc" || selectedKeywords.length > 0 || searchQuery !== "") && (
+              <div className="flex justify-between items-center text-[10px] pt-1 border-t border-slate-200/40 text-left">
+                <span className="text-slate-400 font-bold">
+                  Filters active. Found <strong className="text-slate-700">{filteredDocs.length}</strong> of <strong className="text-slate-550">{docList.length}</strong> items.
+                </span>
+                <button
+                  onClick={() => {
+                    setSelectedJurisdiction("All");
+                    setSelectedEra("All");
+                    setSortBy("title-asc");
+                    setSelectedKeywords([]);
+                    setSearchQuery("");
+                  }}
+                  className="text-[10px] font-black text-rose-600 hover:text-rose-700 uppercase tracking-wider transition-colors"
+                >
+                  Reset All Filters
+                </button>
+              </div>
+            )}
+          </div>
+
           {/* Document list */}
           {filteredDocs.length === 0 ? (
             <div className="p-8 text-center text-slate-450 bg-slate-50 border border-slate-150 rounded-2xl font-semibold">
-              No documents found matching "{searchQuery}"
+              No documents found matching the selected filters.
             </div>
           ) : (
             <div className="space-y-4">
