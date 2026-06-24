@@ -6,7 +6,7 @@ import {
   BookOpen, Calendar, HelpCircle, FileText, Download, CheckCircle2,
   Percent, Coins, Clock, Globe, ShieldAlert, Award, FileCheck, 
   Calculator, UserCheck, Play, Scale, Leaf, Building, CalendarCheck, Copy, Check, Search,
-  Database, PlusCircle, Trash2, Edit, AlertCircle, History, Share2, ChevronLeft, ChevronRight, ShieldCheck
+  Database, PlusCircle, Trash2, History, ChevronLeft, ChevronRight, ShieldCheck
 } from "lucide-react";
 
 
