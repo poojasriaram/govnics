@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -11,16 +11,12 @@ export const Footer = () => {
         {/* Brand Segment */}
         <div className="lg:col-span-2 space-y-6">
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-blue-500/20">
-              <ShieldCheck className="w-6 h-6 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tight text-white group-hover:text-blue-400 transition-colors font-heading">
-                GOVENICS
-              </span>
-              <span className="text-[9px] font-bold tracking-[0.2em] text-slate-500 -mt-1 uppercase">
-                GRC Consulting
-              </span>
+            <div className="p-1.5 bg-white rounded-xl shadow-lg border border-white/10">
+              <img
+                src="/logo.png"
+                alt="GOVENICS GRC"
+                className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
             </div>
           </Link>
           <p className="text-sm text-slate-400 leading-relaxed max-w-sm">

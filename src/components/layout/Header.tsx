@@ -87,19 +87,11 @@ export const Header = () => {
       <nav className="container mx-auto px-6 h-20 flex items-center justify-between relative">
         {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform">
-            <ShieldCheck className="w-6 h-6 text-white" />
-          </div>
-          <div className="flex flex-col">
-            <span
-              className="text-xl font-black tracking-tight transition-colors font-heading text-slate-900 group-hover:text-blue-600"
-            >
-              GOVENICS
-            </span>
-            <span className="text-[9px] font-bold tracking-[0.2em] -mt-1 uppercase text-slate-400">
-              GRC Consulting
-            </span>
-          </div>
+          <img
+            src="/logo.png"
+            alt="GOVENICS GRC"
+            className="h-14 w-auto rounded-lg object-contain transition-transform duration-300 group-hover:scale-105"
+          />
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -651,6 +643,11 @@ export const Header = () => {
           <Link to="/about" className={getLinkClass("/about")}>
             About Us
           </Link>
+
+          {/* Contact Link */}
+          <Link to="/contact" className={getLinkClass("/contact")}>
+            Contact
+          </Link>
         </div>
 
         {/* Action Buttons */}
@@ -1199,6 +1196,11 @@ export const Header = () => {
             {/* Mobile Link for About Us */}
             <Link to="/about" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
               About Us
+            </Link>
+
+            {/* Mobile Link for Contact */}
+            <Link to="/contact" onClick={() => setMobileOpen(false)} className="p-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-lg block">
+              Contact
             </Link>
           </div>
 
