@@ -3,13 +3,15 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { useLocation } from "react-router-dom";
 import { GrcExitIntentPopup } from "../ui/GrcExitIntentPopup";
+import { GrcChatBot } from "../ai/GrcChatBot";
 
 interface LayoutProps {
   children: React.ReactNode;
   noPadding?: boolean;
+  hideHeaderFooter?: boolean;
 }
 
-export const Layout = ({ children, noPadding = false }: LayoutProps) => {
+export const Layout = ({ children, noPadding = false, hideHeaderFooter = false }: LayoutProps) => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
@@ -53,12 +55,14 @@ export const Layout = ({ children, noPadding = false }: LayoutProps) => {
       {/* Elegant light slate gridlines overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.012)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none -z-10" />
 
-      <Header />
-      <main className={`flex-grow relative ${noPadding ? "" : "pt-32"}`}>
+      {!hideHeaderFooter && <Header />}
+      <main className={`flex-grow relative ${noPadding || hideHeaderFooter ? "" : "pt-32"}`}>
         {children}
       </main>
-      <Footer />
+      {!hideHeaderFooter && <Footer />}
+      {!hideHeaderFooter && <GrcChatBot />}
       <GrcExitIntentPopup />
     </div>
   );
 };
+

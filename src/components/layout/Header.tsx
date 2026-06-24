@@ -4,17 +4,20 @@ import {
   Menu, X, ArrowRight, ShieldCheck, ChevronDown,
   Scale, Building, CreditCard, Factory, Users, ShieldAlert, UserPlus, FileSpreadsheet, Leaf,
   Calendar, BookOpen, FileText, Megaphone, Heart, Video, Coins, Percent, Clock, CalendarCheck, Globe,
-  Calculator
+  Calculator, User, LogOut
 } from "lucide-react";
 import { industriesData } from "@/data/industries-data";
 import { servicesData } from "@/data/services-data";
+import { useAuth } from "@/context/AuthContext";
 
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const { pathname } = useLocation();
+  const { user, isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -25,6 +28,7 @@ export const Header = () => {
   useEffect(() => {
     setMobileOpen(false);
     setActiveDropdown(null);
+    setProfileDropdownOpen(false);
   }, [pathname]);
   const toggleDropdown = (name: string) => {
     setActiveDropdown(activeDropdown === name ? null : name);
@@ -652,13 +656,114 @@ export const Header = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="hidden xl:flex items-center gap-3">
-          <Link to="/contact">
-            <button className="flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/20 text-xs font-bold tracking-wide transition-all hover:scale-[1.02]">
-              Consultation <ArrowRight className="w-3.5 h-3.5" />
+        {!isAuthenticated ? (
+          <div className="hidden xl:flex items-center gap-3">
+            <Link to="/login" className="text-xs font-extrabold text-slate-800 hover:text-blue-600 transition-colors uppercase tracking-wider px-2 py-1">
+              Sign In
+            </Link>
+            <Link to="/register">
+              <button className="flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-500/25 text-xs font-bold tracking-wide transition-all hover:scale-[1.02]">
+                Get Started <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <div className="hidden xl:flex items-center gap-3 relative">
+            <button 
+              onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+              className="flex items-center gap-2 px-3 py-1.5 bg-slate-50/80 hover:bg-slate-100 border border-slate-200/80 rounded-xl transition-all cursor-pointer select-none"
+            >
+              <div className="w-6.5 h-6.5 rounded-full bg-gradient-to-br from-blue-500 to-indigo-650 flex items-center justify-center text-white text-[10px] font-black shrink-0">
+                {user?.fullName?.substring(0, 2).toUpperCase() || "US"}
+              </div>
+              <div className="flex flex-col text-left max-w-[120px]">
+                <span className="text-[11px] font-black text-slate-900 truncate leading-tight">
+                  {user?.fullName}
+                </span>
+                <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider truncate leading-none mt-0.5">
+                  {user?.designation}
+                </span>
+              </div>
+              <ChevronDown className={`w-3.5 h-3.5 text-slate-500 transition-transform duration-200 ${profileDropdownOpen ? "rotate-180" : ""}`} />
             </button>
-          </Link>
-        </div>
+
+            {profileDropdownOpen && (
+              <div className="absolute top-full right-0 w-64 bg-white border border-slate-200 shadow-2xl rounded-2xl p-4 animate-slide-up-dropdown mt-1.5 text-left z-50">
+                <div className="pb-3 border-b border-slate-100 mb-2">
+                  <div className="text-[9px] font-bold text-blue-600 uppercase tracking-widest">
+                    Active GRC Session
+                  </div>
+                  <div className="text-xs font-black text-slate-800 mt-1 truncate">
+                    {user?.fullName}
+                  </div>
+                  <div className="text-[10px] text-slate-450 font-bold leading-tight truncate">
+                    {user?.designation} • {user?.companyName}
+                  </div>
+                  <div className="text-[9px] text-slate-400 font-medium truncate">
+                    {user?.email}
+                  </div>
+                  {user?.primaryStandard && (
+                    <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 bg-blue-50 border border-blue-100 rounded text-[9px] font-bold text-blue-700 uppercase">
+                      <ShieldCheck className="w-3 h-3 shrink-0" />
+                      <span>{user.primaryStandard} Target</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="space-y-2 mb-3">
+                  <div className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">
+                    Calibrated GRC Scope
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {user?.grcScope?.slice(0, 3).map((scope, idx) => (
+                      <span key={idx} className="px-1.5 py-0.5 bg-slate-50 border border-slate-200 text-[8px] font-black text-slate-500 rounded uppercase">
+                        {scope.split(" ")[0]}
+                      </span>
+                    ))}
+                    {user?.grcScope && user.grcScope.length > 3 && (
+                      <span className="px-1.5 py-0.5 bg-slate-50 border border-slate-200 text-[8px] font-black text-slate-500 rounded uppercase">
+                        +{user.grcScope.length - 3} More
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-[9px] text-slate-450 font-bold mt-1 flex flex-col gap-0.5">
+                    <div className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      <span>Maturity: {user?.maturity}</span>
+                    </div>
+                    <div className="text-[8.5px] text-slate-400 font-medium">
+                      Sector: {user?.industry}
+                    </div>
+                    <div className="text-[8.5px] text-slate-400 font-medium">
+                      Scope: {user?.geoFootprint}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-slate-100 flex flex-col gap-1">
+                  <Link 
+                    to="/sgrc/e-library" 
+                    onClick={() => setProfileDropdownOpen(false)}
+                    className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-slate-50 text-xs font-bold text-slate-700 transition-colors"
+                  >
+                    <User className="w-3.5 h-3.5 text-slate-400" />
+                    <span>My e-Library Portal</span>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setProfileDropdownOpen(false);
+                    }}
+                    className="w-full flex items-center gap-2 p-1.5 rounded-lg hover:bg-rose-50 text-xs font-bold text-rose-700 transition-colors text-left font-sans"
+                  >
+                    <LogOut className="w-3.5 h-3.5 text-rose-450" />
+                    <span>Log Out</span>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Mobile Toggle */}
         <button
@@ -1099,12 +1204,55 @@ export const Header = () => {
             </Link>
           </div>
 
-          <div className="flex flex-col gap-2.5 pt-4 border-t border-slate-100">
-            <Link to="/contact" className="w-full">
-              <button className="w-full flex items-center justify-center gap-1.5 py-3 bg-blue-600 text-white rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20">
-                Book Consultation <ArrowRight className="w-4 h-4" />
-              </button>
-            </Link>
+          <div className="flex flex-col gap-2.5 pt-4 border-t border-slate-100 text-left">
+            {!isAuthenticated ? (
+              <>
+                <Link to="/login" onClick={() => setMobileOpen(false)} className="w-full">
+                  <button className="w-full py-2.5 border border-slate-200 text-slate-800 rounded-xl text-xs font-bold transition-all hover:bg-slate-50">
+                    Sign In to Portal
+                  </button>
+                </Link>
+                <Link to="/register" onClick={() => setMobileOpen(false)} className="w-full">
+                  <button className="w-full py-2.5 bg-blue-600 text-white rounded-xl text-xs font-bold shadow-lg shadow-blue-500/20">
+                    Create GRC Account
+                  </button>
+                </Link>
+                <Link to="/contact" onClick={() => setMobileOpen(false)} className="w-full">
+                  <button className="w-full flex items-center justify-center gap-1.5 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold">
+                    Book Consultation <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <div className="space-y-3">
+                <div className="p-3 bg-slate-50 border border-slate-150 rounded-xl">
+                  <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Signed in as</div>
+                  <div className="text-xs font-black text-slate-800 truncate">{user?.fullName}</div>
+                  <div className="text-[10px] text-slate-500 font-bold leading-tight truncate">{user?.designation} at {user?.companyName}</div>
+                  <div className="text-[9px] text-slate-400 font-medium truncate">{user?.email}</div>
+                  <div className="mt-2 text-[9.5px] text-slate-650 font-bold">Target Standard: {user?.primaryStandard}</div>
+                  <div className="text-[9px] text-slate-550 font-semibold">Maturity: {user?.maturity}</div>
+                  <div className="text-[9px] text-slate-550 font-semibold">Sector: {user?.industry}</div>
+                  <div className="text-[9px] text-slate-550 font-semibold">Scope: {user?.geoFootprint}</div>
+                </div>
+                <Link to="/sgrc/e-library" onClick={() => setMobileOpen(false)} className="w-full block">
+                  <button className="w-full py-2.5 bg-blue-600 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5">
+                    <User className="w-3.5 h-3.5" />
+                    <span>My e-Library Portal</span>
+                  </button>
+                </Link>
+                <button
+                  onClick={() => {
+                    logout();
+                    setMobileOpen(false);
+                  }}
+                  className="w-full py-2.5 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span>Log Out</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}

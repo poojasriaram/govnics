@@ -20,36 +20,43 @@ import SgrcEstimatorPage from "@/pages/SgrcEstimatorPage";
 import SgrcServicesListPage from "@/pages/SgrcServicesListPage";
 import SgrcResourcesListPage from "@/pages/SgrcResourcesListPage";
 import AnalyticsPage from "@/pages/AnalyticsPage";
+import LoginPage from "@/pages/LoginPage";
+import RegisterPage from "@/pages/RegisterPage";
+import { AuthProvider } from "@/context/AuthContext";
 import { TelemetryTracker } from "@/components/analytics/TelemetryTracker";
 
 function App() {
   return (
     <BrowserRouter>
-      <TelemetryTracker />
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/grc" element={<GrcPage />} />
-        <Route path="/cybersecurity" element={<CyberSecurityPage />} />
-        <Route path="/esg" element={<ESGPage />} />
-        <Route path="/industries" element={<IndustriesPage />} />
-        <Route path="/industries/:clusterId" element={<IndustryDetailPage />} />
-        <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
-        <Route path="/sgrc/services" element={<SgrcServicesListPage />} />
-        <Route path="/sgrc/services/:serviceId" element={<SgrcServiceDetailPage />} />
-        <Route path="/sgrc/resources" element={<SgrcResourcesListPage />} />
-        <Route path="/sgrc/e-library" element={<SgrceLibraryPage />} />
-        <Route path="/sgrc/estimator" element={<SgrcEstimatorPage />} />
-        <Route path="/resources" element={<ResourceHubPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/privacy" element={<PrivacyPolicyPage />} />
-        <Route path="/terms" element={<TermsOfServicePage />} />
-        <Route path="/cookies" element={<CookiePolicyPage />} />
-        <Route path="/staffing" element={<ManageStaffingPage />} />
-        <Route path="/partners" element={<PartnersPage />} />
-        <Route path="/analytics" element={<AnalyticsPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <AuthProvider>
+        <TelemetryTracker />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/grc" element={<GrcPage />} />
+          <Route path="/cybersecurity" element={<CyberSecurityPage />} />
+          <Route path="/esg" element={<ESGPage />} />
+          <Route path="/industries" element={<IndustriesPage />} />
+          <Route path="/industries/:clusterId" element={<IndustryDetailPage />} />
+          <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
+          <Route path="/sgrc/services" element={<SgrcServicesListPage />} />
+          <Route path="/sgrc/services/:serviceId" element={<SgrcServiceDetailPage />} />
+          <Route path="/sgrc/resources" element={<SgrcResourcesListPage />} />
+          <Route path="/sgrc/e-library" element={<SgrceLibraryPage />} />
+          <Route path="/sgrc/estimator" element={<SgrcEstimatorPage />} />
+          <Route path="/resources" element={<ResourceHubPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsOfServicePage />} />
+          <Route path="/cookies" element={<CookiePolicyPage />} />
+          <Route path="/staffing" element={<ManageStaffingPage />} />
+          <Route path="/partners" element={<PartnersPage />} />
+          <Route path="/analytics" element={<AnalyticsPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

@@ -5,8 +5,10 @@ import { sgrceLibraryData, sgrcStatutoryDatabase, type StatutoryDocument } from 
 import { 
   BookOpen, Calendar, HelpCircle, FileText, Download, CheckCircle2,
   Percent, Coins, Clock, Globe, ShieldAlert, Award, FileCheck, 
-  Calculator, UserCheck, Play, Scale, Leaf, Building, CalendarCheck, Copy, Check, Search
+  Calculator, UserCheck, Play, Scale, Leaf, Building, CalendarCheck, Copy, Check, Search,
+  Database, PlusCircle, Trash2, Edit, AlertCircle, History, Share2, ChevronLeft, ChevronRight, ShieldCheck
 } from "lucide-react";
+
 
 // Helpers for Advanced Search Filtering
 const getCleanJurisdiction = (enacted: string) => {
@@ -41,6 +43,188 @@ const availableKeywords = [
   { id: "corporate", label: "Corporate & SEZ", terms: ["company", "companies", "corporate", "sez", "listing", "sebi", "shareholding", "fema", "foreign exchange", "board"] }
 ];
 
+interface LibrarySlide {
+  id: string;
+  title: string;
+  description: string;
+  badge: string;
+  domain: "lei" | "ehs" | "fcc";
+  tab: string;
+  icon: any;
+  actionLabel: string;
+}
+
+const librarySlides: LibrarySlide[] = [
+  {
+    id: "labour-codes",
+    title: "Consolidated Labour Codes 2026",
+    description: "Prepare for India's upcoming regulatory consolidation. Access comprehensive frameworks for Wages, Social Security, OSH, and Industrial Relations.",
+    badge: "Statutory Reform",
+    domain: "lei",
+    tab: "labour-codes",
+    icon: Scale,
+    actionLabel: "View Labour Codes"
+  },
+  {
+    id: "dpdp-compliance",
+    title: "DPDP Act Operational Guide",
+    description: "Get compliant with the Digital Personal Data Protection Act. Access crucial consent frameworks, audit protocols, and data fiduciary compliance checklists.",
+    badge: "Data Privacy",
+    domain: "fcc",
+    tab: "acts",
+    icon: ShieldAlert,
+    actionLabel: "Explore DPDP Act"
+  },
+  {
+    id: "epf-thresholds",
+    title: "EPF Higher Pension Contribution Slabs",
+    description: "Understand the revised guidelines for processing EPFO employer contributions on monthly basic salary exceeding the standard ₹15,000 threshold.",
+    badge: "Social Security",
+    domain: "lei",
+    tab: "calculators",
+    icon: Coins,
+    actionLabel: "Open EPF Calculator"
+  },
+  {
+    id: "posh-audit",
+    title: "POSH IC Audit & Annual Mandates",
+    description: "Step-by-step checklist to set up your Internal Committee (IC) and prepare your mandatory POSH annual report filings for district officers.",
+    badge: "Safety & Health",
+    domain: "lei",
+    tab: "acts",
+    icon: UserCheck,
+    actionLabel: "Read POSH Act"
+  },
+  {
+    id: "iso-ehs",
+    title: "ISO 14001:2015 & EHS Consent Slabs",
+    description: "Navigate global environmental standards on pollution abatement, waste reduction, and state-level green category consent renewal timelines.",
+    badge: "EHS Standards",
+    domain: "ehs",
+    tab: "ehs-standards",
+    icon: Leaf,
+    actionLabel: "Learn EHS Standards"
+  },
+  {
+    id: "mca-filings",
+    title: "MCA Annual Filings (Form AOC-4)",
+    description: "Stay ahead of fiscal compliance calendar deadlines. Review statutory penalty slabs of ₹100/day for delayed balance sheet submittals.",
+    badge: "Fiscal & Corporate",
+    domain: "fcc",
+    tab: "fcc-calendar",
+    icon: Building,
+    actionLabel: "View Filings Calendar"
+  },
+  {
+    id: "lwf-slabs",
+    title: "State Labour Welfare Fund (LWF) Rates",
+    description: "Access latest semi-annual contribution slabs for workers and employers in Maharashtra, Karnataka, Tamil Nadu, and Telangana.",
+    badge: "LWF Compliance",
+    domain: "lei",
+    tab: "labour-welfare-fund",
+    icon: CalendarCheck,
+    actionLabel: "Verify LWF Slabs"
+  },
+  {
+    id: "gratuity-rules",
+    title: "Gratuity Benefits Eligibility & Exemption",
+    description: "Calculate employee gratuity benefits based on the 15-day salary formula for continuous service periods of 5 years and above.",
+    badge: "Employee Benefits",
+    domain: "lei",
+    tab: "calculators",
+    icon: Coins,
+    actionLabel: "Open Gratuity Calc"
+  }
+];
+
+interface KrmDocument {
+  id: string;
+  title: string;
+  domain: "lei" | "ehs" | "fcc";
+  category: string;
+  version: string;
+  classification: "Public" | "Internal" | "Confidential" | "Restricted";
+  owner: string;
+  lastReviewed: string;
+  applicability: string;
+  status: "Active" | "Pending Review" | "Archived";
+}
+
+const initialKrmDocs: KrmDocument[] = [
+  {
+    id: "DOC-2026-001",
+    title: "The Code on Social Security, 2020",
+    domain: "lei",
+    category: "Labour Code",
+    version: "v2.1",
+    classification: "Public",
+    owner: "Legal & Compliance",
+    lastReviewed: "2026-04-12",
+    applicability: "Establishments with 10+ employees",
+    status: "Active"
+  },
+  {
+    id: "DOC-2026-002",
+    title: "Digital Personal Data Protection (DPDP) Act, 2023",
+    domain: "fcc",
+    category: "Act",
+    version: "v1.4",
+    classification: "Restricted",
+    owner: "Data Protection Office",
+    lastReviewed: "2026-05-30",
+    applicability: "All digital entities processing Indian citizen data",
+    status: "Active"
+  },
+  {
+    id: "DOC-2026-003",
+    title: "ISO 14001:2015 Environmental Standard Policy",
+    domain: "ehs",
+    category: "ISO Standard",
+    version: "v3.0",
+    classification: "Internal",
+    owner: "EHS Operations",
+    lastReviewed: "2026-06-15",
+    applicability: "Manufacturing facilities and plant sites",
+    status: "Active"
+  },
+  {
+    id: "DOC-2026-004",
+    title: "Companies (Filing of AOC-4) Rules",
+    domain: "fcc",
+    category: "Rule",
+    version: "v2.0",
+    classification: "Public",
+    owner: "Finance & Taxation",
+    lastReviewed: "2026-03-01",
+    applicability: "All registered corporate entities in India",
+    status: "Active"
+  },
+  {
+    id: "DOC-2026-005",
+    title: "Contract Labour (Regulation & Abolition) Central Rules",
+    domain: "lei",
+    category: "Rule",
+    version: "v1.2",
+    classification: "Public",
+    owner: "HR Operations",
+    lastReviewed: "2026-01-20",
+    applicability: "Firms employing 20+ contract labourers",
+    status: "Active"
+  },
+  {
+    id: "DOC-2026-006",
+    title: "Hazardous Wastes (Management & Transboundary) Rules",
+    domain: "ehs",
+    category: "Rule",
+    version: "v2.2",
+    classification: "Restricted",
+    owner: "EHS Operations",
+    lastReviewed: "2026-05-10",
+    applicability: "Factories generating chemical or electronic waste",
+    status: "Active"
+  }
+];
+
 export default function SgrceLibraryPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeDomain = (searchParams.get("domain") || "lei") as "lei" | "ehs" | "fcc";
@@ -68,6 +252,58 @@ export default function SgrceLibraryPage() {
   const [taxDeductions, setTaxDeductions] = useState<string>("150000");
 
   const [activeCalcTab, setActiveCalcTab] = useState<"epf" | "gratuity" | "pt" | "tax">("epf");
+
+  // Slider states
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // KRM Registered Documents State
+  const [krmDocs, setKrmDocs] = useState<KrmDocument[]>(initialKrmDocs);
+  const [krmSearch, setKrmSearch] = useState("");
+  const [krmFilterDomain, setKrmFilterDomain] = useState<string>("All");
+  
+  // Admin Form input states
+  const [newDocTitle, setNewDocTitle] = useState("");
+  const [newDocDomain, setNewDocDomain] = useState<"lei" | "ehs" | "fcc">("lei");
+  const [newDocCategory, setNewDocCategory] = useState("Act");
+  const [newDocVersion, setNewDocVersion] = useState("v1.0");
+  const [newDocClassification, setNewDocClassification] = useState<"Public" | "Internal" | "Confidential" | "Restricted">("Public");
+  const [newDocOwner, setNewDocOwner] = useState("Legal & Compliance");
+  const [newDocApplicability, setNewDocApplicability] = useState("");
+  
+  // Toast & Activity Log state
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [revisionLogs, setRevisionLogs] = useState([
+    { timestamp: "2026-06-24 10:45", user: "Admin", action: "Accessed Ledger Dashboard" },
+    { timestamp: "2026-06-24 09:12", user: "system", action: "Auto-synced MCA statutory database" },
+    { timestamp: "2026-06-23 15:30", user: "Legal Compliance", action: "Updated DPDP Act guidelines (v1.4)" }
+  ]);
+
+  const triggerToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 3000);
+  };
+
+  const navigateToSlideTab = (domain: "lei" | "ehs" | "fcc", tabId: string) => {
+    setSearchParams({ domain, tab: tabId });
+    setSelectedJurisdiction("All");
+    setSelectedEra("All");
+    setSortBy("title-asc");
+    setSelectedKeywords([]);
+    setSearchQuery("");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Slider Auto-Play Effect
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      setActiveSlideIndex((prev) => (prev + 1) % librarySlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isHovered]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -122,6 +358,7 @@ export default function SgrceLibraryPage() {
             { id: "professional-tax", label: "Professional Tax", icon: Percent }
           ],
           resources: [
+            { id: "knowledge-management", label: "Knowledge Management", icon: Database },
             { id: "minimum-wages", label: "Minimum Wages", icon: Coins },
             { id: "webinar", label: "Webinar", icon: Play },
             { id: "legal-opinion", label: "Legal Opinion", icon: HelpCircle },
@@ -138,6 +375,7 @@ export default function SgrceLibraryPage() {
             { id: "ehs-standards", label: "EHS Standards & ISO", icon: Award }
           ],
           resources: [
+            { id: "knowledge-management", label: "Knowledge Management", icon: Database },
             { id: "webinar", label: "Webinar", icon: Play },
             { id: "legal-opinion", label: "Legal Opinion", icon: HelpCircle }
           ]
@@ -151,6 +389,7 @@ export default function SgrceLibraryPage() {
             { id: "gazette", label: "Gazette Notifications", icon: FileText }
           ],
           resources: [
+            { id: "knowledge-management", label: "Knowledge Management", icon: Database },
             { id: "fcc-calendar", label: "Compliance Calendar", icon: CalendarCheck },
             { id: "webinar", label: "Webinar", icon: Play },
             { id: "legal-opinion", label: "Legal Opinion", icon: HelpCircle },
@@ -298,8 +537,437 @@ export default function SgrceLibraryPage() {
     };
   };
 
+  // Render Knowledge Resource Management Dashboard
+  const renderKrmDashboard = () => {
+    const totalAssets = krmDocs.length;
+    const publicCount = krmDocs.filter(d => d.classification === "Public").length;
+    const restrictedCount = krmDocs.filter(d => d.classification === "Restricted").length;
+    const internalCount = krmDocs.filter(d => d.classification === "Internal").length;
+    const confidentialCount = krmDocs.filter(d => d.classification === "Confidential").length;
+
+    const filteredLedger = krmDocs.filter(doc => {
+      const matchesSearch = doc.title.toLowerCase().includes(krmSearch.toLowerCase()) ||
+        doc.id.toLowerCase().includes(krmSearch.toLowerCase()) ||
+        doc.category.toLowerCase().includes(krmSearch.toLowerCase()) ||
+        doc.owner.toLowerCase().includes(krmSearch.toLowerCase());
+      
+      const matchesDomain = krmFilterDomain === "All" || doc.domain === krmFilterDomain;
+      
+      return matchesSearch && matchesDomain;
+    });
+
+    const handleRegisterDoc = (e: any) => {
+      e.preventDefault();
+      if (!newDocTitle.trim()) {
+        triggerToast("Please enter a document title.");
+        return;
+      }
+      if (!newDocApplicability.trim()) {
+        triggerToast("Please describe the applicability.");
+        return;
+      }
+
+      const nextNum = krmDocs.length + 1;
+      const formattedNum = nextNum < 10 ? `00${nextNum}` : nextNum < 100 ? `0${nextNum}` : `${nextNum}`;
+      const newDoc: KrmDocument = {
+        id: `DOC-2026-${formattedNum}`,
+        title: newDocTitle.trim(),
+        domain: newDocDomain,
+        category: newDocCategory,
+        version: newDocVersion.trim() || "v1.0",
+        classification: newDocClassification,
+        owner: newDocOwner,
+        lastReviewed: new Date().toISOString().split("T")[0],
+        applicability: newDocApplicability.trim(),
+        status: "Active"
+      };
+
+      setKrmDocs([newDoc, ...krmDocs]);
+      setRevisionLogs([
+        {
+          timestamp: new Date().toISOString().replace("T", " ").substring(0, 16),
+          user: "Admin Portal",
+          action: `Registered statutory asset "${newDocTitle.trim()}" (${newDocVersion})`
+        },
+        ...revisionLogs
+      ]);
+
+      setNewDocTitle("");
+      setNewDocApplicability("");
+      triggerToast(`Successfully registered ${newDoc.id}!`);
+    };
+
+    const handleDeleteDoc = (id: string, title: string) => {
+      setKrmDocs(krmDocs.filter(d => d.id !== id));
+      setRevisionLogs([
+        {
+          timestamp: new Date().toISOString().replace("T", " ").substring(0, 16),
+          user: "Admin Portal",
+          action: `Deregistered statutory asset "${title}" (${id})`
+        },
+        ...revisionLogs
+      ]);
+      triggerToast(`Removed document ${id} from registry.`);
+    };
+
+    return (
+      <div className="space-y-8">
+        <div className="border-b border-slate-200 pb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+          <div className="text-left">
+            <span className="text-[10px] font-black text-blue-650 uppercase tracking-widest flex items-center gap-1">
+              <Database className="w-3 h-3 text-blue-600" /> Registry Operations & Control
+            </span>
+            <h2 className="text-2xl font-black text-slate-900 font-heading mt-1">
+              Knowledge Resource Management (KRM)
+            </h2>
+          </div>
+          <div className="flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-xl shrink-0">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] font-black text-emerald-700 uppercase tracking-wider">
+              Registry Synced
+            </span>
+          </div>
+        </div>
+
+        {/* Telemetry Metric Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left hover:shadow-sm transition-all">
+            <div className="flex justify-between items-center">
+              <span className="text-[9px] font-black uppercase tracking-wider text-slate-450">Active Statutes</span>
+              <BookOpen className="w-4 h-4 text-blue-600" />
+            </div>
+            <div className="text-2xl font-black text-slate-900 mt-1">{totalAssets}</div>
+            <p className="text-[9px] text-slate-500 font-bold mt-1">Classified and indexed</p>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left hover:shadow-sm transition-all">
+            <div className="flex justify-between items-center">
+              <span className="text-[9px] font-black uppercase tracking-wider text-slate-450">Classification Split</span>
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            </div>
+            <div className="text-xs font-black text-slate-900 mt-2 flex flex-wrap gap-x-2 gap-y-1">
+              <span className="text-emerald-650">Pub: {publicCount}</span>
+              <span className="text-blue-650">Int: {internalCount}</span>
+              <span className="text-amber-650">Res: {restrictedCount}</span>
+              <span className="text-rose-650">Con: {confidentialCount}</span>
+            </div>
+            <p className="text-[9px] text-slate-500 font-bold mt-1">Data protection mapping</p>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left hover:shadow-sm transition-all">
+            <div className="flex justify-between items-center">
+              <span className="text-[9px] font-black uppercase tracking-wider text-slate-450">Audit Readiness</span>
+              <Award className="w-4 h-4 text-amber-500" />
+            </div>
+            <div className="text-2xl font-black text-slate-900 mt-1">98.4%</div>
+            <p className="text-[9px] text-emerald-650 font-bold mt-1">✓ Statutory compliance</p>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left hover:shadow-sm transition-all">
+            <div className="flex justify-between items-center">
+              <span className="text-[9px] font-black uppercase tracking-wider text-slate-450">Last Sync Activity</span>
+              <History className="w-4 h-4 text-violet-500" />
+            </div>
+            <div className="text-xs font-black text-slate-900 mt-2 truncate">
+              {revisionLogs[0]?.timestamp || "Just now"}
+            </div>
+            <p className="text-[9px] text-slate-500 font-bold mt-1">Local client-side index</p>
+          </div>
+        </div>
+
+        {/* Two Column Section: Register Form & Audit Logs */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Register Document Form */}
+          <div className="lg:col-span-2 bg-white border border-slate-200 rounded-3xl p-5 md:p-6 text-left shadow-sm space-y-4">
+            <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+              <PlusCircle className="w-5 h-5 text-blue-650" />
+              <div>
+                <h3 className="text-sm font-black text-slate-900">Register Statutory Compliance Resource</h3>
+                <p className="text-[10px] text-slate-450 font-bold">Ingest new statutory assets or guidelines into the GRC repository</p>
+              </div>
+            </div>
+
+            <form onSubmit={handleRegisterDoc} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Document Title</label>
+                  <input
+                    type="text"
+                    value={newDocTitle}
+                    onChange={(e) => setNewDocTitle(e.target.value)}
+                    placeholder="e.g. Maharashtra LWF (Amendment) Act"
+                    className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs font-semibold outline-none focus:border-blue-500 transition-all text-slate-800"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Regulatory Domain</label>
+                  <select
+                    value={newDocDomain}
+                    onChange={(e) => setNewDocDomain(e.target.value as "lei" | "ehs" | "fcc")}
+                    className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-750 outline-none focus:border-blue-500 transition-all"
+                  >
+                    <option value="lei">Labour & Employment (LEI)</option>
+                    <option value="ehs">Environment, Health & Safety (EHS)</option>
+                    <option value="fcc">Fiscal & Corporate (FCC)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Document Category</label>
+                  <select
+                    value={newDocCategory}
+                    onChange={(e) => setNewDocCategory(e.target.value)}
+                    className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-750 outline-none focus:border-blue-500 transition-all"
+                  >
+                    <option value="Act">Act (Statute)</option>
+                    <option value="Rule">Rule (Regulation)</option>
+                    <option value="Gazette">Gazette Notification</option>
+                    <option value="ISO Standard">ISO Standard</option>
+                    <option value="Policy Document">Policy Document</option>
+                    <option value="Compliance Guide">Compliance Guide</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Document Version</label>
+                  <input
+                    type="text"
+                    value={newDocVersion}
+                    onChange={(e) => setNewDocVersion(e.target.value)}
+                    placeholder="e.g. v1.0"
+                    className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs font-semibold outline-none focus:border-blue-500 transition-all text-slate-800"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Classification Level</label>
+                  <select
+                    value={newDocClassification}
+                    onChange={(e) => setNewDocClassification(e.target.value as any)}
+                    className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-750 outline-none focus:border-blue-500 transition-all"
+                  >
+                    <option value="Public">Public (Statutory baseline)</option>
+                    <option value="Internal">Internal (Organization policy)</option>
+                    <option value="Restricted">Restricted (Sensitive audits)</option>
+                    <option value="Confidential">Confidential (Board strategy)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Owner Department</label>
+                  <select
+                    value={newDocOwner}
+                    onChange={(e) => setNewDocOwner(e.target.value)}
+                    className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-705 outline-none focus:border-blue-500 transition-all"
+                  >
+                    <option value="Legal & Compliance">Legal & Compliance</option>
+                    <option value="HR Operations">HR Operations</option>
+                    <option value="EHS Operations">EHS Operations</option>
+                    <option value="Finance & Taxation">Finance & Taxation</option>
+                    <option value="Data Protection Office">Data Protection Office</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Applicability Criteria</label>
+                  <input
+                    type="text"
+                    value={newDocApplicability}
+                    onChange={(e) => setNewDocApplicability(e.target.value)}
+                    placeholder="e.g. Factories employing 10+ workers using power"
+                    className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs font-semibold outline-none focus:border-blue-500 transition-all text-slate-800"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full h-11 bg-blue-650 hover:bg-blue-700 text-white rounded-xl text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md shadow-blue-550/15"
+              >
+                <PlusCircle className="w-4 h-4" /> Upload & Register statutory Asset
+              </button>
+            </form>
+          </div>
+
+          {/* Audit Logs panel */}
+          <div className="bg-slate-50 border border-slate-200 rounded-3xl p-5 text-left flex flex-col self-stretch">
+            <div className="flex items-center gap-2 border-b border-slate-200 pb-3 mb-3 shrink-0">
+              <History className="w-4 h-4 text-violet-600" />
+              <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider">Registry Activity Logs</h3>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto max-h-[260px] space-y-3 pr-1 scrollbar-thin">
+              {revisionLogs.map((log, idx) => (
+                <div key={idx} className="text-xs border-b border-slate-100 pb-2.5 last:border-0 last:pb-0">
+                  <div className="flex justify-between items-center text-[9px] text-slate-400 font-extrabold">
+                    <span>{log.timestamp}</span>
+                    <span className="uppercase text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded font-black">{log.user}</span>
+                  </div>
+                  <p className="font-semibold text-slate-655 mt-1 leading-normal">{log.action}</p>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-4 pt-3 border-t border-slate-200/80 text-center shrink-0">
+              <button 
+                type="button"
+                onClick={() => {
+                  setRevisionLogs([
+                    {
+                      timestamp: new Date().toISOString().replace("T", " ").substring(0, 16),
+                      user: "Admin",
+                      action: "Purged local audit session logs cache"
+                    }
+                  ]);
+                  triggerToast("Session activity logs cleared.");
+                }}
+                className="text-[9px] font-black text-rose-600 hover:text-rose-700 uppercase tracking-wider transition-colors"
+              >
+                Clear Audit History
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Ledger table */}
+        <div className="bg-white border border-slate-200 rounded-3xl p-5 md:p-6 shadow-sm space-y-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+            <div className="text-left">
+              <h3 className="text-sm font-black text-slate-900">Document Control Ledger</h3>
+              <p className="text-[10px] text-slate-450 font-bold">Comprehensive indexing, version mapping, and security classifications for compliance resources</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto shrink-0">
+              <div className="relative flex-1 sm:w-48 text-left">
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="Search ledger..."
+                  value={krmSearch}
+                  onChange={(e) => setKrmSearch(e.target.value)}
+                  className="w-full h-9 pl-8 pr-3 rounded-lg border border-slate-200 bg-white text-xs font-semibold outline-none focus:border-blue-500 transition-all text-slate-800"
+                />
+              </div>
+              <select
+                value={krmFilterDomain}
+                onChange={(e) => setKrmFilterDomain(e.target.value)}
+                className="h-9 px-3 rounded-lg border border-slate-200 bg-white text-xs font-bold text-slate-700 outline-none focus:border-blue-500 transition-all text-left"
+              >
+                <option value="All">All Domains</option>
+                <option value="lei">Labour & Employment (LEI)</option>
+                <option value="ehs">Environment, Health & Safety (EHS)</option>
+                <option value="fcc">Fiscal & Corporate (FCC)</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="overflow-x-auto border border-slate-150 rounded-2xl">
+            <table className="w-full text-xs font-semibold text-slate-700 min-w-[700px]">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-150 text-slate-450 uppercase text-[9px] font-black tracking-wider text-left">
+                  <th className="p-4 w-28">Asset ID</th>
+                  <th className="p-4">Document Title</th>
+                  <th className="p-4 w-36">Category & Version</th>
+                  <th className="p-4 w-32">Classification</th>
+                  <th className="p-4 w-36">Owner Dept.</th>
+                  <th className="p-4 w-28 text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-left">
+                {filteredLedger.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="p-8 text-center text-slate-400 font-semibold bg-slate-50/50">
+                      No registered compliance documents found matching your search.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredLedger.map((doc) => {
+                    const domainBadgeColor = 
+                      doc.domain === "lei" ? "bg-blue-50 text-blue-700 border-blue-100" :
+                      doc.domain === "ehs" ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
+                      "bg-amber-50 text-amber-700 border-amber-100";
+                    
+                    const classColor =
+                      doc.classification === "Public" ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
+                      doc.classification === "Internal" ? "bg-blue-50 text-blue-700 border-blue-100" :
+                      doc.classification === "Restricted" ? "bg-amber-50 text-amber-700 border-amber-100" :
+                      "bg-rose-50 text-rose-700 border-rose-100";
+
+                    return (
+                      <tr key={doc.id} className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 font-mono font-black text-slate-800">{doc.id}</td>
+                        <td className="p-4">
+                          <div className="space-y-1">
+                            <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-wider border ${domainBadgeColor}`}>
+                              {doc.domain.toUpperCase()}
+                            </span>
+                            <h4 className="font-black text-slate-900 leading-snug">{doc.title}</h4>
+                            <p className="text-[10px] text-slate-500 font-bold leading-normal truncate max-w-sm">{doc.applicability}</p>
+                          </div>
+                        </td>
+                        <td className="p-4">
+                          <span className="font-bold text-slate-800">{doc.category}</span>
+                          <span className="ml-1.5 px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-[9px] font-black uppercase tracking-wider border border-slate-200">
+                            {doc.version}
+                          </span>
+                        </td>
+                        <td className="p-4">
+                          <span className={`px-2.5 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-wider border ${classColor}`}>
+                            {doc.classification}
+                          </span>
+                        </td>
+                        <td className="p-4 text-slate-500 font-black">{doc.owner}</td>
+                        <td className="p-4">
+                          <div className="flex justify-center items-center gap-1.5">
+                            <button
+                              onClick={() => {
+                                handleCopy(doc.id, `${doc.title} (${doc.id})\nDomain: ${doc.domain.toUpperCase()} | Version: ${doc.version}\nClassification: ${doc.classification} | Owner: ${doc.owner}\nApplicability: ${doc.applicability}`);
+                                triggerToast("Document metadata copied!");
+                              }}
+                              className="p-2 border border-slate-200 rounded-xl hover:bg-slate-50 text-slate-550 hover:text-blue-600 transition-all"
+                              title="Copy Metadata Details"
+                            >
+                              <Copy className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              onClick={() => triggerToast(`Downloading PDF Brief for ${doc.id}...`)}
+                              className="p-2 border border-slate-200 rounded-xl hover:bg-slate-50 text-slate-550 hover:text-emerald-600 transition-all"
+                              title="Download statutory Brief"
+                            >
+                              <Download className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              onClick={() => handleDeleteDoc(doc.id, doc.title)}
+                              className="p-2 border border-slate-200 hover:border-rose-200 rounded-xl hover:bg-rose-50 text-slate-400 hover:text-rose-600 transition-all"
+                              title="Deregister Asset"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   // Render e-Library Content Card based on activeTab
   const renderLibraryContent = () => {
+    // 0. Knowledge Resource Management Dashboard
+    if (activeTab === "knowledge-management") {
+      return renderKrmDashboard();
+    }
+
     // 1. Calculators Tab
     if (activeTab === "calculators") {
       const epfResult = calculateEpf();
@@ -1183,8 +1851,90 @@ export default function SgrceLibraryPage() {
 
   return (
     <Layout>
-      <div className="bg-white min-h-screen text-slate-700 pt-28 pb-20 select-none">
+      <div className="bg-white min-h-screen text-slate-700 pt-28 pb-20 select-none font-sans">
         <div className="container mx-auto px-6 max-w-7xl">
+          {/* E-Library Statutory Compliance Highlights Slider */}
+          <div 
+            className="w-full mb-8 relative border border-slate-200/85 rounded-3xl overflow-hidden shadow-md bg-gradient-to-br from-slate-900 to-slate-950 text-white min-h-[180px] sm:min-h-[160px] md:min-h-[140px] flex items-center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {/* Background glowing gradient overlay */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_120%,rgba(59,130,246,0.12),transparent_60%)] pointer-events-none" />
+            
+            {/* Watermark Icon in background */}
+            <div className="absolute right-12 bottom-0 opacity-5 pointer-events-none translate-y-1/4">
+              {(() => {
+                const ActiveIcon = librarySlides[activeSlideIndex].icon;
+                return <ActiveIcon className="w-64 h-64 text-white" />;
+              })()}
+            </div>
+
+            {/* Slider Content */}
+            <div className="w-full px-8 md:px-14 py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10 text-left">
+              <div className="space-y-2 max-w-2xl">
+                <span className="px-2.5 py-0.5 rounded-full bg-blue-500/15 border border-blue-550/25 text-[9px] font-black uppercase tracking-widest text-blue-400">
+                  {librarySlides[activeSlideIndex].badge}
+                </span>
+                <h3 className="text-base sm:text-lg font-black tracking-tight font-heading">
+                  {librarySlides[activeSlideIndex].title}
+                </h3>
+                <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                  {librarySlides[activeSlideIndex].description}
+                </p>
+              </div>
+              
+              <button
+                type="button"
+                onClick={() => {
+                  const slide = librarySlides[activeSlideIndex];
+                  navigateToSlideTab(slide.domain, slide.tab);
+                }}
+                className="px-5 py-2.5 bg-blue-650 hover:bg-blue-700 text-white rounded-xl text-xs font-black uppercase tracking-wider shrink-0 transition-all shadow-md shadow-blue-600/20 hover:scale-[1.02]"
+              >
+                {librarySlides[activeSlideIndex].actionLabel} &rarr;
+              </button>
+            </div>
+
+            {/* Left/Right Navigation Chevrons */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveSlideIndex((prev) => (prev === 0 ? librarySlides.length - 1 : prev - 1));
+              }}
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-slate-800/40 hover:bg-slate-800/80 border border-slate-700/30 text-slate-400 hover:text-white transition-all z-20"
+              title="Previous Update"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            
+            <button
+              type="button"
+              onClick={() => {
+                setActiveSlideIndex((prev) => (prev + 1) % librarySlides.length);
+              }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-slate-800/40 hover:bg-slate-800/80 border border-slate-700/30 text-slate-400 hover:text-white transition-all z-20"
+              title="Next Update"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+
+            {/* Dot Indicators */}
+            <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+              {librarySlides.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setActiveSlideIndex(idx)}
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${
+                    activeSlideIndex === idx ? "bg-blue-550 w-3.5" : "bg-slate-700 hover:bg-slate-500"
+                  }`}
+                  title={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             
             {/* Left Sidebar Menu (1/3 width) - Replicating Image 3 Two-Column Layout */}
@@ -1289,6 +2039,15 @@ export default function SgrceLibraryPage() {
           </div>
         </div>
       </div>
+      {/* Toast Notification */}
+      {toastMessage && (
+        <div className="fixed bottom-6 right-6 z-[9999] bg-slate-900 border border-slate-700/60 shadow-2xl rounded-2xl p-4 flex items-center gap-3 animate-scale-in text-left max-w-sm">
+          <div className="w-7 h-7 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
+            <CheckCircle2 className="w-4 h-4 text-blue-400" />
+          </div>
+          <p className="text-xs text-white font-extrabold tracking-wide">{toastMessage}</p>
+        </div>
+      )}
     </Layout>
   );
 }
