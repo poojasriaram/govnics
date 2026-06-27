@@ -16,6 +16,7 @@ export const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [activeSubTab, setActiveSubTab] = useState<string>("");
   const { pathname } = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
 
@@ -30,6 +31,21 @@ export const Header = () => {
     setActiveDropdown(null);
     setProfileDropdownOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (activeDropdown === "services") {
+      setActiveSubTab("compliance");
+    } else if (activeDropdown === "cybersecurity") {
+      setActiveSubTab("grc-compliance");
+    } else if (activeDropdown === "esg") {
+      setActiveSubTab("esg-compliance");
+    } else if (activeDropdown === "industries") {
+      setActiveSubTab("manufacturing-industrial");
+    } else {
+      setActiveSubTab("");
+    }
+  }, [activeDropdown]);
+
   const toggleDropdown = (name: string) => {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
@@ -110,320 +126,339 @@ export const Header = () => {
               GRC <ChevronDown className="w-4 h-4 text-current" />
             </Link>
             {activeDropdown === "services" && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[98dvw] max-w-7xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-6 gap-5 animate-slide-up-dropdown mt-1 text-left">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[98dvw] max-w-7xl bg-white border border-slate-200 shadow-2xl rounded-2xl flex overflow-hidden animate-slide-up-dropdown mt-1 text-left z-50">
                 {/* Bridge to prevent hover loss */}
                 <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
-                <div className="col-span-6 pb-3 mb-1 border-b border-slate-100 flex justify-between items-center">
-                  <h3 className="text-xs font-bold text-blue-600 uppercase tracking-widest">
-                    Governance, Risk & Compliance Division (GRC)
-                  </h3>
-                </div>
 
-                {/* Column 1: Compliance Services */}
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      Compliance Services
-                    </h4>
-                    <p className="text-[9px] text-slate-450 font-medium pl-2.5 mt-0.5 leading-snug">
-                      Regulatory mapping & audits
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-1.5 pl-1.5">
-                    {[
-                      { id: "labour-law-compliance", label: "Labour & Employment", items: "PF, ESI • POSH Setup" },
-                      { id: "environmental-compliance", label: "Environmental & EHS", items: "PCB Consents • Safety • EPR" },
-                      { id: "taxation-trade-compliance", label: "Taxation & Trade", items: "GST E-Invoicing • EXIM" },
-                      { id: "data-privacy-dpdp", label: "Data Privacy & Cyber", items: "DPDP Act • ISO 27001" },
-                      { id: "esg-sustainability", label: "ESG & Sustainability", items: "BRSR Disclosures • Audits" },
-                      { id: "accreditation-services", label: "Accreditations", items: "NABH, NABL & NAAC • ISO" }
-                    ].map((item) => {
-                      const serv = servicesData.find((s) => s.id === item.id);
-                      if (!serv) return null;
-                      return (
-                        <Link
-                          key={serv.id}
-                          to={`/services/${serv.id}`}
-                          onClick={() => setActiveDropdown(null)}
-                          className="flex flex-col p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                        >
-                          <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
-                            {item.label}
-                          </span>
-                          <span className="text-[9px] text-slate-455 leading-snug mt-0.5 font-medium">
-                            {item.items}
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Column 2: Managed Payroll & HR */}
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      Managed Payroll & HR
-                    </h4>
-                    <p className="text-[9px] text-slate-455 font-medium pl-2.5 mt-0.5 leading-snug">
-                      Processing & HR governance
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-1.5 pl-1.5">
-                    {[
-                      { id: "statutory-payroll-compliance", label: "Statutory Payroll", items: "Processing • Audits" },
-                      { id: "hr-data-privacy-security", label: "HR Data Privacy", items: "HRIS Encryption • PII" },
-                      { id: "hr-policy-governance", label: "Policy & Governance", items: "Drafting • Handbooks" },
-                      { id: "advanced-taxation-perquisites", label: "Comp. & Benefits", items: "ESOP/RSU • FBT" },
-                      { id: "managed-staffing-risk-shield", label: "Staffing & Vendor Gov.", items: "Risk Shield • CLRA Audits" }
-                    ].map((item) => {
-                      const serv = servicesData.find((s) => s.id === item.id);
-                      if (!serv) return null;
-                      return (
-                        <Link
-                          key={serv.id}
-                          to={`/services/${serv.id}`}
-                          onClick={() => setActiveDropdown(null)}
-                          className="flex flex-col p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                        >
-                          <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
-                            {item.label}
-                          </span>
-                          <span className="text-[9px] text-slate-455 leading-snug mt-0.5 font-medium">
-                            {item.items}
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Column 3: GRC BPO & Governance */}
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      GRC BPO & Governance
-                    </h4>
-                    <p className="text-[9px] text-slate-455 font-medium pl-2.5 mt-0.5 leading-snug">
-                      Outsourcing & board oversight
-                    </p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <span className="text-[9px] font-black text-slate-450 uppercase tracking-wider block pl-2">BPO Services</span>
-                    <div className="flex flex-col gap-1 pl-1.5">
-                      {[
-                        { id: "compliance-processing-bpo", label: "Compliance Processing" },
-                        { id: "hr-helpdesk-servicing", label: "HR Helpdesk" },
-                        { id: "back-office-operations-bpo", label: "Back-Office Ops" },
-                        { id: "document-record-management", label: "Document Registry BPO" }
-                      ].map((item) => {
-                        const serv = servicesData.find((s) => s.id === item.id);
-                        if (!serv) return null;
-                        return (
-                          <Link
-                            key={serv.id}
-                            to={`/services/${serv.id}`}
-                            onClick={() => setActiveDropdown(null)}
-                            className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors py-0.5 pl-1.5 block"
-                          >
-                            {item.label}
-                          </Link>
-                        );
-                      })}
+                {/* Left Sidebar */}
+                <div className="w-[30%] bg-slate-50/80 border-r border-slate-100 p-6 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-lg font-extrabold text-slate-900 leading-tight">
+                        GRC Division
+                      </h3>
+                      <p className="text-xs text-slate-500 mt-1.5 font-medium leading-relaxed">
+                        Governance, Risk & Compliance frameworks and operations.
+                      </p>
                     </div>
-                  </div>
-
-                  <div className="space-y-2 pt-2 border-t border-slate-100">
-                    <span className="text-[9px] font-black text-slate-450 uppercase tracking-wider block pl-2">Governance & Risk</span>
-                    <div className="flex flex-col gap-1 pl-1.5">
+                    
+                    {/* Sidebar Tabs */}
+                    <div className="flex flex-col gap-1.5">
                       {[
-                        { id: "governance-framework", label: "Corporate Governance" },
-                        { id: "enterprise-risk-management", label: "Enterprise Risk (ERM)" },
-                        { id: "internal-audit", label: "Internal Audit" },
-                        { id: "anti-fraud-investigation", label: "Anti-Fraud & Ethics" }
-                      ].map((item) => {
-                        const serv = servicesData.find((s) => s.id === item.id);
-                        if (!serv) return null;
-                        return (
-                          <Link
-                            key={serv.id}
-                            to={`/services/${serv.id}`}
-                            onClick={() => setActiveDropdown(null)}
-                            className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors py-0.5 pl-1.5 block"
-                          >
-                            {item.label}
-                          </Link>
-                        );
-                      })}
+                        { id: "compliance", label: "Compliance Services" },
+                        { id: "payroll", label: "Managed Payroll & HR" },
+                        { id: "bpo", label: "GRC BPO & Governance" },
+                        { id: "sgrc", label: "Statutory GRC (SGRC)" },
+                        { id: "resources", label: "GRC Resources & Tools" },
+                        { id: "knowledge", label: "GRC Knowledge Hub" }
+                      ].map((tab) => (
+                        <button
+                          key={tab.id}
+                          onMouseEnter={() => setActiveSubTab(tab.id)}
+                          className={`w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between group ${
+                            activeSubTab === tab.id
+                              ? "bg-white text-blue-600 shadow-sm border border-slate-200/50"
+                              : "text-slate-600 hover:text-blue-600 hover:bg-slate-100/50"
+                          }`}
+                        >
+                          <span>{tab.label}</span>
+                          <ArrowRight className={`w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity ${activeSubTab === tab.id ? "opacity-100 text-blue-600" : "text-slate-400"}`} />
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </div>
 
-                {/* Column 4: Statutory GRC (SGRC) Services */}
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      Statutory GRC (SGRC)
-                    </h4>
-                    <p className="text-[9px] text-slate-455 font-medium pl-2.5 mt-0.5 leading-snug">
-                      Statutory & factory compliance
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-1.5 pl-1 text-left">
-                    <Link 
-                      to="/sgrc/services"
-                      onClick={() => setActiveDropdown(null)}
-                      className="text-[9px] font-extrabold text-blue-600 hover:text-blue-750 uppercase tracking-wider pl-2 py-0.5 border-b border-slate-100 flex items-center gap-1.5 mb-1.5 shrink-0"
-                    >
-                      All SGRC Services &rarr;
-                    </Link>
-                    {[
-                      { id: "compliance-risk-audit", label: "Compliance Risk Audit", icon: Scale },
-                      { id: "establishment-compliances", label: "Establishment Compliances", icon: Building },
-                      { id: "payroll-compliance", label: "Payroll Compliance", icon: CreditCard },
-                      { id: "factory-compliance", label: "Factory Compliance", icon: Factory },
-                      { id: "vendor-compliance", label: "Vendor Compliance", icon: Users },
-                      { id: "mines-compliance", label: "Mines Compliance", icon: ShieldAlert },
-                      { id: "flexi-staffing", label: "Flexi Staffing Services", icon: UserPlus },
-                      { id: "payroll-services", label: "Payroll Services", icon: FileSpreadsheet },
-                      { id: "ehs", label: "EHS (Environmental)", icon: Leaf }
-                    ].map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <Link
-                          key={item.id}
-                          to={`/sgrc/services/${item.id}`}
-                          onClick={() => setActiveDropdown(null)}
-                          className="flex items-center gap-2 p-1 rounded-lg hover:bg-slate-50 transition-all group"
-                        >
-                          <div className="p-1 bg-blue-500/10 text-blue-600 rounded group-hover:bg-blue-600 group-hover:text-white transition-colors shrink-0">
-                            <Icon className="w-3.5 h-3.5" />
+                {/* Right Pane */}
+                <div className="w-[70%] p-8 flex flex-col justify-between bg-white min-h-[450px]">
+                  {/* Grid of items */}
+                  <div className="flex-1">
+                    {activeSubTab === "compliance" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3">
+                          <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">Compliance Services</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          {[
+                            { id: "labour-law-compliance", label: "Labour & Employment", items: "PF, ESI • POSH Setup" },
+                            { id: "environmental-compliance", label: "Environmental & EHS", items: "PCB Consents • Safety • EPR" },
+                            { id: "taxation-trade-compliance", label: "Taxation & Trade", items: "GST E-Invoicing • EXIM" },
+                            { id: "data-privacy-dpdp", label: "Data Privacy & Cyber", items: "DPDP Act • ISO 27001" },
+                            { id: "esg-sustainability", label: "ESG & Sustainability", items: "BRSR Disclosures • Audits" },
+                            { id: "accreditation-services", label: "Accreditations", items: "NABH, NABL & NAAC • ISO" }
+                          ].map((item) => {
+                            const serv = servicesData.find((s) => s.id === item.id);
+                            if (!serv) return null;
+                            return (
+                              <Link
+                                key={serv.id}
+                                to={`/services/${serv.id}`}
+                                onClick={() => setActiveDropdown(null)}
+                                className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                              >
+                                <div className="flex flex-col text-left">
+                                  <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                    {item.label}
+                                  </span>
+                                  <span className="text-[10px] text-slate-400 font-medium mt-0.5 leading-snug">
+                                    {item.items}
+                                  </span>
+                                </div>
+                                <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSubTab === "payroll" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3">
+                          <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">Managed Payroll & HR</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          {[
+                            { id: "statutory-payroll-compliance", label: "Statutory Payroll", items: "Processing • Audits" },
+                            { id: "hr-data-privacy-security", label: "HR Data Privacy", items: "HRIS Encryption • PII" },
+                            { id: "hr-policy-governance", label: "Policy & Governance", items: "Drafting • Handbooks" },
+                            { id: "advanced-taxation-perquisites", label: "Comp. & Benefits", items: "ESOP/RSU • FBT" },
+                            { id: "managed-staffing-risk-shield", label: "Staffing & Vendor Gov.", items: "Risk Shield • CLRA Audits" }
+                          ].map((item) => {
+                            const serv = servicesData.find((s) => s.id === item.id);
+                            if (!serv) return null;
+                            return (
+                              <Link
+                                key={serv.id}
+                                to={`/services/${serv.id}`}
+                                onClick={() => setActiveDropdown(null)}
+                                className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                              >
+                                <div className="flex flex-col text-left">
+                                  <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                    {item.label}
+                                  </span>
+                                  <span className="text-[10px] text-slate-400 font-medium mt-0.5 leading-snug">
+                                    {item.items}
+                                  </span>
+                                </div>
+                                <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSubTab === "bpo" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3">
+                          <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">GRC BPO & Governance</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                          <div>
+                            <span className="text-[10px] font-black text-slate-450 uppercase tracking-wider block mb-2">BPO Services</span>
+                            <div className="flex flex-col gap-2">
+                              {[
+                                { id: "compliance-processing-bpo", label: "Compliance Processing" },
+                                { id: "hr-helpdesk-servicing", label: "HR Helpdesk" },
+                                { id: "back-office-operations-bpo", label: "Back-Office Ops" },
+                                { id: "document-record-management", label: "Document Registry BPO" }
+                              ].map((item) => {
+                                const serv = servicesData.find((s) => s.id === item.id);
+                                if (!serv) return null;
+                                return (
+                                  <Link
+                                    key={serv.id}
+                                    to={`/services/${serv.id}`}
+                                    onClick={() => setActiveDropdown(null)}
+                                    className="flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 transition-all group text-xs font-bold text-slate-700 hover:text-blue-600"
+                                  >
+                                    <span>{item.label}</span>
+                                    <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-blue-600 transition-colors" />
+                                  </Link>
+                                );
+                              })}
+                            </div>
                           </div>
-                          <span className="text-[11px] font-bold text-slate-800 group-hover:text-blue-600 transition-colors truncate">
-                            {item.label}
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
 
-                {/* Column 5: GRC Resources & Tools */}
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      GRC Resources & Tools
-                    </h4>
-                    <p className="text-[9px] text-slate-455 font-medium pl-2.5 mt-0.5 leading-snug">
-                      Guides, calculators & circulars
-                    </p>
+                          <div>
+                            <span className="text-[10px] font-black text-slate-455 uppercase tracking-wider block mb-2">Governance & Risk</span>
+                            <div className="flex flex-col gap-2">
+                              {[
+                                { id: "governance-framework", label: "Corporate Governance" },
+                                { id: "enterprise-risk-management", label: "Enterprise Risk (ERM)" },
+                                { id: "internal-audit", label: "Internal Audit" },
+                                { id: "anti-fraud-investigation", label: "Anti-Fraud & Ethics" }
+                              ].map((item) => {
+                                const serv = servicesData.find((s) => s.id === item.id);
+                                if (!serv) return null;
+                                return (
+                                  <Link
+                                    key={serv.id}
+                                    to={`/services/${serv.id}`}
+                                    onClick={() => setActiveDropdown(null)}
+                                    className="flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 transition-all group text-xs font-bold text-slate-700 hover:text-blue-600"
+                                  >
+                                    <span>{item.label}</span>
+                                    <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-blue-600 transition-colors" />
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSubTab === "sgrc" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3 flex justify-between items-center">
+                          <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">Statutory GRC (SGRC)</h4>
+                          <Link 
+                            to="/sgrc/services"
+                            onClick={() => setActiveDropdown(null)}
+                            className="text-xs font-extrabold text-blue-600 hover:text-blue-750 flex items-center gap-1"
+                          >
+                            <span>All SGRC Services</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </Link>
+                        </div>
+                        <div className="grid grid-cols-3 gap-3">
+                          {[
+                            { id: "compliance-risk-audit", label: "Compliance Risk Audit", icon: Scale },
+                            { id: "establishment-compliances", label: "Establishment Compliances", icon: Building },
+                            { id: "payroll-compliance", label: "Payroll Compliance", icon: CreditCard },
+                            { id: "factory-compliance", label: "Factory Compliance", icon: Factory },
+                            { id: "vendor-compliance", label: "Vendor Compliance", icon: Users },
+                            { id: "mines-compliance", label: "Mines Compliance", icon: ShieldAlert },
+                            { id: "flexi-staffing", label: "Flexi Staffing", icon: UserPlus },
+                            { id: "payroll-services", label: "Payroll Services", icon: FileSpreadsheet },
+                            { id: "ehs", label: "EHS (Environmental)", icon: Leaf }
+                          ].map((item) => {
+                            const Icon = item.icon;
+                            return (
+                              <Link
+                                key={item.id}
+                                to={`/sgrc/services/${item.id}`}
+                                onClick={() => setActiveDropdown(null)}
+                                className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                              >
+                                <div className="p-1.5 bg-blue-500/10 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors shrink-0">
+                                  <Icon className="w-4 h-4" />
+                                </div>
+                                <span className="text-[11px] font-bold text-slate-800 group-hover:text-blue-600 transition-colors truncate">
+                                  {item.label}
+                                </span>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSubTab === "resources" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3 flex justify-between items-center">
+                          <h4 className="text-xs font-extrabold text-slate-455 uppercase tracking-wider">Resources & Tools</h4>
+                          <Link 
+                            to="/sgrc/e-library"
+                            onClick={() => setActiveDropdown(null)}
+                            className="text-xs font-extrabold text-blue-600 hover:text-blue-750 flex items-center gap-1"
+                          >
+                            <span>Explore e-Library</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </Link>
+                        </div>
+                        <div className="grid grid-cols-3 gap-3">
+                          {[
+                            { id: "minimum-wages", label: "Latest Minimum Wages", icon: Coins },
+                            { id: "professional-tax", label: "Professional Tax", icon: Percent },
+                            { id: "labour-welfare-fund", label: "Labour Welfare Fund", icon: Users },
+                            { id: "leaves-working-hours", label: "Leave & Working Hours", icon: Clock },
+                            { id: "holidays-list", label: "Holidays List", icon: Calendar },
+                            { id: "calculators", label: "Statutory Calculators", icon: Calculator },
+                            { id: "fcc", label: "FCC Compliance", icon: CalendarCheck },
+                            { id: "lei", label: "LEI Compliance Calendar", icon: Globe }
+                          ].map((item) => {
+                            const Icon = item.icon;
+                            const route = item.id === "calculators" ? "/sgrc/estimator" : `/sgrc/e-library?tab=${item.id}`;
+                            return (
+                              <Link
+                                key={item.id}
+                                to={route}
+                                onClick={() => setActiveDropdown(null)}
+                                className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                              >
+                                <div className="p-1.5 bg-slate-55 text-slate-500 rounded-lg group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors shrink-0">
+                                  <Icon className="w-4 h-4" />
+                                </div>
+                                <span className="text-[11px] font-bold text-slate-800 group-hover:text-blue-600 transition-colors truncate">
+                                  {item.label}
+                                </span>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSubTab === "knowledge" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3 flex flex-wrap gap-x-4 gap-y-2 items-center">
+                          <h4 className="text-xs font-extrabold text-slate-455 uppercase tracking-wider">Knowledge Hub</h4>
+                          <div className="flex gap-3 text-xs font-bold ml-auto">
+                            <Link to="/resources" onClick={() => setActiveDropdown(null)} className="text-blue-600 hover:underline">Knowledge Hub &rarr;</Link>
+                            <Link to="/analytics" onClick={() => setActiveDropdown(null)} className="text-blue-600 hover:underline">GRC Analytics &rarr;</Link>
+                            <Link to="/sgrc/resources" onClick={() => setActiveDropdown(null)} className="text-blue-600 hover:underline">SGRC Resources &rarr;</Link>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-3 gap-3">
+                          {[
+                            { id: "events", label: "Events", icon: Calendar },
+                            { id: "case-studies", label: "Case Studies", icon: BookOpen },
+                            { id: "blog", label: "Blog", icon: FileText },
+                            { id: "media", label: "Media & Press", icon: Megaphone },
+                            { id: "csr", label: "CSR", icon: Heart },
+                            { id: "webinar", label: "Webinars & Opinions", icon: Video }
+                          ].map((item) => {
+                            const Icon = item.icon;
+                            const route = item.id === "webinar" ? "/sgrc/e-library?tab=webinar" : "/sgrc/resources";
+                            return (
+                              <Link
+                                key={item.id}
+                                to={route}
+                                onClick={() => setActiveDropdown(null)}
+                                className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                              >
+                                <div className="p-1.5 bg-slate-55 text-slate-500 rounded-lg group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors shrink-0">
+                                  <Icon className="w-4 h-4" />
+                                </div>
+                                <span className="text-[11px] font-bold text-slate-800 group-hover:text-blue-600 transition-colors truncate">
+                                  {item.label}
+                                </span>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="space-y-2 pl-2">
-                    <Link 
-                      to="/sgrc/e-library"
+                  {/* Contact Us Banner */}
+                  <div className="mt-8 bg-slate-50 border border-slate-100 rounded-xl p-4 flex items-center justify-between">
+                    <span className="text-xs text-slate-500 font-medium">
+                      Need help choosing the right GRC services?
+                    </span>
+                    <Link
+                      to="/contact"
                       onClick={() => setActiveDropdown(null)}
-                      className="text-[10px] font-black text-slate-800 hover:text-blue-600 uppercase tracking-widest flex items-center gap-1.5 pb-1 border-b border-slate-100"
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold tracking-wide transition-all shadow-md shadow-blue-500/10"
                     >
-                      Explore e-Library &rarr;
+                      Contact Us
                     </Link>
-                    <div className="grid grid-cols-1 gap-1">
-                      {[
-                        { id: "minimum-wages", label: "Latest Minimum Wages", icon: Coins },
-                        { id: "professional-tax", label: "Professional Tax", icon: Percent },
-                        { id: "labour-welfare-fund", label: "Labour Welfare Fund", icon: Users },
-                        { id: "leaves-working-hours", label: "Leave & Working Hours", icon: Clock },
-                        { id: "holidays-list", label: "Holidays List", icon: Calendar },
-                        { id: "calculators", label: "Statutory Calculators", icon: Calculator },
-                        { id: "fcc", label: "FCC Compliance Calendar", icon: CalendarCheck },
-                        { id: "lei", label: "LEI Compliance Calendar", icon: Globe }
-                      ].map((item) => {
-                        const Icon = item.icon;
-                        const route = item.id === "calculators" ? "/sgrc/estimator" : `/sgrc/e-library?tab=${item.id}`;
-                        return (
-                          <Link
-                            key={item.id}
-                            to={route}
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-center gap-2 py-0.5 px-1 rounded-lg hover:bg-slate-50 transition-all group"
-                          >
-                            <Icon className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-500 transition-colors shrink-0" />
-                            <span className="text-[11px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors truncate">
-                              {item.label}
-                            </span>
-                          </Link>
-                        );
-                      })}
-                    </div>
                   </div>
                 </div>
-
-                {/* Column 6: GRC Knowledge Hub */}
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      GRC Knowledge Hub
-                    </h4>
-                    <p className="text-[9px] text-slate-455 font-medium pl-2.5 mt-0.5 leading-snug">
-                      Data sheets, case studies & news
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 pl-2">
-                    <div className="flex flex-col gap-1 border-b border-slate-100 pb-1.5 text-left">
-                      <Link 
-                        to="/resources"
-                        onClick={() => setActiveDropdown(null)}
-                        className="text-[10px] font-black text-slate-800 hover:text-blue-600 uppercase tracking-widest block"
-                      >
-                        Knowledge Hub &rarr;
-                      </Link>
-                      <Link 
-                        to="/analytics"
-                        onClick={() => setActiveDropdown(null)}
-                        className="text-[10px] font-black text-blue-600 hover:text-blue-750 uppercase tracking-widest block mt-1"
-                      >
-                        GRC Analytics &rarr;
-                      </Link>
-                      <Link 
-                        to="/sgrc/resources"
-                        onClick={() => setActiveDropdown(null)}
-                        className="text-[10px] font-black text-slate-800 hover:text-blue-600 uppercase tracking-widest block mt-1"
-                      >
-                        SGRC Resources List &rarr;
-                      </Link>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-1">
-                      {[
-                        { id: "events", label: "Events", icon: Calendar },
-                        { id: "case-studies", label: "Case Studies", icon: BookOpen },
-                        { id: "blog", label: "Blog", icon: FileText },
-                        { id: "media", label: "Media & Press Release", icon: Megaphone },
-                        { id: "csr", label: "CSR", icon: Heart },
-                        { id: "webinar", label: "Webinars & Opinions", icon: Video }
-                      ].map((item) => {
-                        const Icon = item.icon;
-                        const route = item.id === "webinar" ? "/sgrc/e-library?tab=webinar" : "/sgrc/resources";
-                        return (
-                          <Link
-                            key={item.id}
-                            to={route}
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-center gap-2 py-0.5 px-1 rounded-lg hover:bg-slate-50 transition-all group"
-                          >
-                            <Icon className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-500 transition-colors shrink-0" />
-                            <span className="text-[11px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors truncate">
-                              {item.label}
-                            </span>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-
               </div>
             )}
           </div>
@@ -438,71 +473,194 @@ export const Header = () => {
               Cybersecurity <ChevronDown className="w-4 h-4 text-current" />
             </Link>
             {activeDropdown === "cybersecurity" && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95dvw] max-w-6xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-4 gap-6 animate-slide-up-dropdown mt-1 text-left">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95dvw] max-w-6xl bg-white border border-slate-200 shadow-2xl rounded-2xl flex overflow-hidden animate-slide-up-dropdown mt-1 text-left z-50">
                 {/* Bridge to prevent hover loss */}
                 <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
-                <div className="col-span-4 pb-3 mb-1 border-b border-slate-100 flex justify-between items-center">
-                  <h3 className="text-xs font-bold text-blue-600 uppercase tracking-widest">
-                    Cybersecurity & Offensive Security Division
-                  </h3>
-                </div>
 
-                {/* Column 1: Cyber GRC & Compliance */}
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      Cyber GRC & Compliance
-                    </h4>
-                  </div>
-                  <div className="flex flex-col gap-1.5 pl-2.5">
-                    <Link to="/cybersecurity#grc-compliance" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Framework Implementation</Link>
-                    <Link to="/cybersecurity#grc-compliance" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Indian Regulatory Compliance</Link>
-                    <Link to="/cybersecurity#grc-compliance" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Cyber Governance</Link>
-                  </div>
-                </div>
-
-                {/* Column 2: Offensive Security (VAPT) */}
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      Offensive Security (VAPT)
-                    </h4>
-                  </div>
-                  <div className="flex flex-col gap-1.5 pl-2.5">
-                    <Link to="/cybersecurity#offensive-security" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Core Penetration Testing</Link>
-                    <Link to="/cybersecurity#offensive-security" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Advanced Attack Simulation</Link>
-                    <Link to="/cybersecurity#offensive-security" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Cloud & Configuration</Link>
-                  </div>
-                </div>
-
-                {/* Column 3: Incident Response & Defense */}
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      Incident Response & Defense
-                    </h4>
-                  </div>
-                  <div className="flex flex-col gap-1.5 pl-2.5">
-                    <Link to="/cybersecurity#incident-defense" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Response & Retainer Services</Link>
-                    <Link to="/cybersecurity#incident-defense" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Forensics & Evidence</Link>
-                    <Link to="/cybersecurity#incident-defense" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Crisis Management</Link>
+                {/* Left Sidebar */}
+                <div className="w-[30%] bg-slate-50/80 border-r border-slate-100 p-6 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-lg font-extrabold text-slate-900 leading-tight">
+                        Cybersecurity
+                      </h3>
+                      <p className="text-xs text-slate-500 mt-1.5 font-medium leading-relaxed">
+                        Offensive and defensive security services to protect your assets.
+                      </p>
+                    </div>
+                    
+                    {/* Sidebar Tabs */}
+                    <div className="flex flex-col gap-1.5">
+                      {[
+                        { id: "grc-compliance", label: "Cyber GRC & Compliance" },
+                        { id: "vapt", label: "Offensive Security (VAPT)" },
+                        { id: "incident", label: "Incident Response & Defense" },
+                        { id: "specialized", label: "Specialized Solutions" }
+                      ].map((tab) => (
+                        <button
+                          key={tab.id}
+                          onMouseEnter={() => setActiveSubTab(tab.id)}
+                          className={`w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between group ${
+                            activeSubTab === tab.id
+                              ? "bg-white text-blue-600 shadow-sm border border-slate-200/50"
+                              : "text-slate-600 hover:text-blue-600 hover:bg-slate-100/50"
+                          }`}
+                        >
+                          <span>{tab.label}</span>
+                          <ArrowRight className={`w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity ${activeSubTab === tab.id ? "opacity-100 text-blue-600" : "text-slate-400"}`} />
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Column 4: Specialized Cyber Solutions */}
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      Specialized Solutions
-                    </h4>
+                {/* Right Pane */}
+                <div className="w-[70%] p-8 flex flex-col justify-between bg-white min-h-[350px]">
+                  {/* Grid of items */}
+                  <div className="flex-1">
+                    {activeSubTab === "grc-compliance" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3">
+                          <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">Cyber GRC & Compliance</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          {[
+                            { label: "Framework Implementation", desc: "ISO 27001, SOC 2, and NIST alignments" },
+                            { label: "Indian Regulatory Compliance", desc: "CERT-In, RBI IT Guidelines, SEBI cyber norms" },
+                            { label: "Cyber Governance", desc: "Policies, risk registers, and threat modeling" }
+                          ].map((item, idx) => (
+                            <Link
+                              key={idx}
+                              to="/cybersecurity#grc-compliance"
+                              onClick={() => setActiveDropdown(null)}
+                              className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                            >
+                              <div className="flex flex-col text-left">
+                                <span className="text-xs font-extrabold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                  {item.label}
+                                </span>
+                                <span className="text-[10px] text-slate-450 font-medium mt-0.5">
+                                  {item.desc}
+                                </span>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSubTab === "vapt" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3">
+                          <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">Offensive Security (VAPT)</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          {[
+                            { label: "Core Penetration Testing", desc: "Web applications, mobile apps, API, and network testing" },
+                            { label: "Advanced Attack Simulation", desc: "Red teaming, phishing simulations, and social engineering" },
+                            { label: "Cloud & Configuration", desc: "AWS, Azure, and GCP security reviews" }
+                          ].map((item, idx) => (
+                            <Link
+                              key={idx}
+                              to="/cybersecurity#offensive-security"
+                              onClick={() => setActiveDropdown(null)}
+                              className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                            >
+                              <div className="flex flex-col text-left">
+                                <span className="text-xs font-extrabold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                  {item.label}
+                                </span>
+                                <span className="text-[10px] text-slate-450 font-medium mt-0.5">
+                                  {item.desc}
+                                </span>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSubTab === "incident" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3">
+                          <h4 className="text-xs font-extrabold text-slate-455 uppercase tracking-wider">Incident Response & Defense</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          {[
+                            { label: "Response & Retainer Services", desc: "Emergency handling and retainer-based support" },
+                            { label: "Forensics & Evidence", desc: "Digital forensics, log analyses, and root-cause mapping" },
+                            { label: "Crisis Management", desc: "Incident messaging, regulatory reports, and recovery setups" }
+                          ].map((item, idx) => (
+                            <Link
+                              key={idx}
+                              to="/cybersecurity#incident-defense"
+                              onClick={() => setActiveDropdown(null)}
+                              className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                            >
+                              <div className="flex flex-col text-left">
+                                <span className="text-xs font-extrabold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                  {item.label}
+                                </span>
+                                <span className="text-[10px] text-slate-450 font-medium mt-0.5">
+                                  {item.desc}
+                                </span>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSubTab === "specialized" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3">
+                          <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">Specialized Solutions</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          {[
+                            { label: "OT & Industrial Security", desc: "SCADA systems, factories, and operational network security" },
+                            { label: "Ecosystem & Supply Chain", desc: "Third-party risk monitoring and code integrations" },
+                            { label: "Transaction & Product Security", desc: "Payment gateways, secure SDLC, and threat assessments" }
+                          ].map((item, idx) => (
+                            <Link
+                              key={idx}
+                              to="/cybersecurity#specialized-solutions"
+                              onClick={() => setActiveDropdown(null)}
+                              className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                            >
+                              <div className="flex flex-col text-left">
+                                <span className="text-xs font-extrabold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                  {item.label}
+                                </span>
+                                <span className="text-[10px] text-slate-450 font-medium mt-0.5">
+                                  {item.desc}
+                                </span>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div className="flex flex-col gap-1.5 pl-2.5">
-                    <Link to="/cybersecurity#specialized-solutions" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">OT & Industrial Security</Link>
-                    <Link to="/cybersecurity#specialized-solutions" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Ecosystem & Supply Chain</Link>
-                    <Link to="/cybersecurity#specialized-solutions" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Transaction & Product Security</Link>
+
+                  {/* Contact Us Banner */}
+                  <div className="mt-8 bg-slate-50 border border-slate-100 rounded-xl p-4 flex items-center justify-between">
+                    <span className="text-xs text-slate-500 font-medium">
+                      Need help securing your systems?
+                    </span>
+                    <Link
+                      to="/contact"
+                      onClick={() => setActiveDropdown(null)}
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold tracking-wide transition-all shadow-md shadow-blue-500/10"
+                    >
+                      Contact Us
+                    </Link>
                   </div>
                 </div>
-
               </div>
             )}
           </div>
@@ -517,46 +675,131 @@ export const Header = () => {
               ESG <ChevronDown className="w-4 h-4 text-current" />
             </Link>
             {activeDropdown === "esg" && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[90dvw] max-w-4xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-2 gap-6 animate-slide-up-dropdown mt-1 text-left">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[90dvw] max-w-4xl bg-white border border-slate-200 shadow-2xl rounded-2xl flex overflow-hidden animate-slide-up-dropdown mt-1 text-left z-50">
                 {/* Bridge to prevent hover loss */}
                 <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
-                <div className="col-span-2 pb-3 mb-1 border-b border-slate-100 flex justify-between items-center">
-                  <h3 className="text-xs font-bold text-blue-600 uppercase tracking-widest">
-                    ESG Compliance & Sustainability Advisory Division
-                  </h3>
+
+                {/* Left Sidebar */}
+                <div className="w-[30%] bg-slate-50/80 border-r border-slate-100 p-6 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-lg font-extrabold text-slate-900 leading-tight">
+                        ESG & Sustainability
+                      </h3>
+                      <p className="text-xs text-slate-500 mt-1.5 font-medium leading-relaxed">
+                        Environmental, Social, and Governance compliance and advisory.
+                      </p>
+                    </div>
+                    
+                    {/* Sidebar Tabs */}
+                    <div className="flex flex-col gap-1.5">
+                      {[
+                        { id: "esg-compliance", label: "ESG Compliance Services" },
+                        { id: "sustainability-advisory", label: "Sustainability & Advisory" }
+                      ].map((tab) => (
+                        <button
+                          key={tab.id}
+                          onMouseEnter={() => setActiveSubTab(tab.id)}
+                          className={`w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between group ${
+                            activeSubTab === tab.id
+                              ? "bg-white text-blue-600 shadow-sm border border-slate-200/50"
+                              : "text-slate-600 hover:text-blue-600 hover:bg-slate-100/50"
+                          }`}
+                        >
+                          <span>{tab.label}</span>
+                          <ArrowRight className={`w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity ${activeSubTab === tab.id ? "opacity-100 text-blue-600" : "text-slate-400"}`} />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Column 1: ESG Compliance Services */}
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      ESG Compliance Services
-                    </h4>
+                {/* Right Pane */}
+                <div className="w-[70%] p-8 flex flex-col justify-between bg-white min-h-[350px]">
+                  {/* Grid of items */}
+                  <div className="flex-1">
+                    {activeSubTab === "esg-compliance" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3">
+                          <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">ESG Compliance Services</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          {[
+                            { id: "ehs", label: "Environmental & EHS Regulatory", desc: "Consents, emissions, and safety compliance" },
+                            { id: "labor", label: "Supply Chain & Labor Compliance", desc: "Workplace conditions, audits, and social codes" },
+                            { id: "privacy", label: "Global Data Privacy (G in ESG)", desc: "Information controls, consent models, and safety" },
+                            { id: "readiness", label: "Mandatory Disclosure Readiness", desc: "BRSR audits and regulatory readiness reviews" }
+                          ].map((item, idx) => (
+                            <Link
+                              key={idx}
+                              to={`/esg#${item.id}`}
+                              onClick={() => setActiveDropdown(null)}
+                              className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                            >
+                              <div className="flex flex-col text-left">
+                                <span className="text-xs font-extrabold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                  {item.label}
+                                </span>
+                                <span className="text-[10px] text-slate-450 font-medium mt-0.5">
+                                  {item.desc}
+                                </span>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSubTab === "sustainability-advisory" && (
+                      <div className="space-y-4">
+                        <div className="border-b border-slate-100 pb-3">
+                          <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">Sustainability & Governance Advisory</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          {[
+                            { id: "climate", label: "Decarbonization & Climate Strategy", desc: "Net-zero mapping, offsets, and carbon tracking" },
+                            { id: "reporting", label: "Global ESG Reporting Frameworks", desc: "GRI, TCFD, and SASB disclosures preparation" },
+                            { id: "circular", label: "Circular Economy & Resource Efficiency", desc: "Waste reductions, circular paths, and energy saves" },
+                            { id: "integration", label: "Board Governance & ESG Integration", desc: "Strategy charters, metrics dashboard, and audits" },
+                            { id: "mna", label: "Transaction Advisory (M&A)", desc: "ESG due diligence and post-merger integration" }
+                          ].map((item, idx) => (
+                            <Link
+                              key={idx}
+                              to="/esg#advisory"
+                              onClick={() => setActiveDropdown(null)}
+                              className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                            >
+                              <div className="flex flex-col text-left">
+                                <span className="text-xs font-extrabold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                  {item.label}
+                                </span>
+                                <span className="text-[10px] text-slate-450 font-medium mt-0.5">
+                                  {item.desc}
+                                </span>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div className="flex flex-col gap-1.5 pl-2.5">
-                    <Link to="/esg#ehs" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Environmental & EHS Regulatory</Link>
-                    <Link to="/esg#labor" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Supply Chain & Labor Compliance</Link>
-                    <Link to="/esg#privacy" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Global Data Privacy (G in ESG)</Link>
-                    <Link to="/esg#privacy" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Mandatory Disclosure Readiness</Link>
+
+                  {/* Contact Us Banner */}
+                  <div className="mt-8 bg-slate-50 border border-slate-100 rounded-xl p-4 flex items-center justify-between">
+                    <span className="text-xs text-slate-500 font-medium">
+                      Need help choosing the right ESG framework?
+                    </span>
+                    <Link
+                      to="/contact"
+                      onClick={() => setActiveDropdown(null)}
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold tracking-wide transition-all shadow-md shadow-blue-500/10"
+                    >
+                      Contact Us
+                    </Link>
                   </div>
                 </div>
-
-                {/* Column 2: Sustainability & Governance Advisory */}
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      Sustainability & Governance Advisory
-                    </h4>
-                  </div>
-                  <div className="flex flex-col gap-1.5 pl-2.5">
-                    <Link to="/esg#climate" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Decarbonization & Climate Strategy</Link>
-                    <Link to="/esg#advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Global ESG Reporting Frameworks</Link>
-                    <Link to="/esg#advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Circular Economy & Resource Efficiency</Link>
-                    <Link to="/esg#advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Board Governance & ESG Integration</Link>
-                    <Link to="/esg#advisory" onClick={() => setActiveDropdown(null)} className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">Transaction Advisory (M&A)</Link>
-                  </div>
-                </div>
-
               </div>
             )}
           </div>
@@ -571,39 +814,100 @@ export const Header = () => {
               Industries <ChevronDown className="w-4 h-4 text-current" />
             </Link>
             {activeDropdown === "industries" && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95dvw] max-w-6xl bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 grid grid-cols-4 gap-6 animate-slide-up-dropdown mt-1">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[98dvw] max-w-7xl bg-white border border-slate-200 shadow-2xl rounded-2xl flex overflow-hidden animate-slide-up-dropdown mt-1 text-left z-50">
                 {/* Bridge to prevent hover loss */}
                 <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
-                <div className="col-span-4 pb-3 mb-1 border-b border-slate-100">
-                  <h3 className="text-xs font-bold text-blue-600 uppercase tracking-widest">
-                    Industry Segments & GRC Calibration
-                  </h3>
+
+                {/* Left Sidebar */}
+                <div className="w-[30%] bg-slate-50/80 border-r border-slate-100 p-6 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-lg font-extrabold text-slate-900 leading-tight">
+                        Industries
+                      </h3>
+                      <p className="text-xs text-slate-500 mt-1.5 font-medium leading-relaxed">
+                        GRC calibration and frameworks tailored for your specific industry sector.
+                      </p>
+                    </div>
+                    
+                    {/* Sidebar Tabs */}
+                    <div className="flex flex-col gap-1 max-h-[350px] overflow-y-auto pr-1">
+                      {clusters.map((clusterName) => {
+                        const cid = getClusterId(clusterName);
+                        return (
+                          <button
+                            key={clusterName}
+                            onMouseEnter={() => setActiveSubTab(cid)}
+                            className={`w-full text-left px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-between group ${
+                              activeSubTab === cid
+                                ? "bg-white text-blue-600 shadow-sm border border-slate-200/50"
+                                : "text-slate-600 hover:text-blue-600 hover:bg-slate-100/50"
+                            }`}
+                          >
+                            <span className="truncate">{clusterName}</span>
+                            <ArrowRight className={`w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity ${activeSubTab === cid ? "opacity-100 text-blue-600" : "text-slate-400"}`} />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
-                {clusters.map((clusterName) => (
-                  <div key={clusterName} className="space-y-2.5">
-                    <h4 className="text-[11px] font-black text-slate-900 uppercase tracking-wider border-l-2 border-blue-500 pl-2">
-                      {clusterName}
-                    </h4>
-                    <div className="flex flex-col gap-1.5 pl-2">
+
+                {/* Right Pane */}
+                <div className="w-[70%] p-8 flex flex-col justify-between bg-white min-h-[420px]">
+                  {/* Grid of items */}
+                  <div className="flex-1">
+                    <div className="border-b border-slate-100 pb-3 mb-4">
+                      <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">
+                        {clusters.find(c => getClusterId(c) === activeSubTab) || "Selected Segment"}
+                      </h4>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
                       {industriesData
-                        .filter((ind) => ind.cluster === clusterName)
+                        .filter((ind) => getClusterId(ind.cluster) === activeSubTab)
                         .map((ind) => {
                           const IconComp = ind.icon;
                           return (
                             <Link
                               key={ind.id}
-                              to={`/industries/${getClusterId(clusterName)}#${ind.id}`}
+                              to={`/industries/${getClusterId(ind.cluster)}#${ind.id}`}
                               onClick={() => setActiveDropdown(null)}
-                              className="flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-blue-600 transition-colors py-0.5 group/link"
+                              className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
                             >
-                              <IconComp className="w-3.5 h-3.5 text-slate-400 group-hover/link:text-blue-600 transition-colors shrink-0" />
-                              <span className="truncate">{ind.title}</span>
+                              <div className="flex items-center gap-3 text-left">
+                                <div className="p-2 bg-slate-50 text-slate-450 rounded-lg group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors shrink-0">
+                                  <IconComp className="w-4 h-4" />
+                                </div>
+                                <div className="flex flex-col">
+                                  <span className="text-xs font-extrabold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                    {ind.title}
+                                  </span>
+                                  <span className="text-[10px] text-slate-450 font-medium mt-0.5 line-clamp-1">
+                                    {ind.subtitle}
+                                  </span>
+                                </div>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
                             </Link>
                           );
                         })}
                     </div>
                   </div>
-                ))}
+
+                  {/* Contact Us Banner */}
+                  <div className="mt-8 bg-slate-50 border border-slate-100 rounded-xl p-4 flex items-center justify-between">
+                    <span className="text-xs text-slate-500 font-medium">
+                      Need help choosing the right industries?
+                    </span>
+                    <Link
+                      to="/contact"
+                      onClick={() => setActiveDropdown(null)}
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold tracking-wide transition-all shadow-md shadow-blue-500/10"
+                    >
+                      Contact Us
+                    </Link>
+                  </div>
+                </div>
               </div>
             )}
           </div>

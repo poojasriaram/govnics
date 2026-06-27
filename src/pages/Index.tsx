@@ -4,6 +4,7 @@ import { Building2, Sparkles } from "lucide-react";
 import { GrcTrust } from "@/components/trust/GrcTrust";
 import { GrcIndustries } from "@/components/industries/GrcIndustries";
 import { GrcServices } from "@/components/services/GrcServices";
+import { GrcLifecycleSlider } from "@/components/services/GrcLifecycleSlider";
 import { WhyGovenics } from "@/components/why-govenics/WhyGovenics";
 import { GrcCases } from "@/components/cases/GrcCases";
 import { GrcResources } from "@/components/resources/GrcResources";
@@ -77,6 +78,7 @@ export default function Index() {
 
       <GrcTrust />
       <GrcIndustries />
+      <GrcLifecycleSlider />
       <GrcServices />
       <WhyGovenics />
       <GrcCases />
