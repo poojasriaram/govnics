@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { GrcCarousel } from "@/components/ui/GrcCarousel";
 import { servicesData } from "@/data/services-data";
@@ -12,6 +13,8 @@ import heroDrone from "@/assets/hero-drone.jpg";
 import heroSoc from "@/assets/hero-soc.jpg";
 
 export default function GrcPage() {
+  const [activeTab, setActiveTab] = useState<string>("compliance");
+
   // Slider 1: Hero Slides (8 slides)
   const heroSlides = [
     {
@@ -115,7 +118,7 @@ export default function GrcPage() {
           <h3 className="text-base font-black text-slate-900 group-hover:text-blue-600 transition-colors">
             {serv.title}
           </h3>
-          <p className="text-xs text-slate-650 line-clamp-3 leading-relaxed font-semibold">
+          <p className="text-xs text-slate-655 line-clamp-3 leading-relaxed font-semibold">
             {serv.problem}
           </p>
           <div className="space-y-1.5 pt-2 border-t border-slate-100">
@@ -268,59 +271,93 @@ export default function GrcPage() {
           />
         </section>
 
-        {/* Core Content Sliders */}
-        <div className="container mx-auto px-6 max-w-7xl pt-16 space-y-20">
-          
-          {/* Slider 2: Compliance Services */}
-          <section id="compliance" className="space-y-6">
-            <div className="border-l-4 border-blue-600 pl-4 text-left">
-              <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Regulatory Adherence</span>
-              <h2 className="text-2xl font-black text-slate-900 font-heading">Compliance Services</h2>
-              <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
-                Structured monitoring frameworks, factory audits, consents, and legal reconciliation checklists designed for multi-state corporate and plant compliance.
-              </p>
+        {/* Core Content: Vertical Tabs Section */}
+        <div id="compliance" className="container mx-auto px-6 max-w-7xl pt-16">
+          <div className="grid lg:grid-cols-12 gap-8">
+            {/* Left Tabs Selection */}
+            <div className="lg:col-span-3 space-y-2 text-left">
+              <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest block mb-2">GRC Sections</span>
+              {[
+                { id: "compliance", label: "Compliance Services", desc: "Regulatory adherence, factory audits, and EHS checks." },
+                { id: "risk", label: "Governance & Risk", desc: "ERM structures, board charters, and audit control." },
+                { id: "payroll", label: "Managed Payroll & HR", desc: "Statutory payrolling, CLRA risk, and structures." },
+                { id: "bpo", label: "BPO Services", desc: "High-volume filings, digitizations, and helpdesks." }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`w-full text-left px-5 py-4 rounded-3xl border transition-all duration-300 flex flex-col gap-1 ${
+                    activeTab === tab.id
+                      ? "bg-slate-900 text-white border-slate-900 shadow-lg animate-pulse-subtle"
+                      : "bg-white border-slate-200/80 hover:bg-slate-100 text-slate-800"
+                  }`}
+                >
+                  <span className="text-xs font-black uppercase tracking-wider">{tab.label}</span>
+                  <span className={`text-[10px] ${activeTab === tab.id ? "text-slate-400" : "text-slate-500"} font-semibold leading-normal`}>
+                    {tab.desc}
+                  </span>
+                </button>
+              ))}
             </div>
-            <GrcCarousel items={complianceItems} />
-          </section>
 
-          {/* Slider 3: Managed Payroll & HR */}
-          <section className="space-y-6">
-            <div className="border-l-4 border-blue-600 pl-4 text-left">
-              <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Risk Absorption</span>
-              <h2 className="text-2xl font-black text-slate-900 font-heading">Managed Payroll & HR</h2>
-              <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
-                Ensure compliance-integrated execution of payrolling, statutory PF/ESI, compensation structures, vendor security audits, and contractor risk shields.
-              </p>
-            </div>
-            <GrcCarousel items={payrollItems} />
-          </section>
+            {/* Right Content Area */}
+            <div className="lg:col-span-9 space-y-6">
+              {activeTab === "compliance" && (
+                <div className="space-y-4 text-left animate-fade-in">
+                  <div className="border-l-4 border-blue-600 pl-4">
+                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Regulatory Adherence</span>
+                    <h2 className="text-2xl font-black text-slate-900 font-heading">Compliance Services</h2>
+                    <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
+                      Structured monitoring frameworks, factory audits, consents, and legal reconciliation checklists designed for multi-state corporate and plant compliance.
+                    </p>
+                  </div>
+                  <GrcCarousel items={complianceItems} />
+                </div>
+              )}
 
-          {/* Slider 4: BPO Services */}
-          <section className="space-y-6">
-            <div className="border-l-4 border-blue-600 pl-4 text-left">
-              <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Operational Outsourcing</span>
-              <h2 className="text-2xl font-black text-slate-900 font-heading">BPO Services</h2>
-              <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
-                Outsource high-volume filings processing, onboarding query helpdesks, back-office record management, and document digitization.
-              </p>
-            </div>
-            <GrcCarousel items={bpoItems} />
-          </section>
+              {activeTab === "risk" && (
+                <div className="space-y-4 text-left animate-fade-in">
+                  <div className="border-l-4 border-blue-600 pl-4">
+                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Executive Oversight</span>
+                    <h2 className="text-2xl font-black text-slate-900 font-heading">Governance & Risk</h2>
+                    <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
+                      Align board charters, design robust enterprise risk self-assessments (ERM), deploy key risk registers, and handle internal investigations.
+                    </p>
+                  </div>
+                  <GrcCarousel items={riskItems} />
+                </div>
+              )}
 
-          {/* Slider 5: Governance & Risk */}
-          <section className="space-y-6">
-            <div className="border-l-4 border-blue-600 pl-4 text-left">
-              <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Executive Oversight</span>
-              <h2 className="text-2xl font-black text-slate-900 font-heading">Governance & Risk</h2>
-              <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
-                Align board charters, design robust enterprise risk self-assessments (ERM), deploy key risk registers, and handle internal investigations.
-              </p>
+              {activeTab === "payroll" && (
+                <div className="space-y-4 text-left animate-fade-in">
+                  <div className="border-l-4 border-blue-600 pl-4">
+                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Risk Absorption</span>
+                    <h2 className="text-2xl font-black text-slate-900 font-heading">Managed Payroll & HR</h2>
+                    <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
+                      Ensure compliance-integrated execution of payrolling, statutory PF/ESI, compensation structures, vendor security audits, and contractor risk shields.
+                    </p>
+                  </div>
+                  <GrcCarousel items={payrollItems} />
+                </div>
+              )}
+
+              {activeTab === "bpo" && (
+                <div className="space-y-4 text-left animate-fade-in">
+                  <div className="border-l-4 border-blue-600 pl-4">
+                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Operational Outsourcing</span>
+                    <h2 className="text-2xl font-black text-slate-900 font-heading">BPO Services</h2>
+                    <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
+                      Outsource high-volume filings processing, onboarding query helpdesks, back-office record management, and document digitization.
+                    </p>
+                  </div>
+                  <GrcCarousel items={bpoItems} />
+                </div>
+              )}
             </div>
-            <GrcCarousel items={riskItems} />
-          </section>
+          </div>
 
           {/* Slider 6: Partners & Integrations */}
-          <section className="space-y-6">
+          <section className="space-y-6 pt-20 border-t border-slate-200/60 mt-20">
             <div className="border-l-4 border-blue-600 pl-4 text-left">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Integrations Network</span>
               <h2 className="text-2xl font-black text-slate-900 font-heading">GRC Integrations & Certifications</h2>
@@ -330,8 +367,8 @@ export default function GrcPage() {
             </div>
             <GrcCarousel items={partnerItems} />
           </section>
-
         </div>
+
       </div>
     </Layout>
   );
