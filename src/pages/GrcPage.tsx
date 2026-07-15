@@ -156,30 +156,21 @@ export default function GrcPage() {
     renderServiceCard("environmental-compliance", <Settings className="w-5 h-5" />),
     renderServiceCard("taxation-trade-compliance", <FileText className="w-5 h-5" />),
     renderServiceCard("data-privacy-dpdp", <Shield className="w-5 h-5" />),
-    renderServiceCard("esg-sustainability", <Scale className="w-5 h-5" />),
     renderServiceCard("accreditation-services", <Briefcase className="w-5 h-5" />)
   ].filter(Boolean) as React.ReactNode[];
 
-  const payrollItems = [
-    renderServiceCard("statutory-payroll-compliance", <Briefcase className="w-5 h-5" />),
-    renderServiceCard("hr-data-privacy-security", <Shield className="w-5 h-5" />),
-    renderServiceCard("hr-policy-governance", <FileText className="w-5 h-5" />),
-    renderServiceCard("advanced-taxation-perquisites", <Settings className="w-5 h-5" />),
-    renderServiceCard("managed-staffing-risk-shield", <Scale className="w-5 h-5" />)
-  ].filter(Boolean) as React.ReactNode[];
-
-  const bpoItems = [
-    renderServiceCard("compliance-processing-bpo", <Settings className="w-5 h-5" />),
-    renderServiceCard("hr-helpdesk-servicing", <Briefcase className="w-5 h-5" />),
-    renderServiceCard("back-office-operations-bpo", <FileText className="w-5 h-5" />),
-    renderServiceCard("document-record-management", <Shield className="w-5 h-5" />)
-  ].filter(Boolean) as React.ReactNode[];
-
   const riskItems = [
-    renderServiceCard("governance-framework", <Scale className="w-5 h-5" />),
     renderServiceCard("enterprise-risk-management", <Shield className="w-5 h-5" />),
     renderServiceCard("internal-audit", <Settings className="w-5 h-5" />),
+    renderServiceCard("vendor-risk-management", <Scale className="w-5 h-5" />),
     renderServiceCard("anti-fraud-investigation", <FileText className="w-5 h-5" />)
+  ].filter(Boolean) as React.ReactNode[];
+
+  const governanceItems = [
+    renderServiceCard("governance-framework", <Scale className="w-5 h-5" />),
+    renderServiceCard("hr-policy-governance", <FileText className="w-5 h-5" />),
+    renderServiceCard("regulatory-compliance", <Briefcase className="w-5 h-5" />),
+    renderServiceCard("clinical-governance", <Shield className="w-5 h-5" />)
   ].filter(Boolean) as React.ReactNode[];
 
   // Partner Logos (Slider 6)
@@ -276,12 +267,14 @@ export default function GrcPage() {
           <div className="grid lg:grid-cols-12 gap-8">
             {/* Left Tabs Selection */}
             <div className="lg:col-span-3 space-y-2 text-left">
-              <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest block mb-2">GRC Sections</span>
+              <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest block mb-2">What We Offer</span>
               {[
-                { id: "compliance", label: "Compliance Services", desc: "Regulatory adherence, factory audits, and EHS checks." },
-                { id: "risk", label: "Governance & Risk", desc: "ERM structures, board charters, and audit control." },
-                { id: "payroll", label: "Managed Payroll & HR", desc: "Statutory payrolling, CLRA risk, and structures." },
-                { id: "bpo", label: "BPO Services", desc: "High-volume filings, digitizations, and helpdesks." }
+                { id: "compliance", label: "Compliance", desc: "Regulatory adherence, factory audits, and EHS checks." },
+                { id: "risk", label: "Risk", desc: "ERM structures, risk registers, and audit control." },
+                { id: "governance", label: "Governance", desc: "Board charters, policy frameworks, and oversight." },
+                { id: "manpower", label: "Manpower Services", desc: "Staffing models, RPO, and managed hiring." },
+                { id: "cybersecurity", label: "Cybersecurity", desc: "VAPT, SOC 2 readiness, and threat monitoring." },
+                { id: "esg", label: "ESG & Sustainability", desc: "BRSR reporting, carbon tracking, and ESG advisory." }
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -318,39 +311,62 @@ export default function GrcPage() {
               {activeTab === "risk" && (
                 <div className="space-y-4 text-left animate-fade-in">
                   <div className="border-l-4 border-blue-600 pl-4">
-                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Executive Oversight</span>
-                    <h2 className="text-2xl font-black text-slate-900 font-heading">Governance & Risk</h2>
+                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Risk Management</span>
+                    <h2 className="text-2xl font-black text-slate-900 font-heading">Risk</h2>
                     <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
-                      Align board charters, design robust enterprise risk self-assessments (ERM), deploy key risk registers, and handle internal investigations.
+                      Design robust enterprise risk self-assessments (ERM), deploy key risk registers, conduct internal audits, and handle anti-fraud investigations.
                     </p>
                   </div>
                   <GrcCarousel items={riskItems} />
                 </div>
               )}
 
-              {activeTab === "payroll" && (
+              {activeTab === "governance" && (
                 <div className="space-y-4 text-left animate-fade-in">
                   <div className="border-l-4 border-blue-600 pl-4">
-                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Risk Absorption</span>
-                    <h2 className="text-2xl font-black text-slate-900 font-heading">Managed Payroll & HR</h2>
+                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Executive Oversight</span>
+                    <h2 className="text-2xl font-black text-slate-900 font-heading">Governance</h2>
                     <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
-                      Ensure compliance-integrated execution of payrolling, statutory PF/ESI, compensation structures, vendor security audits, and contractor risk shields.
+                      Align board charters, codify corporate governance frameworks, design HR policies, and establish regulatory governance structures.
                     </p>
                   </div>
-                  <GrcCarousel items={payrollItems} />
+                  <GrcCarousel items={governanceItems} />
                 </div>
               )}
 
-              {activeTab === "bpo" && (
+              {activeTab === "manpower" && (
                 <div className="space-y-4 text-left animate-fade-in">
                   <div className="border-l-4 border-blue-600 pl-4">
-                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Operational Outsourcing</span>
-                    <h2 className="text-2xl font-black text-slate-900 font-heading">BPO Services</h2>
+                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Staffing Solutions</span>
+                    <h2 className="text-2xl font-black text-slate-900 font-heading">Manpower Services</h2>
                     <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
-                      Outsource high-volume filings processing, onboarding query helpdesks, back-office record management, and document digitization.
+                      Flexible staffing models, RPO engagements, managed hiring solutions, and workforce compliance mapped to your project needs.
                     </p>
                   </div>
-                  <GrcCarousel items={bpoItems} />
+                </div>
+              )}
+
+              {activeTab === "cybersecurity" && (
+                <div className="space-y-4 text-left animate-fade-in">
+                  <div className="border-l-4 border-blue-600 pl-4">
+                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Digital Defense</span>
+                    <h2 className="text-2xl font-black text-slate-900 font-heading">Cybersecurity</h2>
+                    <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
+                      Build an impenetrable security posture with VAPT, SOC 2 readiness, ISMS implementation, and 24/7 threat monitoring.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "esg" && (
+                <div className="space-y-4 text-left animate-fade-in">
+                  <div className="border-l-4 border-blue-600 pl-4">
+                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Sustainability</span>
+                    <h2 className="text-2xl font-black text-slate-900 font-heading">ESG & Sustainability</h2>
+                    <p className="text-xs text-slate-550 max-w-xl font-semibold mt-1">
+                      Track Scope 1, 2, and 3 emissions, draft BRSR reports, and align with SEBI, GRI, and global investor ESG standards.
+                    </p>
+                  </div>
                 </div>
               )}
             </div>

@@ -35,8 +35,8 @@ export const Header = () => {
 
   useEffect(() => {
     if (activeDropdown === "what-we-offer") {
-      setActiveOfferTab("grc");
-      setActiveSubTab("compliance");
+      setActiveOfferTab("compliance");
+      setActiveSubTab("compliance-services");
     } else if (activeDropdown === "whom-we-serve") {
       setActiveSubTab("manufacturing-industrial");
     } else {
@@ -45,8 +45,12 @@ export const Header = () => {
   }, [activeDropdown]);
 
   useEffect(() => {
-    if (activeOfferTab === "grc") {
-      setActiveSubTab("compliance");
+    if (activeOfferTab === "compliance") {
+      setActiveSubTab("compliance-services");
+    } else if (activeOfferTab === "risk") {
+      setActiveSubTab("risk-services");
+    } else if (activeOfferTab === "governance") {
+      setActiveSubTab("governance-services");
     } else if (activeOfferTab === "cybersecurity") {
       setActiveSubTab("grc-compliance");
     } else if (activeOfferTab === "esg") {
@@ -154,10 +158,12 @@ export const Header = () => {
 
                     <div className="flex flex-col gap-2">
                       {[
-                        { id: "grc", label: "GRC Division" },
+                        { id: "compliance", label: "Compliance" },
+                        { id: "risk", label: "Risk" },
+                        { id: "governance", label: "Governance" },
+                        { id: "staffing", label: "Manpower Services" },
                         { id: "cybersecurity", label: "Cybersecurity" },
-                        { id: "esg", label: "ESG & Sustainability" },
-                        { id: "staffing", label: "Manpower Services" }
+                        { id: "esg", label: "ESG & Sustainability" }
                       ].map((offer) => (
                         <button
                           key={offer.id}
@@ -177,20 +183,19 @@ export const Header = () => {
                 </div>
 
                 {/* Level 2 Submenus */}
-                {activeOfferTab === "grc" && (
+                {activeOfferTab === "compliance" && (
                   <div className="flex-1 flex overflow-hidden bg-white">
                     {/* Left Sub-sidebar */}
                     <div className="w-[30%] bg-slate-50/80 border-r border-slate-100 p-6 flex flex-col justify-between">
                       <div className="space-y-4">
                         <div>
                           <h3 className="text-xs font-black text-slate-900 uppercase tracking-widest leading-tight">
-                            GRC Services
+                            Compliance Services
                           </h3>
                         </div>
                         <div className="flex flex-col gap-1.5">
                           {[
-                            { id: "compliance", label: "Compliance Services" },
-                            { id: "risk", label: "Governance & Risk" },
+                            { id: "compliance-services", label: "Regulatory Compliance" },
                             { id: "payroll", label: "Managed Payroll & HR" },
                             { id: "bpo", label: "GRC BPO Services" },
                             { id: "sgrc", label: "Statutory GRC (SGRC)" },
@@ -217,7 +222,7 @@ export const Header = () => {
                     {/* Right Content Pane */}
                     <div className="w-[70%] p-8 flex flex-col justify-between bg-white min-h-[450px]">
                       <div className="flex-1">
-                        {activeSubTab === "compliance" && (
+                        {activeSubTab === "compliance-services" && (
                           <div className="space-y-4">
                             <div className="border-b border-slate-100 pb-3">
                               <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">Compliance Services</h4>
@@ -230,43 +235,6 @@ export const Header = () => {
                                 { id: "data-privacy-dpdp", label: "Data Privacy & Cyber", items: "DPDP Act • ISO 27001" },
                                 { id: "esg-sustainability", label: "ESG & Sustainability", items: "BRSR Disclosures • Audits" },
                                 { id: "accreditation-services", label: "Accreditations", items: "NABH, NABL & NAAC • ISO" }
-                              ].map((item) => {
-                                const serv = servicesData.find((s) => s.id === item.id);
-                                if (!serv) return null;
-                                return (
-                                  <Link
-                                    key={serv.id}
-                                    to={`/services/${serv.id}`}
-                                    onClick={() => setActiveDropdown(null)}
-                                    className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
-                                  >
-                                    <div className="flex flex-col text-left">
-                                      <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
-                                        {item.label}
-                                      </span>
-                                      <span className="text-[10px] text-slate-400 font-medium mt-0.5 leading-snug">
-                                        {item.items}
-                                      </span>
-                                    </div>
-                                    <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
-                                  </Link>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        )}
-
-                        {activeSubTab === "risk" && (
-                          <div className="space-y-4">
-                            <div className="border-b border-slate-100 pb-3">
-                              <h4 className="text-xs font-extrabold text-slate-455 uppercase tracking-wider">Governance & Risk</h4>
-                            </div>
-                            <div className="grid grid-cols-2 gap-4">
-                              {[
-                                { id: "governance-framework", label: "Corporate Governance", items: "Board Charters • Disclosures" },
-                                { id: "enterprise-risk-management", label: "Enterprise Risk (ERM)", items: "ISO 31000 • Risk Register" },
-                                { id: "internal-audit", label: "Internal Audit", items: "Operational Auditing • Savings" },
-                                { id: "anti-fraud-investigation", label: "Anti-Fraud & Ethics", items: "Whistleblower Setup • Investigations" }
                               ].map((item) => {
                                 const serv = servicesData.find((s) => s.id === item.id);
                                 if (!serv) return null;
@@ -505,7 +473,7 @@ export const Header = () => {
                       {/* Contact Us Banner */}
                       <div className="mt-8 bg-slate-50 border border-slate-100 rounded-xl p-4 flex items-center justify-between">
                         <span className="text-xs text-slate-500 font-medium">
-                          Need help choosing the right GRC services?
+                          Need help choosing the right compliance services?
                         </span>
                         <Link
                           to="/contact"
@@ -515,6 +483,110 @@ export const Header = () => {
                           Contact Us
                         </Link>
                       </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeOfferTab === "risk" && (
+                  <div className="flex-1 p-8 bg-white min-h-[350px] flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="border-b border-slate-100 pb-3">
+                        <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">Risk Management</h4>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        {[
+                          { id: "enterprise-risk-management", label: "Enterprise Risk (ERM)", items: "ISO 31000 • Risk Register • RCSA" },
+                          { id: "internal-audit", label: "Internal Audit", items: "Operational Auditing • Control Testing" },
+                          { id: "vendor-risk-management", label: "Vendor & Third-Party Risk", items: "Supply Chain Audits • Due Diligence" },
+                          { id: "anti-fraud-investigation", label: "Anti-Fraud & Ethics", items: "Whistleblower Setup • Investigations" }
+                        ].map((item) => {
+                          const serv = servicesData.find((s) => s.id === item.id);
+                          if (!serv) return null;
+                          return (
+                            <Link
+                              key={serv.id}
+                              to={`/services/${serv.id}`}
+                              onClick={() => setActiveDropdown(null)}
+                              className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                            >
+                              <div className="flex flex-col text-left">
+                                <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                  {item.label}
+                                </span>
+                                <span className="text-[10px] text-slate-400 font-medium mt-0.5 leading-snug">
+                                  {item.items}
+                                </span>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    {/* Contact Us Banner */}
+                    <div className="mt-8 bg-slate-50 border border-slate-100 rounded-xl p-4 flex items-center justify-between">
+                      <span className="text-xs text-slate-500 font-medium">
+                        Need help with enterprise risk management?
+                      </span>
+                      <Link
+                        to="/contact"
+                        onClick={() => setActiveDropdown(null)}
+                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold tracking-wide transition-all shadow-md shadow-blue-500/10"
+                      >
+                        Contact Us
+                      </Link>
+                    </div>
+                  </div>
+                )}
+
+                {activeOfferTab === "governance" && (
+                  <div className="flex-1 p-8 bg-white min-h-[350px] flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="border-b border-slate-100 pb-3">
+                        <h4 className="text-xs font-extrabold text-slate-450 uppercase tracking-wider">Governance Framework</h4>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        {[
+                          { id: "governance-framework", label: "Corporate Governance", items: "Board Charters • Disclosures • DoA" },
+                          { id: "hr-policy-governance", label: "HR Policy & Governance", items: "Handbooks • POSH • Labour Codes" },
+                          { id: "regulatory-compliance", label: "Regulatory Governance", items: "Multi-agency • Statutory Monitoring" },
+                          { id: "clinical-governance", label: "Clinical Governance", items: "ICH-GCP • NMC • Adverse Events" }
+                        ].map((item) => {
+                          const serv = servicesData.find((s) => s.id === item.id);
+                          if (!serv) return null;
+                          return (
+                            <Link
+                              key={serv.id}
+                              to={`/services/${serv.id}`}
+                              onClick={() => setActiveDropdown(null)}
+                              className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                            >
+                              <div className="flex flex-col text-left">
+                                <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                                  {item.label}
+                                </span>
+                                <span className="text-[10px] text-slate-400 font-medium mt-0.5 leading-snug">
+                                  {item.items}
+                                </span>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    {/* Contact Us Banner */}
+                    <div className="mt-8 bg-slate-50 border border-slate-100 rounded-xl p-4 flex items-center justify-between">
+                      <span className="text-xs text-slate-500 font-medium">
+                        Need help designing your governance framework?
+                      </span>
+                      <Link
+                        to="/contact"
+                        onClick={() => setActiveDropdown(null)}
+                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold tracking-wide transition-all shadow-md shadow-blue-500/10"
+                      >
+                        Contact Us
+                      </Link>
                     </div>
                   </div>
                 )}
@@ -1134,24 +1206,19 @@ export const Header = () => {
               {activeDropdown === "what-we-offer" && (
                 <div className="pl-4 my-1 flex flex-col gap-4 bg-slate-50 rounded-lg p-3 border border-slate-150 max-h-[500px] overflow-y-auto text-left">
                   
-                  {/* GRC */}
+                  {/* Compliance */}
                   <div className="space-y-2 pb-2 border-b border-slate-200/60">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10.5px] font-black text-slate-800 uppercase tracking-wider">GRC Division</span>
+                      <span className="text-[10.5px] font-black text-slate-800 uppercase tracking-wider">Compliance</span>
                       <Link to="/grc" onClick={() => setMobileOpen(false)} className="text-[10px] text-blue-600 font-bold hover:underline">Go to GRC &rarr;</Link>
                     </div>
-                    {/* Compliance Services */}
                     <div className="space-y-1">
-                      <div className="text-[9.5px] font-bold text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
-                        Compliance Services
-                      </div>
                       <div className="pl-2 flex flex-col gap-1">
                         {[
                           { id: "labour-law-compliance", label: "Labour & Employment" },
                           { id: "environmental-compliance", label: "Environmental & EHS" },
                           { id: "taxation-trade-compliance", label: "Taxation & Trade" },
                           { id: "data-privacy-dpdp", label: "Data Privacy & Cyber" },
-                          { id: "esg-sustainability", label: "ESG & Sustainability" },
                           { id: "accreditation-services", label: "Accreditations" }
                         ].map((item) => (
                           <Link
@@ -1165,16 +1232,17 @@ export const Header = () => {
                         ))}
                       </div>
                     </div>
-                    {/* Governance & Risk */}
-                    <div className="space-y-1 pt-1.5">
-                      <div className="text-[9.5px] font-bold text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
-                        Governance & Risk
-                      </div>
+                  </div>
+
+                  {/* Risk */}
+                  <div className="space-y-2 pb-2 border-b border-slate-200/60">
+                    <span className="text-[10.5px] font-black text-slate-800 uppercase tracking-wider">Risk</span>
+                    <div className="space-y-1">
                       <div className="pl-2 flex flex-col gap-1">
                         {[
-                          { id: "governance-framework", label: "Corporate Governance" },
                           { id: "enterprise-risk-management", label: "Enterprise Risk (ERM)" },
                           { id: "internal-audit", label: "Internal Audit" },
+                          { id: "vendor-risk-management", label: "Vendor & Third-Party Risk" },
                           { id: "anti-fraud-investigation", label: "Anti-Fraud & Ethics" }
                         ].map((item) => (
                           <Link
@@ -1188,71 +1256,22 @@ export const Header = () => {
                         ))}
                       </div>
                     </div>
-                    {/* Managed Payroll & HR */}
-                    <div className="space-y-1 pt-1.5">
-                      <div className="text-[9.5px] font-bold text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
-                        Managed Payroll & HR
-                      </div>
+                  </div>
+
+                  {/* Governance */}
+                  <div className="space-y-2 pb-2 border-b border-slate-200/60">
+                    <span className="text-[10.5px] font-black text-slate-800 uppercase tracking-wider">Governance</span>
+                    <div className="space-y-1">
                       <div className="pl-2 flex flex-col gap-1">
                         {[
-                          { id: "statutory-payroll-compliance", label: "Statutory Payroll" },
-                          { id: "hr-data-privacy-security", label: "HR Data Privacy & Security" },
+                          { id: "governance-framework", label: "Corporate Governance" },
                           { id: "hr-policy-governance", label: "HR Policy & Governance" },
-                          { id: "advanced-taxation-perquisites", label: "Compensation & Benefits" },
-                          { id: "managed-staffing-risk-shield", label: "Staffing & Vendor Gov." }
+                          { id: "regulatory-compliance", label: "Regulatory Governance" },
+                          { id: "clinical-governance", label: "Clinical Governance" }
                         ].map((item) => (
                           <Link
                             key={item.id}
                             to={`/services/${item.id}`}
-                            onClick={() => setMobileOpen(false)}
-                            className="text-xs text-slate-700 hover:text-blue-600 font-medium py-0.5 block"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                    {/* BPO Services */}
-                    <div className="space-y-1 pt-1.5">
-                      <div className="text-[9.5px] font-bold text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5">
-                        BPO Services
-                      </div>
-                      <div className="pl-2 flex flex-col gap-1">
-                        {[
-                          { id: "compliance-processing-bpo", label: "Compliance Processing" },
-                          { id: "hr-helpdesk-servicing", label: "HR Helpdesk & Servicing" },
-                          { id: "back-office-operations-bpo", label: "Back-Office Operations" },
-                          { id: "document-record-management", label: "Document & Record BPO" }
-                        ].map((item) => (
-                          <Link
-                            key={item.id}
-                            to={`/services/${item.id}`}
-                            onClick={() => setMobileOpen(false)}
-                            className="text-xs text-slate-700 hover:text-blue-600 font-medium py-0.5 block"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                    {/* Statutory GRC (SGRC) */}
-                    <div className="space-y-1 pt-1.5">
-                      <div className="text-[9.5px] font-bold text-blue-600 uppercase tracking-widest border-l-2 border-blue-500 pl-1.5 flex items-center justify-between">
-                        <span>Statutory GRC (SGRC)</span>
-                        <Link to="/sgrc/services" onClick={() => setMobileOpen(false)} className="text-[9px] text-blue-500 font-bold hover:underline pr-1">All &rarr;</Link>
-                      </div>
-                      <div className="pl-2 flex flex-col gap-1">
-                        {[
-                          { id: "compliance-risk-audit", label: "Compliance Risk Audit" },
-                          { id: "establishment-compliances", label: "Establishment Compliances" },
-                          { id: "payroll-compliance", label: "Payroll Compliance Services" },
-                          { id: "factory-compliance", label: "Factory Compliance Services" },
-                          { id: "vendor-compliance", label: "Vendor Compliance Services" },
-                          { id: "ehs", label: "Environmental, Health & Safety (EHS)" }
-                        ].map((item) => (
-                          <Link
-                            key={item.id}
-                            to={`/sgrc/services/${item.id}`}
                             onClick={() => setMobileOpen(false)}
                             className="text-xs text-slate-700 hover:text-blue-600 font-medium py-0.5 block"
                           >
