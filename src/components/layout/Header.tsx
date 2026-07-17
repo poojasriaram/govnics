@@ -210,16 +210,40 @@ const offeringsVerticalTabsData: Record<string, {
     title: "MANPOWER SERVICES",
     items: [
       {
-        id: "skilled-manpower",
-        title: "Skilled Manpower Services",
-        description: "Deployment of qualified professionals across White Collar, Grey Collar, and Blue Collar roles.",
+        id: "white-collar",
+        title: "White Collar Staffing",
+        description: "Targeted recruitment for corporate executives, IT professionals, managers, and specialized knowledge workers.",
         keyDetails: [
-          "White Collar: Corporate executives, IT professionals, and managers.",
-          "Grey Collar: Technicians, supervisors, and specialized skilled workers.",
-          "Blue Collar: Factory operators, logistics, and operational staff."
+          "Specialized Talent: Access to pre-vetted domain experts.",
+          "Cultural Alignment: Rigorous behavioral and leadership matching.",
+          "Rapid Placement: Fill critical knowledge-worker roles swiftly."
+        ],
+        link: "/staffing?tab=offerings",
+        icon: User
+      },
+      {
+        id: "grey-collar",
+        title: "Grey Collar Staffing",
+        description: "Deployment of qualified technicians, supervisors, and specialized skilled workers balancing technical and manual skills.",
+        keyDetails: [
+          "Certified Technicians: Verified credentials for specialized trades.",
+          "Supervisory Roles: Experienced floor and project managers.",
+          "Agile Deployment: Ready-to-deploy talent for immediate needs."
         ],
         link: "/staffing?tab=offerings",
         icon: Users
+      },
+      {
+        id: "blue-collar",
+        title: "Blue Collar Staffing",
+        description: "Reliable workforce for factory operations, logistics, warehousing, and essential operational support.",
+        keyDetails: [
+          "Mass Recruitment: Scalable hiring for peak seasonal demands.",
+          "Compliance Guaranteed: 100% adherence to all statutory labor laws.",
+          "Turnkey Management: We handle payroll, ESI, and PF administration."
+        ],
+        link: "/staffing?tab=offerings",
+        icon: Factory
       },
       {
         id: "executive-search",

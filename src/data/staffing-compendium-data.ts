@@ -587,9 +587,9 @@ export const detailedOfferings: DetailedOffering[] = [
       { title: "Deep Integration", desc: "Permanent hires integrate more deeply into teams, absorb company knowledge, and develop long-term client relations." }
     ],
     deployTime: {
-      "Low-Skill": "2 to 3 weeks",
-      "Medium-Skill": "3 to 5 weeks",
-      "High-Skill / Leadership": "4 to 8 weeks",
+      "Blue Collar": "2 to 3 weeks",
+      "Grey Collar": "3 to 5 weeks",
+      "White Collar": "4 to 8 weeks",
       "Executive Search": "8 to 16 weeks"
     }
   },
@@ -613,9 +613,9 @@ export const detailedOfferings: DetailedOffering[] = [
       { title: "Compliance Shield", desc: "The agency assumes responsibility for labor law compliance, tax filings, and workers' compensation." }
     ],
     deployTime: {
-      "Low-Skill": "3 to 5 business days",
-      "Medium-Skill": "5 to 10 business days",
-      "High-Skill": "1 to 3 weeks"
+      "Blue Collar": "3 to 5 business days",
+      "Grey Collar": "5 to 10 business days",
+      "White Collar": "1 to 3 weeks"
     }
   },
   {
