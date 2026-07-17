@@ -1,5 +1,3 @@
-import { ShieldCheck, ShieldAlert, Leaf, Users, Building2, Server, HardHat, Zap, Landmark, Stethoscope, ShoppingBag, Tv } from "lucide-react";
-
 export interface MegaMenuData {
   id: string;
   overview: string;

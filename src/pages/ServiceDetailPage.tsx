@@ -6,8 +6,8 @@ import { industriesData } from "@/data/industries-data";
 import { GrcSliderHero } from "@/components/hero/GrcSliderHero";
 import { 
   CheckCircle2, ShieldCheck, 
-  Shield, Layers, Wifi, Cpu, Users, ClipboardCheck, 
-  Settings, Bot, ArrowRightLeft, BookOpen, BarChart3, Clock,
+  Shield, Layers, Cpu, Users, ClipboardCheck, 
+  Settings, ArrowRightLeft, BookOpen, BarChart3, Clock,
   ArrowRight
 } from "lucide-react";
 

@@ -2,14 +2,12 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { 
   Menu, X, ArrowRight, ShieldCheck, ChevronDown,
-  Scale, Building, CreditCard, Factory, Users, ShieldAlert, UserPlus, FileSpreadsheet, Leaf,
-  Calendar, BookOpen, FileText, Megaphone, Heart, Video, Coins, Percent, Clock, CalendarCheck, Globe,
-  Calculator, User, LogOut, CheckCircle2, TrendingUp, Zap, Briefcase,
+  Scale, Building, Factory, Users, ShieldAlert, UserPlus, FileSpreadsheet, Leaf,
+  Heart, Coins,
+  User, LogOut, CheckCircle2, Zap, Briefcase,
   Shield, Lock, Laptop, TreePine, Droplet, Activity, Cloud
 } from "lucide-react";
 import { industriesData } from "@/data/industries-data";
-import { servicesData } from "@/data/services-data";
-import { megaMenuData } from "@/data/mega-menu-data";
 import { useAuth } from "@/context/AuthContext";
 
 const offeringsVerticalTabsData: Record<string, {
@@ -415,97 +413,7 @@ const offeringsVerticalTabsData: Record<string, {
   }
 };
 
-const MegaMenuRightPane = ({ tabId, onClose }: { tabId: string, onClose: () => void }) => {
-  const data = megaMenuData[tabId];
-  if (!data) return <div className="p-8">Select an item...</div>;
 
-  return (
-    <div className="w-[70%] p-8 flex flex-col justify-between bg-white min-h-[480px]">
-      <div className="flex-1 space-y-6">
-        {/* Overview Row */}
-        <div>
-          <h4 className="text-sm font-black text-slate-900 mb-1.5">{data.overview}</h4>
-        </div>
-        
-        {/* 3-Column Grid */}
-        <div className="grid grid-cols-3 gap-6 pt-4 border-t border-slate-100">
-          {/* Column 1: Offerings */}
-          <div>
-            <h5 className="text-xs font-black text-blue-600 uppercase tracking-widest mb-3 flex items-center gap-2">
-              Key Offerings
-            </h5>
-            <ul className="space-y-2.5">
-              {data.offerings.map((offer, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-xs font-bold text-slate-700">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1 shrink-0" />
-                  <span className="leading-tight">{offer}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Column 2: Industries & Stats */}
-          <div className="space-y-6">
-            <div>
-              <h5 className="text-xs font-black text-blue-600 uppercase tracking-widest mb-3 flex items-center gap-2">
-                Industries Served
-              </h5>
-              <div className="flex flex-wrap gap-1.5">
-                {data.industries.map((ind, idx) => (
-                  <span key={idx} className="px-2 py-1 bg-slate-50 border border-slate-200 text-[10px] font-bold text-slate-600 rounded">
-                    {ind}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h5 className="text-xs font-black text-blue-600 uppercase tracking-widest mb-3 flex items-center gap-2">
-                Quick Stats
-              </h5>
-              <ul className="space-y-2">
-                {data.stats.map((stat, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-[11px] font-semibold text-slate-600">
-                    <TrendingUp className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                    <span>{stat}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Column 3: Benefits */}
-          <div>
-            <h5 className="text-xs font-black text-blue-600 uppercase tracking-widest mb-3 flex items-center gap-2">
-              Key Benefits
-            </h5>
-            <ul className="space-y-3">
-              {data.benefits.map((benefit, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-[11px] font-bold text-slate-700 bg-slate-50 p-2 rounded-lg border border-slate-100">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
-                  <span className="leading-tight">{benefit}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Banner Row */}
-      <div className="mt-8 bg-slate-50 border border-slate-200 rounded-xl p-4 flex items-center justify-between shadow-sm">
-        <span className="text-xs text-slate-600 font-bold">
-          {data.cta.message}
-        </span>
-        <Link
-          to={data.cta.href}
-          onClick={onClose}
-          className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold tracking-wide transition-all shadow-md shadow-blue-500/20 whitespace-nowrap"
-        >
-          {data.cta.buttonLabel}
-        </Link>
-      </div>
-    </div>
-  );
-};
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
