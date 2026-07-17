@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { ShieldCheck, Award, Users, BarChart3 } from "lucide-react";
+import { ShieldCheck, Award, Users, BarChart3, Clock, Globe } from "lucide-react";
 
 const counters = [
   {
@@ -24,11 +24,25 @@ const counters = [
     description: "Enterprises audited & secured"
   },
   {
+    icon: Clock,
+    value: 10,
+    suffix: "+",
+    label: "Years of Expertise",
+    description: "Enterprise consulting experience"
+  },
+  {
     icon: ShieldCheck,
     value: 99,
     suffix: "%",
     label: "Client Satisfaction",
     description: "Flawless audit track logs"
+  },
+  {
+    icon: Globe,
+    value: 8,
+    suffix: "+",
+    label: "Certified Partners",
+    description: "Bureau Veritas, SGS, DNV & more"
   }
 ];
 
@@ -79,7 +93,7 @@ export const GrcTrust = () => {
       <div className="container mx-auto px-6 space-y-10">
         
         {/* Animated Counter Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {counters.map((cnt, i) => {
             const IconComp = cnt.icon;
             return (
@@ -146,6 +160,37 @@ export const GrcTrust = () => {
                 </span>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Partner / Certification Logos Row */}
+        <div className="space-y-4">
+          <div className="text-center">
+            <h3 className="text-xs font-black tracking-[0.25em] text-slate-400 uppercase">
+              Trusted Certification & Partner Ecosystem
+            </h3>
+          </div>
+          <div className="flex flex-wrap justify-center gap-4">
+            {[
+              { name: "Bureau Veritas", abbr: "BV", color: "bg-blue-50 border-blue-100 text-blue-700" },
+              { name: "SGS India", abbr: "SG", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
+              { name: "DNV", abbr: "DV", color: "bg-violet-50 border-violet-100 text-violet-700" },
+              { name: "ISO Certified", abbr: "IS", color: "bg-emerald-50 border-emerald-100 text-emerald-700" },
+              { name: "ServiceNow", abbr: "SN", color: "bg-slate-50 border-slate-200 text-slate-700" },
+              { name: "MetricStream", abbr: "MS", color: "bg-sky-50 border-sky-100 text-sky-700" },
+              { name: "VComply", abbr: "VC", color: "bg-cyan-50 border-cyan-100 text-cyan-700" },
+              { name: "CERT-In Partner", abbr: "CI", color: "bg-rose-50 border-rose-100 text-rose-700" },
+            ].map((p, i) => (
+              <div
+                key={i}
+                className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl border ${p.color} transition-all hover:shadow-md`}
+              >
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-black text-[10px] shrink-0 bg-white border ${p.color}`}>
+                  {p.abbr}
+                </div>
+                <span className="text-xs font-bold whitespace-nowrap">{p.name}</span>
+              </div>
+            ))}
           </div>
         </div>
 

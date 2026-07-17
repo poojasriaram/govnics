@@ -127,21 +127,30 @@ export const GrcServices = () => {
                 </div>
 
                 {/* Card Footer linking to ServiceDetailPage */}
-                <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between relative z-10">
+                <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between gap-3 relative z-10">
                   <div className="flex flex-wrap gap-1">
-                    {serv.industries.slice(0, 3).map((indId) => (
+                    {serv.industries.slice(0, 2).map((indId) => (
                       <span key={indId} className="px-2 py-0.5 bg-blue-500/5 text-blue-400/80 rounded text-[9px] font-bold uppercase tracking-wider border border-blue-500/10">
                         {indId.replace("-", " ")}
                       </span>
                     ))}
                   </div>
-                  <Link
-                    to={`/services/${serv.id}`}
-                    className="flex items-center gap-1 text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors uppercase tracking-wider shrink-0"
-                  >
-                    <span>Read Details</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-blue-500 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <Link
+                      to="/contact"
+                      id={`service-card-experts-${serv.id}`}
+                      className="flex items-center gap-1 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-[10px] font-bold tracking-wide transition-all shadow-md shadow-blue-500/15 hover:scale-[1.02]"
+                    >
+                      Talk To Experts
+                    </Link>
+                    <Link
+                      to={`/services/${serv.id}`}
+                      className="flex items-center gap-1 text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors uppercase tracking-wider"
+                    >
+                      <span>Details</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-blue-500 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             ))}

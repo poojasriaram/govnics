@@ -705,9 +705,9 @@ export default function ManageStaffingPage() {
                           {/* Skill Tiers Config Matrix */}
                           <div className="grid md:grid-cols-3 gap-4">
                             {[
-                              { label: "Low-Skill Tier", key: "lowSkill" as const },
-                              { label: "Medium-Skill Tier", key: "mediumSkill" as const },
-                              { label: "High-Skill Tier", key: "highSkill" as const }
+                              { label: "Blue Collar Tier", key: "lowSkill" as const },
+                              { label: "Grey Collar Tier", key: "mediumSkill" as const },
+                              { label: "White Collar Tier", key: "highSkill" as const }
                             ].map((tier) => {
                               const tData = ind[tier.key];
                               return (

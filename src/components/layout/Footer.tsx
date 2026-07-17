@@ -6,6 +6,28 @@ export const Footer = () => {
     <footer className="bg-slate-950 border-t border-white/5 pt-20 pb-10 text-slate-400 relative overflow-hidden">
       {/* Background radial highlight */}
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
+
+      {/* Footer CTA Segment */}
+      <div className="container mx-auto px-6 mb-16 relative z-10">
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+          <div className="space-y-2 max-w-xl text-center md:text-left">
+            <h3 className="text-2xl font-black text-white">Ready to Strengthen Your Compliance Strategy?</h3>
+            <p className="text-sm text-slate-400 font-medium">Get actionable insights from industry-leading compliance experts.</p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
+            <Link to="/contact">
+              <button className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-blue-900/20">
+                Contact Our Team
+              </button>
+            </Link>
+            <Link to="#lead-capture">
+              <button className="w-full sm:w-auto px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl font-bold text-sm transition-all">
+                Get Free Assessment
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
       
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 relative z-10">
         {/* Brand Segment */}

@@ -268,21 +268,37 @@ export const GrcHero = () => {
                 </motion.div>
               )}
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons - 3 button layout */}
               <motion.div
                 variants={elementVariants}
-                className="flex flex-row flex-wrap items-center justify-start gap-4 pt-2 w-full"
+                className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-start gap-3 pt-2 w-full"
               >
-                <Link to="/contact" className="shrink-0">
-                  <button className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-sm font-bold tracking-wide transition-all shadow-lg shadow-blue-500/20 hover:scale-[1.02]">
-                    {grcSlides[activeIndex].cta} <ArrowRight className="w-4 h-4" />
+                {/* Primary CTA */}
+                <Link to="#lead-capture" className="shrink-0">
+                  <button
+                    id="hero-cta-primary"
+                    className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-sm font-bold tracking-wide transition-all shadow-lg shadow-blue-500/20 hover:scale-[1.02]"
+                  >
+                    Get Free Compliance Assessment <ArrowRight className="w-4 h-4" />
                   </button>
                 </Link>
-                <a href="#industries" className="shrink-0">
-                  <button className="flex items-center justify-center gap-2 px-8 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-2xl text-sm font-bold tracking-wide transition-all hover:scale-[1.02]">
-                    Explore Verticals
+                {/* Secondary CTA */}
+                <Link to="/contact" className="shrink-0">
+                  <button
+                    id="hero-cta-secondary"
+                    className="flex items-center justify-center gap-2 px-8 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-2xl text-sm font-bold tracking-wide transition-all hover:scale-[1.02]"
+                  >
+                    Talk to Our Compliance Experts
                   </button>
-                </a>
+                </Link>
+                {/* Tertiary CTA */}
+                <Link
+                  to="/contact"
+                  id="hero-cta-demo"
+                  className="text-xs font-bold text-blue-600 hover:text-blue-700 underline underline-offset-2 shrink-0 transition-colors"
+                >
+                  Schedule a Compliance Demo →
+                </Link>
               </motion.div>
 
               {/* Trust Indicators */}
@@ -292,15 +308,19 @@ export const GrcHero = () => {
               >
                 <div className="flex items-center gap-2 whitespace-nowrap">
                   <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
-                  <span className="text-slate-600">100% Statutory Assurance</span>
+                  <span className="text-slate-600">Regulatory Compliance</span>
                 </div>
                 <div className="flex items-center gap-2 whitespace-nowrap">
                   <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
-                  <span className="text-slate-600">15+ Enterprise Industries</span>
+                  <span className="text-slate-600">Risk Management</span>
                 </div>
                 <div className="flex items-center gap-2 whitespace-nowrap">
                   <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
-                  <span className="text-slate-600">SLA & Cyber Guaranteed</span>
+                  <span className="text-slate-600">Enterprise Governance</span>
+                </div>
+                <div className="flex items-center gap-2 whitespace-nowrap">
+                  <ShieldCheck className="w-4.5 h-4.5 text-blue-600 shrink-0" />
+                  <span className="text-slate-600">Industry-Specific Compliance</span>
                 </div>
               </motion.div>
             </motion.div>

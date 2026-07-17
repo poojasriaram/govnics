@@ -173,32 +173,6 @@ export default function IndustryDetailPage() {
         ]
       },
       {
-        title: "AI Driven Tech Platform",
-        icon: Wifi,
-        description: `Leverage the power of our GOVENICS.AI compliance platform. Continuously scanning network packets, mapping data consent, and auditing workflows, the platform automates data validation for ${title}.`,
-        detailsTitle: "Key Details",
-        details: [
-          "Predictive Threat Profiling: AI models predicting potential data leaks and control failures.",
-          "Automated Compliance Tracking: Continuous background auditing without manual overhead.",
-          "Dynamic Risk Scoring: Real-time risk index adjustment based on live packet signatures.",
-          "IP Watchlist Sentry: Auto-identifying and blocking suspicious network traffic.",
-          "DPDP Consent Registry: Encrypted logging of user consents for statutory proof."
-        ]
-      },
-      {
-        title: "Agentic AI Automation Services",
-        icon: Bot,
-        description: `Deploy autonomous AI agents to manage repetitive compliance workflows, trigger incident containment SOPs, and automatically draft regulatory filing reports in ${title}.`,
-        detailsTitle: "Key Details",
-        details: [
-          "Autonomous Workflow Triggers: AI agents executing containment steps when safety thresholds are breached.",
-          "Natural Language Querying: Query GRC databases and policy logs using plain english.",
-          "Automated Document Drafting: Generating compliance briefs, audit drafts, and statutory letters.",
-          "Smart Escalation Routing: Directing alerts to the correct officer based on alert severity.",
-          "Continuous Policy Scans: Auto-matching internal SOP updates with new government gazettes."
-        ]
-      },
-      {
         title: "Build Operate Transfer Services",
         icon: ArrowRightLeft,
         description: `Establish a self-sustaining internal GRC and cybersecurity command center for ${title}. We design the infrastructure, operate it initially to stabilize performance, and then transfer complete ownership to your internal team.`,

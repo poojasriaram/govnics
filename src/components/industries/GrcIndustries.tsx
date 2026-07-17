@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { industriesData } from "@/data/industries-data";
-import { Shield, ArrowRight } from "lucide-react";
+import { Shield, ArrowRight, Star } from "lucide-react";
+
 
 export const GrcIndustries = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -47,7 +48,36 @@ export const GrcIndustries = () => {
           </p>
         </div>
 
+        {/* Priority Industries Banner */}
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100">
+            <div className="flex items-center gap-1.5 shrink-0">
+              <Star className="w-3.5 h-3.5 text-blue-600 fill-blue-600" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-blue-600">
+                Priority Industries
+              </span>
+            </div>
+            {[
+              { label: "Food Processing", emoji: "🥩" },
+              { label: "Pharmaceuticals", emoji: "💊" },
+              { label: "Healthcare", emoji: "🏥" },
+            ].map((ind) => (
+              <span
+                key={ind.label}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-blue-200/60 rounded-full text-[11px] font-black text-slate-700 shadow-sm"
+              >
+                <span>{ind.emoji}</span>
+                {ind.label}
+              </span>
+            ))}
+            <span className="text-[10px] text-slate-400 font-medium ml-2 hidden sm:inline">
+              + Manufacturing • IT • BFSI • Logistics • Retail • Professional Services • Energy & Utilities
+            </span>
+          </div>
+        </div>
+
         {/* Cluster Tabs Selector */}
+
         <div className="flex flex-wrap justify-center gap-2 max-w-5xl mx-auto pb-4 border-b border-slate-100">
           {clusters.map((clusterName) => {
             const isActive = activeCluster === clusterName;
@@ -205,6 +235,39 @@ export const GrcIndustries = () => {
           </AnimatePresence>
         </motion.div>
 
+      </div>
+
+      {/* Consultation CTA */}
+      <div className="container mx-auto px-6 max-w-7xl pt-10 pb-6 relative z-10">
+        <div className="rounded-2xl bg-slate-900 p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="space-y-1">
+            <div className="text-[10px] font-black uppercase tracking-widest text-blue-400">
+              Industry-Specific Compliance
+            </div>
+            <h3 className="text-xl font-black text-white">
+              Want Industry-Specific Compliance Guidance?
+            </h3>
+            <p className="text-sm text-slate-400 font-medium">
+              Our experts build scalable compliance frameworks tailored to your sector.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+            <Link
+              to="/contact"
+              id="industries-cta-consultation"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-blue-500/20 hover:scale-[1.02] whitespace-nowrap"
+            >
+              Book Consultation <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to="#lead-capture"
+              id="industries-cta-demo"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl text-sm font-bold transition-all hover:scale-[1.02] whitespace-nowrap"
+            >
+              Schedule Demo
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

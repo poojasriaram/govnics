@@ -51,7 +51,7 @@ export interface ClientBenefit {
 
 export const skillTiers: SkillTier[] = [
   {
-    title: "Low-Skill Manpower",
+    title: "Blue Collar Manpower",
     profile: "High-school diploma or GED equivalent; fewer than 2 years of professional experience; requires minimal on-the-job training or task-specific orientation.",
     characteristics: [
       "Task-oriented, process-driven roles with clearly defined instructions",
@@ -68,13 +68,13 @@ export const skillTiers: SkillTier[] = [
     }
   },
   {
-    title: "Medium-Skill Manpower",
+    title: "Grey Collar Manpower",
     profile: "Vocational diploma, technical certification, associate degree, or trade apprenticeship; 2–5 years of hands-on experience; capable of operating specialized equipment or applying domain-specific knowledge under moderate supervision.",
     characteristics: [
       "Applies technical knowledge to operate machinery, systems, or processes",
       "Requires certification or licensure for compliance (e.g., HVAC, CDL, phlebotomy)",
       "Capable of troubleshooting within defined parameters",
-      "May supervise small teams of low-skill workers"
+      "May supervise small teams of blue collar workers"
     ],
     roles: {
       "Manufacturing": ["CNC machinist", "Quality inspector", "Welding technician", "PLC programmer"],
@@ -88,7 +88,7 @@ export const skillTiers: SkillTier[] = [
     }
   },
   {
-    title: "High-Skill Manpower",
+    title: "White Collar Manpower",
     profile: "Bachelor's degree, Master's degree, or Doctorate; professional certifications (PMP, CPA, PE, CFA); 5+ years of progressive experience; capable of strategic decision-making, team leadership, and P&L accountability.",
     characteristics: [
       "Strategic, autonomous decision-making with organizational impact",
@@ -288,7 +288,7 @@ export const industryMatrix: IndustryMatrixItem[] = [
       model: "Placement, RPO"
     },
     considerations: [
-      "High turnover in low-skill tiers demands always-on contingency bench strength",
+      "High turnover in blue collar tiers demands always-on contingency bench strength",
       "Safety certifications (OSHA 10/30) are mandatory for all deployed workers",
       "Seasonal demand spikes (e.g. automotive model changeovers) require flexible contract ramp-ups"
     ]

@@ -8,10 +8,16 @@ import { GrcLifecycleSlider } from "@/components/services/GrcLifecycleSlider";
 import { WhyGovenics } from "@/components/why-govenics/WhyGovenics";
 import { GrcCases } from "@/components/cases/GrcCases";
 import { GrcResources } from "@/components/resources/GrcResources";
+import { ComplianceRisk } from "@/components/risk/ComplianceRisk";
+import { CompanySize } from "@/components/company-size/CompanySize";
+import { ComplianceCTA } from "@/components/cta/ComplianceCTA";
+import { LeadCaptureForm } from "@/components/lead/LeadCaptureForm";
+import { FloatingCTA } from "@/components/ui/FloatingCTA";
 
 export default function Index() {
   return (
     <Layout noPadding={true}>
+      {/* Hero Section */}
       <GrcHero />
 
       {/* Strategic Evolution Section */}
@@ -76,13 +82,51 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Trust Metrics + Partner Ecosystem */}
       <GrcTrust />
+
+      {/* Compliance Risk Categories — NEW */}
+      <ComplianceRisk />
+
+      {/* CTA: Risk */}
+      <ComplianceCTA variant="risk" />
+
+      {/* Company Size Segmentation — NEW */}
+      <CompanySize />
+
+      {/* CTA: Company Size */}
+      <ComplianceCTA variant="companySize" />
+
+      {/* Industries We Serve */}
       <GrcIndustries />
+
+      {/* CTA: Industries */}
+      <ComplianceCTA variant="industries" />
+
+      {/* Services Lifecycle */}
       <GrcLifecycleSlider />
+
+      {/* Service Ecosystem */}
       <GrcServices />
+
+      {/* CTA: Services */}
+      <ComplianceCTA variant="services" />
+
+      {/* Why Govenics */}
       <WhyGovenics />
+
+      {/* Case Studies */}
       <GrcCases />
+
+      {/* Lead Capture Form — NEW */}
+      <LeadCaptureForm />
+
+      {/* Resources Hub */}
       <GrcResources />
+
+      {/* Mobile Floating CTA — NEW */}
+      <FloatingCTA />
     </Layout>
   );
 }
+
