@@ -5,7 +5,7 @@ import {
   Scale, Building, CreditCard, Factory, Users, ShieldAlert, UserPlus, FileSpreadsheet, Leaf,
   Calendar, BookOpen, FileText, Megaphone, Heart, Video, Coins, Percent, Clock, CalendarCheck, Globe,
   Calculator, User, LogOut, CheckCircle2, TrendingUp, Zap, Briefcase,
-  Shield, Lock, Laptop, TreePine, Droplet, Activity
+  Shield, Lock, Laptop, TreePine, Droplet, Activity, Cloud
 } from "lucide-react";
 import { industriesData } from "@/data/industries-data";
 import { servicesData } from "@/data/services-data";

@@ -599,35 +599,6 @@ export const megaMenuData: Record<string, MegaMenuData> = {
       href: "/industries/energy-utilities"
     }
   },
-  "financial-services": {
-    id: "financial-services",
-    overview: "Specialized compliance, risk, and governance solutions tailored specifically for the Financial Services sector.",
-    offerings: [
-      "Regulatory Compliance",
-      "Risk Management",
-      "Operational Audits",
-      "Vendor Governance",
-      "Data Protection",
-      "Workforce Compliance"
-    ],
-    industries: ["Financial Services", "Enterprise", "Mid-Market", "Startups", "Global Ops", "Supply Chain"],
-    benefits: [
-      "Sector-Specific Expertise",
-      "Mitigate Regulatory Fines",
-      "Streamline Operations",
-      "Enhance Stakeholder Trust"
-    ],
-    stats: [
-      "Industry-tailored frameworks",
-      "End-to-end risk mapping",
-      "Dedicated subject experts"
-    ],
-    cta: {
-      message: "Need tailored solutions for Financial Services?",
-      buttonLabel: "Contact Our Experts",
-      href: "/industries/financial-services"
-    }
-  },
   "healthcare-life-sciences": {
     id: "healthcare-life-sciences",
     overview: "Specialized compliance, risk, and governance solutions tailored specifically for the Healthcare & Life Sciences sector.",
