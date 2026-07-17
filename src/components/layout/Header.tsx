@@ -821,6 +821,11 @@ export const Header = () => {
         {/* Action Buttons */}
         {!isAuthenticated ? (
           <div className="hidden xl:flex items-center gap-3">
+            <Link to="/login">
+              <button className="px-5 py-2.5 border border-slate-200 text-slate-800 hover:bg-slate-50 rounded-xl text-[11px] font-black transition-all">
+                Sign In
+              </button>
+            </Link>
             <Link to="/contact">
               <button className="flex items-center gap-1.5 px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl shadow-lg shadow-slate-900/20 text-xs font-bold tracking-wide transition-all hover:scale-[1.02]">
                 Contact Us <ArrowRight className="w-3.5 h-3.5" />
