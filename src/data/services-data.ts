@@ -373,6 +373,188 @@ export const servicesData: GrcService[] = [
     ],
     standards: ["Information Technology Act", "Companies Act 2013", "ISO 15489"],
     industries: ["bfsi", "healthcare", "government-psu", "manufacturing"]
+  },
+  {
+    id: "labour-law-compliance",
+    title: "Labour & Employment Law Compliance",
+    category: "Governance & Risk Advisory",
+    problem: "Navigating complex state and central labor laws (PF, ESI, Minimum Wages) leads to frequent notices and contractor liability issues.",
+    solution: "We manage end-to-end statutory labor compliance, including contractor audits and seamless representation during inspections.",
+    benefits: [
+      "Zero contractor liability for principal employers.",
+      "100% adherence to Provident Fund and ESI norms.",
+      "Smooth relations with local labor commissioners."
+    ],
+    standards: ["EPF & MP Act", "ESI Act", "Factories Act", "Minimum Wages Act"],
+    industries: ["manufacturing", "food-processing", "construction", "it-services", "retail-ecommerce"]
+  },
+  {
+    id: "taxation-trade-compliance",
+    title: "Taxation & Trade Compliance",
+    category: "Governance & Risk Advisory",
+    problem: "Inconsistent filings in GST, TDS, and SEZ regulations trigger massive financial penalties and disrupt export-import operations.",
+    solution: "We provide comprehensive tax advisory, execute seamless monthly filings, and ensure strict compliance with SEZ export-import mandates.",
+    benefits: [
+      "Timely ITC (Input Tax Credit) realization.",
+      "Avoidance of costly transfer pricing litigation.",
+      "Uninterrupted supply chain through compliant customs clearance."
+    ],
+    standards: ["CGST/SGST Act", "Income Tax Act", "SEZ Rules", "FEMA"],
+    industries: ["manufacturing", "it-services", "retail-ecommerce", "logistics-supply-chain"]
+  },
+  {
+    id: "environmental-ehs",
+    title: "Environmental & EHS Compliance",
+    category: "Governance & Risk Advisory",
+    problem: "Failure to secure CTO/CTE or mishandling hazardous waste results in immediate factory closures and severe NGT penalties.",
+    solution: "We secure necessary environmental consents, manage hazardous waste registers, and conduct rigorous fire and workplace safety audits.",
+    benefits: [
+      "Guaranteed operational continuity without NGT interference.",
+      "Streamlined renewal processes for CTE/CTO.",
+      "Enhanced workplace safety leading to lower insurance premiums."
+    ],
+    standards: ["Water & Air Act", "Hazardous Waste Rules", "Factories Act (Safety)"],
+    industries: ["manufacturing", "mining", "food-processing", "energy-utilities", "real-estate-infra"]
+  },
+  {
+    id: "supply-chain-compliance",
+    title: "Supply Chain & Logistics Compliance",
+    category: "Governance & Risk Advisory",
+    problem: "Vendors and logistics partners frequently bypass statutory regulations, legally exposing the principal employer to third-party defaults.",
+    solution: "We audit and secure compliance across your entire vendor and distributor network, implementing robust pre-onboarding checks.",
+    benefits: [
+      "Complete shielding from third-party vendor defaults.",
+      "Transparent tracking of distributor compliance metrics.",
+      "Strict adherence to motor transport and warehousing laws."
+    ],
+    standards: ["Motor Transport Workers Act", "Warehousing Rules", "Contract Labour Act"],
+    industries: ["logistics-supply-chain", "retail-ecommerce", "manufacturing", "food-processing"]
+  },
+  {
+    id: "financial-risk",
+    title: "Financial Risk Advisory",
+    category: "Governance & Risk Advisory",
+    problem: "Unexpected market volatility, credit defaults, and poor liquidity management can rapidly deplete capital structures.",
+    solution: "We run advanced scenario stress tests and build predictive modeling tools to manage credit, market, and liquidity exposures.",
+    benefits: [
+      "Optimized capital adequacy and liquidity buffers.",
+      "Proactive hedging against currency and interest rate fluctuations.",
+      "Stronger credit profiling for counterparty risk mitigation."
+    ],
+    standards: ["Basel III Norms", "Ind AS / IFRS", "RBI Risk Guidelines"],
+    industries: ["bfsi", "real-estate-infra", "manufacturing", "energy-utilities"]
+  },
+  {
+    id: "operational-risk",
+    title: "Operational Resilience & BCP",
+    category: "Governance & Risk Advisory",
+    problem: "Process breakdowns, system outages, or natural disasters can halt operations and cause irreparable reputational damage.",
+    solution: "We identify single points of failure, establish robust Business Continuity Plans (BCP), and track historical loss data.",
+    benefits: [
+      "Minimal downtime during catastrophic events.",
+      "Rapid recovery protocols restoring critical business functions.",
+      "Reduction in recurrent operational errors through root-cause analysis."
+    ],
+    standards: ["ISO 22301 (BCMS)", "RBI Operational Risk Framework"],
+    industries: ["it-services", "bfsi", "telecom", "healthcare", "government-psu"]
+  },
+  {
+    id: "it-governance",
+    title: "IT Governance & Strategy",
+    category: "Governance & Risk Advisory",
+    problem: "Misaligned IT investments and shadow IT create structural vulnerabilities, inflating budgets without delivering business value.",
+    solution: "We align IT strategies with corporate objectives, audit software lifecycles, and advise boards on secure digital transformations.",
+    benefits: [
+      "Maximum ROI on enterprise software and hardware investments.",
+      "Clear accountability through standardized IT frameworks.",
+      "Seamless alignment with corporate growth objectives."
+    ],
+    standards: ["COBIT 2019", "ITIL v4", "ISO 38500"],
+    industries: ["it-services", "bfsi", "telecom", "retail-ecommerce"]
+  },
+  {
+    id: "board-advisory",
+    title: "Board Advisory Services",
+    category: "Governance & Risk Advisory",
+    problem: "Independent directors face increasing regulatory scrutiny and personal liability without adequate real-time counsel.",
+    solution: "We provide expert counsel on fiduciary duties, evaluate committee effectiveness, and draft zero-tolerance ethics charters.",
+    benefits: [
+      "Protection of directors from regulatory and legal liabilities.",
+      "Enhanced board efficiency and strategic decision-making.",
+      "Stronger anti-bribery and corporate ethics culture."
+    ],
+    standards: ["Companies Act 2013", "SEBI LODR", "Corporate Governance Code"],
+    industries: ["bfsi", "manufacturing", "government-psu", "healthcare"]
+  },
+  {
+    id: "vapt-testing",
+    title: "VAPT & Penetration Testing",
+    category: "Digital Trust & Cybersecurity",
+    problem: "Undiscovered vulnerabilities in web and mobile applications provide easy entry points for ransomware and data exfiltration.",
+    solution: "We conduct simulated ethical hacking, deep code reviews, and network scans to identify and patch flaws before they are exploited.",
+    benefits: [
+      "Prevention of high-profile data breaches and ransomware.",
+      "Secure deployment of customer-facing applications.",
+      "Actionable remediation roadmaps for developer teams."
+    ],
+    standards: ["OWASP Top 10", "CERT-In Empanelment Guidelines", "SANS Top 25"],
+    industries: ["it-services", "bfsi", "retail-ecommerce", "telecom", "healthcare"]
+  },
+  {
+    id: "cloud-security",
+    title: "Cloud & Infrastructure Security",
+    category: "Digital Trust & Cybersecurity",
+    problem: "Misconfigured cloud storage buckets and weak IAM policies lead to unauthorized access and massive data leaks.",
+    solution: "We audit AWS, Azure, and GCP environments, enforcing strict Zero Trust policies and 24/7 threat surveillance.",
+    benefits: [
+      "Bulletproof protection against cloud infrastructure hijacking.",
+      "Automated detection of compliance drift in cloud configurations.",
+      "Secure remote access architecture for distributed workforces."
+    ],
+    standards: ["CSA STAR", "CIS Benchmarks", "ISO 27017"],
+    industries: ["it-services", "bfsi", "retail-ecommerce", "telecom"]
+  },
+  {
+    id: "carbon-footprint",
+    title: "Carbon Footprint & Net Zero",
+    category: "Governance & Risk Advisory",
+    problem: "Organizations struggle to accurately quantify Scope 1, 2, and 3 emissions, missing critical sustainability targets and investor expectations.",
+    solution: "We map complete emission inventories, develop actionable reduction strategies, and advise on verified carbon credit markets.",
+    benefits: [
+      "Clear, quantifiable pathways to achieving Net Zero.",
+      "Enhanced attractiveness to ESG-focused global investors.",
+      "Compliance with international greenhouse gas protocols."
+    ],
+    standards: ["GHG Protocol", "Science Based Targets (SBTi)", "ISO 14064"],
+    industries: ["manufacturing", "mining", "energy-utilities", "logistics-supply-chain"]
+  },
+  {
+    id: "green-audits",
+    title: "Green & Energy Audits",
+    category: "Governance & Risk Advisory",
+    problem: "Inefficient energy and water usage inflates operational costs and violates emerging environmental conservation mandates.",
+    solution: "We assess facility resource consumption, implement Zero Liquid Discharge (ZLD) plans, and integrate circular economy principles.",
+    benefits: [
+      "Significant reduction in monthly power and water utility costs.",
+      "Statutory compliance with energy conservation regulations.",
+      "Measurable improvements in facility sustainability scores."
+    ],
+    standards: ["ISO 50001 (Energy)", "ISO 14001 (Environment)", "BEE Guidelines"],
+    industries: ["manufacturing", "food-processing", "real-estate-infra", "energy-utilities"]
+  },
+  {
+    id: "csr-management",
+    title: "CSR Strategy & Implementation",
+    category: "Governance & Risk Advisory",
+    problem: "Mandatory CSR funds are often misallocated to non-compliant NGOs, failing to generate measurable impact or meet statutory reporting requirements.",
+    solution: "We design strategic CSR programs, conduct due diligence on NGO partners, and perform third-party impact assessments.",
+    benefits: [
+      "100% compliance with Companies Act CSR expenditure rules.",
+      "Maximized social return on investment (SROI).",
+      "Enhanced corporate reputation through verified impact reporting."
+    ],
+    standards: ["Companies Act (CSR Rules)", "Social Audit Standards"],
+    industries: ["manufacturing", "bfsi", "it-services", "mining", "energy-utilities"]
   }
 ];
 

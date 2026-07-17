@@ -71,7 +71,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Safety Audits: Comprehensive factory and fire safety inspections.",
           "Waste Returns: Timely filing of hazardous and e-waste returns."
         ],
-        link: "/services/regulatory-compliance",
+        link: "/services/environmental-ehs",
         icon: Leaf
       },
       {
@@ -83,7 +83,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Principal Employer Protection: Shielding you from vendor defaults.",
           "Logistics Laws: Adherence to transport and warehouse regulations."
         ],
-        link: "/services/regulatory-compliance",
+        link: "/services/supply-chain-compliance",
         icon: Factory
       }
     ]
@@ -136,7 +136,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Credit Profiling: Advanced modeling for counterparty risk.",
           "Capital Adequacy: Regulatory compliance with Basel norms."
         ],
-        link: "/services/enterprise-risk-management",
+        link: "/services/financial-risk",
         icon: Coins
       },
       {
@@ -148,7 +148,7 @@ const offeringsVerticalTabsData: Record<string, {
           "BCP Drills: Simulated testing of disaster recovery protocols.",
           "Loss Data Analysis: Tracking and mitigating historical failures."
         ],
-        link: "/services/enterprise-risk-management",
+        link: "/services/operational-risk",
         icon: Activity
       }
     ]
@@ -189,7 +189,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Resource Optimization: Auditing software and hardware lifecycles.",
           "Strategic Steering: Board-level IT investment advisory."
         ],
-        link: "/services/governance-framework",
+        link: "/services/it-governance",
         icon: Laptop
       },
       {
@@ -201,7 +201,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Performance Evaluation: Assessing board and committee effectiveness.",
           "Ethics Charters: Codifying zero-tolerance anti-bribery policies."
         ],
-        link: "/services/governance-framework",
+        link: "/services/board-advisory",
         icon: Scale
       }
     ]
@@ -307,7 +307,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Network Scans: Identifying weak points in internal infrastructure.",
           "Remediation Support: Step-by-step guidance to patch flaws."
         ],
-        link: "/cybersecurity",
+        link: "/services/vapt-testing",
         icon: Shield
       },
       {
@@ -319,7 +319,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Access Management: Enforcing strict IAM and Zero Trust policies.",
           "Continuous Monitoring: 24/7 cloud threat surveillance."
         ],
-        link: "/cybersecurity",
+        link: "/services/cloud-security",
         icon: Cloud
       },
       {
@@ -331,7 +331,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Data Mapping: Complete lifecycle tracking of personal data.",
           "Breach Readiness: Rapid response plans for patient/client data leaks."
         ],
-        link: "/cybersecurity",
+        link: "/services/data-privacy",
         icon: Lock
       }
     ]
@@ -360,7 +360,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Reduction Strategies: Actionable roadmaps to lower carbon intensity.",
           "Offset Advisory: Guidance on verified carbon credit markets."
         ],
-        link: "/esg",
+        link: "/services/carbon-footprint",
         icon: TreePine
       },
       {
@@ -372,7 +372,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Water Stewardship: Zero liquid discharge (ZLD) planning.",
           "Waste Valuation: Circular economy and recycling integration."
         ],
-        link: "/esg",
+        link: "/services/green-audits",
         icon: Droplet
       },
       {
@@ -384,7 +384,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Impact Assessment: Third-party audits of CSR outcomes.",
           "Statutory Reporting: Ensuring adherence to Companies Act CSR rules."
         ],
-        link: "/esg",
+        link: "/services/csr-management",
         icon: Heart
       }
     ]
