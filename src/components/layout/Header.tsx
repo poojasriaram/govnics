@@ -208,6 +208,54 @@ const offeringsVerticalTabsData: Record<string, {
     title: "MANPOWER SERVICES",
     items: [
       {
+        id: "healthcare-manpower",
+        title: "Healthcare Manpower",
+        description: "Specialized staffing solutions for hospitals, clinics, and allied healthcare facilities.",
+        keyDetails: [
+          "Certified Professionals: Verified credentials for doctors and nurses.",
+          "Allied Health: Technicians and support staff.",
+          "Rapid Deployment: Immediate availability for critical care needs."
+        ],
+        link: "/staffing/healthcare-manpower",
+        icon: Heart
+      },
+      {
+        id: "manufacturing-manpower",
+        title: "Manufacturing",
+        description: "Reliable workforce for assembly lines, machine operation, and quality control.",
+        keyDetails: [
+          "Skilled Operators: Trained personnel for complex machinery.",
+          "Production Efficiency: Scalable workforce to meet production targets.",
+          "Safety First: Strict adherence to industrial safety protocols."
+        ],
+        link: "/staffing/manufacturing",
+        icon: Factory
+      },
+      {
+        id: "facility-management",
+        title: "Facility Management",
+        description: "Comprehensive facility upkeep, maintenance, and administrative support services.",
+        keyDetails: [
+          "Integrated Services: End-to-end management of building operations.",
+          "Technical Maintenance: HVAC, electrical, and plumbing experts.",
+          "24/7 Support: Round-the-clock facility monitoring and upkeep."
+        ],
+        link: "/staffing/facility-management",
+        icon: Building
+      },
+      {
+        id: "housekeeping-it",
+        title: "Housekeeping Services for IT Companies and Knowledge Campuses",
+        description: "Premium housekeeping and deep cleaning services tailored for corporate parks and IT campuses.",
+        keyDetails: [
+          "Corporate Standards: Specialized training for premium environments.",
+          "Eco-Friendly Cleaning: Use of sustainable materials.",
+          "Discreet Operations: Minimal disruption to corporate workflows."
+        ],
+        link: "/staffing/housekeeping-it",
+        icon: Droplet
+      },
+      {
         id: "white-collar",
         title: "White Collar Staffing",
         description: "Targeted recruitment for corporate executives, IT professionals, managers, and specialized knowledge workers.",
@@ -216,7 +264,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Cultural Alignment: Rigorous behavioral and leadership matching.",
           "Rapid Placement: Fill critical knowledge-worker roles swiftly."
         ],
-        link: "/staffing?tab=offerings",
+        link: "/staffing/white-collar-staffing",
         icon: User
       },
       {
@@ -228,7 +276,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Supervisory Roles: Experienced floor and project managers.",
           "Agile Deployment: Ready-to-deploy talent for immediate needs."
         ],
-        link: "/staffing?tab=offerings",
+        link: "/staffing/grey-collar-staffing",
         icon: Users
       },
       {
@@ -240,7 +288,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Compliance Guaranteed: 100% adherence to all statutory labor laws.",
           "Turnkey Management: We handle payroll, ESI, and PF administration."
         ],
-        link: "/staffing?tab=offerings",
+        link: "/staffing/blue-collar-staffing",
         icon: Factory
       },
       {
@@ -252,7 +300,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Industry Experts: Deep networks in manufacturing, IT, and BFSI.",
           "Cultural Fit: Rigorous behavioral and leadership assessments."
         ],
-        link: "/staffing?tab=offerings",
+        link: "/staffing/executive-search",
         icon: Briefcase
       },
       {
@@ -264,7 +312,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Compliance Handled: 100% adherence to all statutory labor laws.",
           "Reduced Liability: We manage payroll, benefits, and administration."
         ],
-        link: "/staffing?tab=offerings",
+        link: "/staffing/contract-staffing",
         icon: UserPlus
       },
       {
@@ -276,7 +324,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Always-On Overwatch: Surveillance of critical controls.",
           "Routine Status Audits: Scheduled weekly and monthly assessments."
         ],
-        link: "/staffing?tab=engagement-models",
+        link: "/staffing/sla-managed",
         icon: ShieldCheck
       },
       {
@@ -288,7 +336,7 @@ const offeringsVerticalTabsData: Record<string, {
           "Statutory Deductions: PF, ESI, PT, and TDS seamlessly handled.",
           "Employee Self-Service: Dedicated portals for pay slips and tax."
         ],
-        link: "/staffing?tab=offerings",
+        link: "/staffing/payroll-management",
         icon: Coins
       }
     ]
@@ -548,7 +596,7 @@ export const Header = () => {
               What We Offer <ChevronDown className="w-4 h-4 text-current" />
             </div>
             {activeDropdown === "what-we-offer" && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[98dvw] max-w-7xl bg-white border border-slate-200 shadow-2xl rounded-2xl flex overflow-hidden animate-slide-up-dropdown mt-1 text-left z-50">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[98dvw] max-w-7xl max-h-[85vh] bg-white border border-slate-200 shadow-2xl rounded-2xl flex overflow-hidden animate-slide-up-dropdown mt-1 text-left z-50">
                 {/* Bridge to prevent hover loss */}
                 <div className="absolute -top-8 left-0 right-0 h-8 bg-transparent" />
 
@@ -622,7 +670,7 @@ export const Header = () => {
                     </div>
 
                     {/* Right Column: Key Details */}
-                    <div className="w-[65%] p-8 bg-slate-50/50">
+                    <div className="w-[65%] p-8 bg-slate-50/50 overflow-y-auto">
                       {(() => {
                         const activeItem = offeringsVerticalTabsData[activeOfferTab]?.items.find(i => i.id === activeServiceTab);
                         if (!activeItem) return null;
@@ -793,6 +841,10 @@ export const Header = () => {
           {/* Partners Link */}
           <Link to="/partners" className={getLinkClass("/partners")}>
             Partners
+          </Link>
+
+          <Link to="/careers" className={getLinkClass("/careers")}>
+            Careers
           </Link>
 
           {/* About Us Link */}

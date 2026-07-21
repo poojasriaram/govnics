@@ -168,7 +168,11 @@ export const megaMenuData: Record<string, MegaMenuData> = {
       "Project Staffing",
       "RPO Services",
       "Managed Hiring",
-      "Workforce Consulting"
+      "Workforce Consulting",
+      "Healthcare Manpower",
+      "Manufacturing",
+      "Facility Management",
+      "Housekeeping Services for IT Companies and Knowledge Campuses"
     ],
     industries: ["IT Services", "Manufacturing", "Pharma", "Healthcare", "Retail", "Logistics"],
     benefits: [

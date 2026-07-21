@@ -84,6 +84,7 @@ export const Footer = () => {
             <li><Link to="/cybersecurity" className="hover:text-blue-400 transition-colors">Cybersecurity</Link></li>
             <li><Link to="/esg" className="hover:text-blue-400 transition-colors">ESG Reporting</Link></li>
             <li><Link to="/partners" className="hover:text-blue-400 transition-colors">Partners</Link></li>
+            <li><Link to="/careers" className="hover:text-blue-400 transition-colors">Careers</Link></li>
             <li><Link to="/services/labour-law-compliance" className="hover:text-blue-400 transition-colors">Labour Compliance</Link></li>
           </ul>
         </div>
@@ -115,7 +116,7 @@ export const Footer = () => {
         </div>
         <div className="flex items-center gap-6">
           <Link to="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
-          <Link to="/terms" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
+          <Link to="/terms" className="hover:text-slate-300 transition-colors">Terms & Conditions</Link>
           <Link to="/cookies" className="hover:text-slate-300 transition-colors">Cookie Policy</Link>
         </div>
       </div>

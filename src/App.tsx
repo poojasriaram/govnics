@@ -11,6 +11,7 @@ import ManageStaffingPage from "@/pages/ManageStaffingPage";
 import CyberSecurityPage from "@/pages/CyberSecurityPage";
 import AboutPage from "@/pages/AboutPage";
 import ESGPage from "@/pages/ESGPage";
+import ManpowerServiceDetailPage from "@/pages/ManpowerServiceDetailPage";
 import PartnersPage from "@/pages/PartnersPage";
 import GrcPage from "@/pages/GrcPage";
 import IndustriesPage from "@/pages/IndustriesPage";
@@ -22,6 +23,7 @@ import SgrcResourcesListPage from "@/pages/SgrcResourcesListPage";
 import AnalyticsPage from "@/pages/AnalyticsPage";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
+import CareersPage from "@/pages/CareersPage";
 import { AuthProvider } from "@/context/AuthContext";
 import { TelemetryTracker } from "@/components/analytics/TelemetryTracker";
 
@@ -52,7 +54,9 @@ function App() {
           <Route path="/terms" element={<TermsOfServicePage />} />
           <Route path="/cookies" element={<CookiePolicyPage />} />
           <Route path="/staffing" element={<ManageStaffingPage />} />
+          <Route path="/staffing/:serviceId" element={<ManpowerServiceDetailPage />} />
           <Route path="/partners" element={<PartnersPage />} />
+          <Route path="/careers" element={<CareersPage />} />
           <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

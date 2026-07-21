@@ -20,7 +20,7 @@ export default function TermsOfServicePage() {
               Legal & Trust Center
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading leading-tight">
-              Terms of Service
+              Terms & Conditions
             </h1>
             <p className="text-slate-500 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed font-semibold">
               Last Updated: June 10, 2026 • Governing advisory engagements and GRC platform usage.
@@ -38,7 +38,7 @@ export default function TermsOfServicePage() {
             <div className="space-y-3">
               <h3 className="text-lg font-black text-slate-900 font-heading">Acceptance of Terms</h3>
               <p className="text-sm text-slate-600 leading-relaxed font-medium">
-                By booking consultations, scheduling audits, or accessing resources through GOVENICS, you agree to comply with and be bound by the following Terms of Service. These terms apply to all visitors, clients, and corporate partners of Govenics GRC (a division of ISI Group).
+                By booking consultations, scheduling audits, or accessing resources through GOVENICS, you agree to comply with and be bound by the following Terms & Conditions. These terms apply to all visitors, clients, and corporate partners of Govenics GRC (a division of ISI Group).
               </p>
             </div>
           </div>
