@@ -461,7 +461,144 @@ const offeringsVerticalTabsData: Record<string, {
   }
 };
 
-
+// ─── Manpower Sectors Data ───────────────────────────────────────────────────
+const manpowerSectorsData = [
+  {
+    id: "healthcare",
+    label: "Healthcare",
+    description: "Trained workforce solutions for hospitals, clinics, diagnostic centers, and healthcare campuses — backed by NABH/JCI protocol training and 100% statutory compliance.",
+    services: [
+      "Hospital Housekeeping",
+      "Infection Control",
+      "Patient Transport",
+      "Biomedical Waste Mgmt",
+      "Facility Maintenance",
+      "Security Services",
+      "Front Office Support",
+    ],
+    coverage: [
+      "Hospitals & ICUs",
+      "Clinics & OPDs",
+      "Diagnostic Centers",
+      "Medical Colleges",
+    ],
+    benefits: [
+      "Compliance-Ready Staff",
+      "48-hr Deployment",
+      "Verified Workforce",
+      "SLA-Based Delivery",
+    ],
+    link: "/staffing/healthcare-manpower",
+  },
+  {
+    id: "manufacturing",
+    label: "Manufacturing",
+    description: "Skilled and semi-skilled workforce for production, assembly, quality control, and plant operations — with strict adherence to industrial safety protocols.",
+    services: [
+      "Assembly Line Operators",
+      "Quality Control Inspectors",
+      "Machine Operators",
+      "Shift Supervisors",
+      "Warehouse Staff",
+      "Packaging Workers",
+      "Plant Maintenance",
+    ],
+    coverage: [
+      "Automotive Plants",
+      "FMCG Factories",
+      "Electronics Units",
+      "Chemical Plants",
+    ],
+    benefits: [
+      "Scalable Workforce",
+      "Safety-Trained Staff",
+      "Pan-India Sourcing",
+      "SLA-Driven Delivery",
+    ],
+    link: "/staffing/manufacturing",
+  },
+  {
+    id: "facilities",
+    label: "Facilities",
+    description: "Housekeeping, maintenance, landscaping, pest control, and facility support professionals for corporate parks, IT campuses, and commercial premises.",
+    services: [
+      "Housekeeping Supervisors",
+      "Deep Cleaning Specialists",
+      "Landscaping & Horticulture",
+      "Pest Control Technicians",
+      "Facility Maintenance Tech",
+      "Pantry & Cafeteria Staff",
+      "Waste Management Ops",
+    ],
+    coverage: [
+      "Corporate Parks",
+      "IT Campuses",
+      "Commercial Complexes",
+      "Residential Societies",
+    ],
+    benefits: [
+      "ISO-Trained Workforce",
+      "Eco-Friendly Practices",
+      "24/7 Support Available",
+      "Minimal Disruption",
+    ],
+    link: "/staffing/facility-management",
+  },
+  {
+    id: "security",
+    label: "Security",
+    description: "Security personnel for access control, surveillance, patrolling, and emergency response — PSARA-licensed and trained for diverse site environments.",
+    services: [
+      "Security Supervisors",
+      "Access Control Guards",
+      "CCTV & Surveillance Ops",
+      "Perimeter Patrolling",
+      "Emergency Response",
+      "Visitor Management",
+      "Event Security",
+    ],
+    coverage: [
+      "Hospitals & Healthcare",
+      "Industrial Plants",
+      "Corporate Offices",
+      "Gated Communities",
+    ],
+    benefits: [
+      "PSARA-Licensed Guards",
+      "Background Verified",
+      "Emergency-Code Trained",
+      "Rapid Deployment",
+    ],
+    link: "/staffing/security",
+  },
+  {
+    id: "administration",
+    label: "Administration",
+    description: "Front office executives, help desk staff, coordinators, and office support professionals to keep your operations running smoothly.",
+    services: [
+      "Front Office Executives",
+      "Help Desk Attendants",
+      "Data Entry Operators",
+      "Office Coordinators",
+      "Receptionist Staff",
+      "Pantry Supervisors",
+      "MIS & Reporting Staff",
+    ],
+    coverage: [
+      "Corporate Head Offices",
+      "Healthcare Front Desks",
+      "Government Offices",
+      "BPO & Shared Services",
+    ],
+    benefits: [
+      "Presentable & Trained",
+      "Multi-Language Staff",
+      "Fast Onboarding",
+      "Payroll Managed by Us",
+    ],
+    link: "/staffing/administration",
+  },
+];
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -471,6 +608,7 @@ export const Header = () => {
   const [activeSubTab, setActiveSubTab] = useState<string>("");
   const [activeOfferTab, setActiveOfferTab] = useState<string>("compliance");
   const [activeServiceTab, setActiveServiceTab] = useState<string>("");
+  const [activeManpowerSector, setActiveManpowerSector] = useState<string>("healthcare");
   const { pathname } = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
 
@@ -646,67 +784,188 @@ export const Header = () => {
                   
                   {/* Content Area */}
                   <div className="flex flex-1 overflow-hidden">
-                    
-                    {/* Middle Column: Vertical Tabs */}
-                    <div className="w-[35%] border-r border-slate-100 p-6 flex flex-col gap-2 overflow-y-auto">
-                      {offeringsVerticalTabsData[activeOfferTab]?.items.map((item) => {
-                        const IconComp = item.icon;
-                        const isActive = activeServiceTab === item.id;
-                        return (
-                          <button
-                            key={item.id}
-                            onMouseEnter={() => setActiveServiceTab(item.id)}
-                            className={`w-full text-left p-3 rounded-xl border transition-all flex items-center gap-3 ${
-                              isActive 
-                                ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/20" 
-                                : "bg-transparent border-slate-100 text-slate-700 hover:border-slate-300 hover:bg-slate-50"
-                            }`}
-                          >
-                            <IconComp className={`w-4 h-4 shrink-0 ${isActive ? "text-white" : "text-blue-500"}`} />
-                            <span className="text-xs font-bold uppercase tracking-wide flex-1">{item.title}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
 
-                    {/* Right Column: Key Details */}
-                    <div className="w-[65%] p-8 bg-slate-50/50 overflow-y-auto">
-                      {(() => {
-                        const activeItem = offeringsVerticalTabsData[activeOfferTab]?.items.find(i => i.id === activeServiceTab);
-                        if (!activeItem) return null;
-                        
-                        return (
-                          <div className="animate-fade-in flex flex-col h-full">
-                            <h3 className="text-lg font-black text-slate-900 mb-3">{activeItem.title}</h3>
-                            <p className="text-xs text-slate-600 font-medium leading-relaxed mb-6">
-                              {activeItem.description}
-                            </p>
-                            
-                            <div className="flex-1 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-                              <h4 className="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-4">Key Details</h4>
-                              <ul className="space-y-3">
-                                {activeItem.keyDetails.map((detail, idx) => (
-                                  <li key={idx} className="flex items-start gap-2 text-xs font-semibold text-slate-700 leading-snug">
-                                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                                    <span>{detail}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            
-                            <div className="mt-6">
-                              <Link
-                                to={activeItem.link}
-                                onClick={() => setActiveDropdown(null)}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-colors"
-                              >
-                                Read Full Details <ArrowRight className="w-3.5 h-3.5" />
-                              </Link>
-                            </div>
+                    {activeOfferTab === "staffing" ? (
+                      /* ── Manpower 2-Panel Layout ── */
+                      <>
+                        {/* Left: Sector List */}
+                        <div className="w-[35%] border-r border-slate-100 p-6 flex flex-col">
+                          <div className="mb-4">
+                            <span className="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em]">Manpower</span>
                           </div>
-                        );
-                      })()}
-                    </div>
+                          <div className="flex flex-col gap-1.5">
+                            {manpowerSectorsData.map((sector) => {
+                              const isActive = activeManpowerSector === sector.id;
+                              return (
+                                <button
+                                  key={sector.id}
+                                  onMouseEnter={() => setActiveManpowerSector(sector.id)}
+                                  className={`w-full text-left px-4 py-3 rounded-xl border transition-all flex items-center justify-between group ${
+                                    isActive
+                                      ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/20"
+                                      : "bg-transparent border-slate-100 text-slate-700 hover:border-slate-200 hover:bg-slate-50"
+                                  }`}
+                                >
+                                  <span className="text-xs font-bold tracking-wide">{sector.label}</span>
+                                  <ArrowRight className={`w-3.5 h-3.5 transition-all ${
+                                    isActive ? "opacity-100 text-white" : "opacity-0 group-hover:opacity-60 text-slate-400"
+                                  }`} />
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Right: Dynamic Sector Detail */}
+                        {(() => {
+                          const sector = manpowerSectorsData.find(s => s.id === activeManpowerSector);
+                          if (!sector) return null;
+                          return (
+                            <div className="w-[65%] p-7 bg-slate-50/50 overflow-y-auto flex flex-col animate-fade-in">
+                              {/* Header */}
+                              <div className="mb-4">
+                                <h3 className="text-base font-black text-slate-900 leading-tight">{sector.label} Workforce Solutions</h3>
+                                <p className="text-xs text-slate-500 font-medium leading-relaxed mt-1.5">{sector.description}</p>
+                              </div>
+
+                              {/* 3-Column Grid */}
+                              <div className="grid grid-cols-3 gap-3 flex-1">
+                                {/* Services */}
+                                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                                  <h4 className="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-3">Services</h4>
+                                  <ul className="space-y-1.5">
+                                    {sector.services.map((s, i) => (
+                                      <li key={i} className="flex items-start gap-1.5">
+                                        <span className="w-1 h-1 rounded-full bg-blue-400 shrink-0 mt-1.5" />
+                                        <span className="text-[10.5px] font-semibold text-slate-700 leading-snug">{s}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+
+                                {/* Coverage */}
+                                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                                  <h4 className="text-[9px] font-black text-emerald-600 uppercase tracking-widest mb-3">Coverage</h4>
+                                  <ul className="space-y-1.5">
+                                    {sector.coverage.map((c, i) => (
+                                      <li key={i} className="flex items-start gap-1.5">
+                                        <span className="w-1 h-1 rounded-full bg-emerald-400 shrink-0 mt-1.5" />
+                                        <span className="text-[10.5px] font-semibold text-slate-700 leading-snug">{c}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+
+                                {/* Benefits */}
+                                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                                  <h4 className="text-[9px] font-black text-violet-600 uppercase tracking-widest mb-3">Benefits</h4>
+                                  <ul className="space-y-1.5">
+                                    {sector.benefits.map((b, i) => (
+                                      <li key={i} className="flex items-start gap-1.5">
+                                        <CheckCircle2 className="w-3 h-3 text-violet-400 shrink-0 mt-0.5" />
+                                        <span className="text-[10.5px] font-semibold text-slate-700 leading-snug">{b}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              </div>
+
+                              {/* CTA */}
+                              <div className="mt-5">
+                                <Link
+                                  to={sector.link}
+                                  onClick={() => setActiveDropdown(null)}
+                                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-colors"
+                                >
+                                  Explore {sector.label} Solutions <ArrowRight className="w-3.5 h-3.5" />
+                                </Link>
+                              </div>
+                            </div>
+                          );
+                        })()}
+                      </>
+                    ) : (
+                      /* ── Standard 3-Column Layout for all other tabs ── */
+                      <>
+                        {/* Middle Column: Vertical Tabs */}
+                        <div className="w-[35%] border-r border-slate-100 p-6 flex flex-col gap-2 overflow-y-auto">
+                          {offeringsVerticalTabsData[activeOfferTab]?.items.map((item) => {
+                            const IconComp = item.icon;
+                            const isActive = activeServiceTab === item.id;
+                            return (
+                              <button
+                                key={item.id}
+                                onMouseEnter={() => setActiveServiceTab(item.id)}
+                                className={`w-full text-left p-3 rounded-xl border transition-all flex items-center gap-3 ${
+                                  isActive 
+                                    ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/20" 
+                                    : "bg-transparent border-slate-100 text-slate-700 hover:border-slate-300 hover:bg-slate-50"
+                                }`}
+                              >
+                                <IconComp className={`w-4 h-4 shrink-0 ${isActive ? "text-white" : "text-blue-500"}`} />
+                                <span className="text-xs font-bold uppercase tracking-wide flex-1">{item.title}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        {/* Right Column: 3-Card Detail Panel */}
+                        <div className="w-[65%] p-7 bg-slate-50/50 overflow-y-auto">
+                          {(() => {
+                            const activeItem = offeringsVerticalTabsData[activeOfferTab]?.items.find(i => i.id === activeServiceTab);
+                            if (!activeItem) return null;
+
+                            // Parse "Label: Description" format from keyDetails
+                            const parsedDetails = activeItem.keyDetails.map(detail => {
+                              const colonIdx = detail.indexOf(": ");
+                              return colonIdx !== -1
+                                ? { label: detail.substring(0, colonIdx), desc: detail.substring(colonIdx + 2) }
+                                : { label: detail, desc: "" };
+                            });
+
+                            const cardColors = [
+                              { header: "text-blue-600", dot: "bg-blue-400", border: "border-blue-100/60" },
+                              { header: "text-emerald-600", dot: "bg-emerald-400", border: "border-emerald-100/60" },
+                              { header: "text-violet-600", dot: "bg-violet-400", border: "border-violet-100/60" },
+                            ];
+
+                            return (
+                              <div className="animate-fade-in flex flex-col h-full">
+                                {/* Header */}
+                                <div className="mb-4">
+                                  <h3 className="text-base font-black text-slate-900 leading-tight">{activeItem.title}</h3>
+                                  <p className="text-xs text-slate-500 font-medium leading-relaxed mt-1.5">{activeItem.description}</p>
+                                </div>
+
+                                {/* 3-Card Grid */}
+                                <div className="grid grid-cols-3 gap-3 flex-1">
+                                  {parsedDetails.map((detail, idx) => {
+                                    const color = cardColors[idx] || cardColors[0];
+                                    return (
+                                      <div key={idx} className={`bg-white border ${color.border} rounded-xl p-4 shadow-sm`}>
+                                        <h4 className={`text-[9px] font-black ${color.header} uppercase tracking-widest mb-2`}>{detail.label}</h4>
+                                        <p className="text-[10.5px] font-semibold text-slate-600 leading-relaxed">{detail.desc}</p>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+
+                                {/* CTA */}
+                                <div className="mt-5">
+                                  <Link
+                                    to={activeItem.link}
+                                    onClick={() => setActiveDropdown(null)}
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-colors"
+                                  >
+                                    Read Full Details <ArrowRight className="w-3.5 h-3.5" />
+                                  </Link>
+                                </div>
+                              </div>
+                            );
+                          })()}
+                        </div>
+                      </>
+                    )}
                   </div>
                   {/* Contact Us Banner */}
                   <div className="mt-8 bg-slate-55 border border-slate-100 rounded-xl p-4 flex items-center justify-between">
